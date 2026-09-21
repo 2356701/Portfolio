@@ -1,0 +1,73 @@
+/* ==========================================================================
+   HEADINGS / ELEMENT
+   ========================================================================== */
+
+/* ==========================================================================
+   HEADINGS / ELEMENT
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-primary);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: 0px;
+    margin: 0;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    margin: 0;
+    font-family: var(--font-primary);
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+
+    line-height: 120%;
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+
+    line-height: 120%;
+}
+
+.surtitle {
+    font-size: var(--font-size-surtitle);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+    width: fit-content;
+    margin-bottom: 00px;
+    color: #0492c2;
+
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+.p-big {
+    font-size: var(--font-size-paragraph-big);
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    letter-spacing: 0px;
+    line-height: 1.6;
+}
+p {
+    margin: 0;
+    font-size: var(--font-size-paragraph);
+    line-height: 160%;
+}
+.menu {
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    font-size: var(--font-size-menu-button);
+    text-transform: uppercase;
+}
+.hero_contact {
+    .hero_content h1 {
+        font-size: var(--font-size-h1-contact);
+    }
+}
