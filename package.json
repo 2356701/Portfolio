@@ -57,6 +57,7 @@
     "webpack": "^5.0.0"
   },
   "dependencies": {
+    "matter-js": "^0.20.0",
     "swiper": "^11.2.10"
   }
 }

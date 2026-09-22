@@ -1,0 +1,32 @@
+/* ==========================================================================
+   PAGINATION / COMPONENT
+   Puces de pagination du carousel de projets (voir Carousel.js → Swiper).
+   On restyle les classes natives de Swiper plutôt que d'en recréer.
+   ========================================================================== */
+
+.projects-carousel {
+    .swiper-pagination {
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: var(--spacing-lg);
+    }
+
+    .swiper-pagination-bullet {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        background-color: rgba(60, 60, 60, 0.5);
+        opacity: 1;
+        border-radius: 999px;
+        transition: width 0.3s $ease-out-quad, background-color 0.3s $ease-out-quad;
+    }
+
+    .swiper-pagination-bullet-active {
+        width: 62px;
+        background-color: var(--color-dark);
+        box-shadow: var(--shadow-card);
+    }
+}

@@ -1,0 +1,43 @@
+/* ==========================================================================
+   BUTTON / COMPONENT
+   Bouton "CTA" à contour rouge utilisé partout dans la maquette
+   (hero, cards projet, section vidéo…).
+   ========================================================================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 51px;
+    padding: 0 28px;
+    border: 2px solid var(--color-primary);
+    border-radius: 25px;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-medium);
+    font-size: var(--font-size-cta);
+    line-height: var(--lh-nav);
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s $ease-out-quad, color 0.2s $ease-out-quad;
+
+    &:hover {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        text-decoration: none;
+    }
+
+    &__icon {
+        width: 21px;
+        height: auto;
+        flex-shrink: 0;
+    }
+
+    // Sur fond sombre (hero, section vidéo) : texte blanc au repos
+    &--inverse {
+        color: var(--color-white);
+    }
+}

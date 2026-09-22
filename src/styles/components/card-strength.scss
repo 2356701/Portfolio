@@ -1,0 +1,49 @@
+/* ==========================================================================
+   CARD-STRENGTH / COMPONENT
+   Grille 2×2 "Mes forces" — titre + grand chiffre condensé.
+   ========================================================================== */
+
+.strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg) var(--spacing-md);
+    width: 100%;
+}
+
+.card-strength {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: var(--color-card);
+    border-radius: 25px;
+    box-shadow: var(--shadow-card);
+}
+
+.card-strength__title {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
+    font-size: var(--font-size-strength-title);
+    line-height: var(--lh-strength-title);
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.card-strength__number {
+    @include text-condensed;
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-h1);
+    font-size: var(--font-size-h1);
+    line-height: var(--lh-h1);
+    letter-spacing: 2.8px;
+    color: var(--color-text);
+}
+
+@media (max-width: $breakpoint-sm) {
+    .strengths-grid {
+        grid-template-columns: 1fr;
+    }
+}

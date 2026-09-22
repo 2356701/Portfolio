@@ -1,16 +1,21 @@
 //FONTS
+// SF Pro est self-hosted (voir settings/font-face) — Apple ne l'autorise pas
+// via CDN. Playfair Display (titres éditoriaux) et Shrikhand (logo) viennent
+// de Google Fonts.
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,700&family=Shrikhand&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 // TOOLS
 // mixins et fonctions utilisés globalement dans le SCSS (Sass)
 @import 'tools/typo';
+@import 'tools/cover';
+@import 'tools/text';
 
 // SETTINGS
 // Contient les variables sur les polices, les définitions de couleurs, les définitions de  grandeurs,   etc.
 @import 'settings/colors';
 @import 'settings/easing';
 @import 'settings/fonts';
+@import 'settings/font-face';
 @import 'settings/dimensions';
 
 // GENERIC
@@ -31,8 +36,19 @@
 @import '../../node_modules/swiper/swiper-bundle';
 
 @import 'components/accordion';
-
 @import 'components/scrolly';
+@import 'components/button';
+@import 'components/site-header';
+@import 'components/site-footer';
+@import 'components/card-project';
+@import 'components/card-tool';
+@import 'components/tag-lozenge';
+@import 'components/card-strength';
+@import 'components/pagination';
+
+// PAGES
+// Styles propres à une seule page (mise en page, agencement des sections).
+@import 'pages/apropos';
 
 // UTILITIES
 // Utilitaires et classes auxiliaires avec possibilité de remplacer tout ce qui précède, par exemple masquer les éléments de la page

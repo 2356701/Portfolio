@@ -1,24 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{title}}</title>
+        <title>{{title}} · Nathan Fortier</title>
+        <meta
+            name="description"
+            content="Portfolio de Nathan Fortier — création média : vidéo, son et motion."
+        />
 
         <link rel="stylesheet" href="styles/main.css" />
-       
-       
-        <meta name="apple-mobile-web-app-title" content="--" />
-       
-        <script src="scripts/main.js" defer></script>
 
-       
+        <link rel="icon" type="image/svg+xml" href="assets/favicons/favicon.svg" />
+        <link rel="apple-touch-icon" href="assets/favicons/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="The_Nat" />
+
+        <script src="scripts/main.js" defer></script>
     </head>
     <body data-component="Scrolly">
-        <header class="header" data-component="Header">
+        <header class="site-header" data-component="Header">
             <div class="wrapper">
-         
+                <nav class="site-header__nav" aria-label="Navigation principale">
+                    <a href="index.html" class="site-header__logo">The_Nat</a>
+
+                    <button
+                        class="site-header__toggle js-toggle"
+                        type="button"
+                        aria-label="Ouvrir le menu"
+                        aria-expanded="false"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!--
+                        Site one-page : "À propos", "Projets" et "Contact" sont des
+                        sections de apropos.html, pas des pages séparées — on y
+                        fait défiler avec des ancres plutôt que de naviguer.
+                    -->
+                    <ul class="site-header__links">
+                        <li>
+                            <a
+                                href="apropos.html#apropos"
+                                class="site-header__link {% if activePage == 'apropos' %}is-active{% endif %}"
+                                >À propos</a
+                            >
+                        </li>
+                        <li class="site-header__divider" aria-hidden="true"></li>
+                        <li>
+                            <a href="apropos.html#projets" class="site-header__link">Projets</a>
+                        </li>
+                        <li class="site-header__divider" aria-hidden="true"></li>
+                        <li>
+                            <a href="apropos.html#contact" class="site-header__link">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </header>
-              

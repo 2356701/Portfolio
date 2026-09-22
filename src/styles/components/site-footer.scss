@@ -1,0 +1,160 @@
+/* ==========================================================================
+   SITE-FOOTER / COMPONENT
+   Pied de page clair, partagé par toutes les pages.
+   ========================================================================== */
+
+.site-footer {
+    padding: var(--spacing-xxl) 0 var(--spacing-xl);
+    background-color: var(--color-bg);
+    text-align: center;
+}
+
+.site-footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.site-footer__eyebrow {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: var(--font-size-footer-subheading);
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.site-footer__heading {
+    max-width: 900px;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
+    font-size: var(--font-size-footer-heading);
+    line-height: 1.25;
+    text-transform: uppercase;
+    color: var(--color-black);
+    margin: 0;
+}
+
+.site-footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // 50px dans la maquette entre les blocs (contact / réseaux / mentions / liens)
+    gap: 50px;
+    width: 100%;
+    // Les 4 blocs du footer s'alignent tous sur cette même largeur dans la
+    // maquette (c'est aussi la largeur du séparateur footer-divider.svg) —
+    // avant ce correctif rien ne la contraignait et les lignes ne
+    // s'alignaient plus entre elles sur grand écran.
+    max-width: 951px;
+}
+
+.site-footer__contact {
+    display: flex;
+    // Courriel au-dessus du téléphone, empilés — pas côte à côte.
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-ssm);
+}
+
+.site-footer__contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-medium);
+    font-size: var(--font-size-footer-contact);
+    color: var(--color-text);
+    text-transform: uppercase;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-primary);
+        text-decoration: underline;
+    }
+
+    // Le courriel est au format "caption" dans la maquette (25px), un cran
+    // au-dessus du téléphone (22px) — les deux partageaient la même
+    // variable avant ce correctif.
+    &--email {
+        font-size: var(--font-size-caption);
+    }
+}
+
+.site-footer__arrow {
+    width: 22px;
+    height: auto;
+}
+
+.site-footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 55px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    img {
+        height: 36px;
+        width: auto;
+    }
+
+    a {
+        display: block;
+        opacity: 0.85;
+        transition: opacity 0.2s $ease-out-quad;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.site-footer__disclaimer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+
+    p {
+        margin: 0;
+        font-size: var(--font-size-footer-legal);
+        line-height: 1.6;
+        color: var(--color-text);
+        text-align: center;
+    }
+}
+
+.site-footer__divider {
+    width: 100%;
+    height: 1px;
+}
+
+.site-footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    width: 100%;
+
+    a {
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-heavy);
+        font-size: var(--font-size-footer-link);
+        letter-spacing: -0.03em;
+        color: var(--color-black);
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-primary);
+        }
+    }
+}
+
+@media (min-width: $breakpoint-sm) {
+    .site-footer__links {
+        justify-content: space-between;
+    }
+}

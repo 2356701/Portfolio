@@ -1,20 +1,61 @@
 /* ==========================================================================
    FONTS / SETTINGS
+   Familles, graisses et tailles fluides de la maquette "À propos".
+   Les tailles utilisent typo() (voir tools/typo) pour varier en clamp()
+   entre 480px et 1440px, comme le reste du gabarit.
    ========================================================================== */
-/// Font family
+
 :root {
-    // Font families
-    --font-primary: 'Lexend Deca', Helvetica;
-    --font-secondary: 'Roboto', Helvetica;
+    // Familles
+    --font-primary: 'Playfair Display', Georgia, 'Times New Roman', serif; // titres éditoriaux
+    --font-secondary: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Helvetica, Arial, sans-serif; // texte courant
+    --font-logo: 'Shrikhand', cursive; // wordmark "The_Nat"
 
-    // Font sizes
-    --font-size-h1: #{typo(45px, 100px)};
-    --font-size-h1-contact: #{typo(45px, 60px)};
+    // Graisses — valeurs de l'axe variable "wght" de SF Pro, fidèles à la maquette
+    --fw-regular: 400;
+    --fw-medium: 510;
+    --fw-semibold: 590;
+    --fw-bold: 700;
+    --fw-heavy: 860;
+    --fw-hero: 760; // style "Hero" (Condensed Bold) — Nathan Fortier
+    --fw-h1: 870; // style "H1" (Condensed Heavy) — chiffres 01–04
 
-    --font-size-h2: #{typo(35px, 40px)};
-    --font-size-h3: #{typo(24px, 28px)};
-    --font-size-surtitle: #{typo(18px, 22px)};
-    --font-size-paragraph-big: #{typo(20px, 22px)};
-    --font-size-paragraph: #{typo(18px)};
-    --font-size-menu-button: #{typo(16px)};
+    // Tailles — échelle fluide (clamp entre 480px et 1440px)
+    --font-size-hero: #{typo(64px, 120px)}; // "Nathan Fortier" (hero + section vidéo)
+    --font-size-display: #{typo(48px, 90px)}; // "Un peu de mon travail"
+    --font-size-h1: #{typo(40px, 70px)}; // chiffres "01–04" (Mes forces)
+    --font-size-h2: #{typo(32px, 50px)}; // titres de section
+    --font-size-h3: #{typo(28px, 45px)}; // sous-titres de bloc
+    --font-size-h4: #{typo(20px, 25px)}; // libellés au-dessus des titres de card
+    --font-size-card-title: #{typo(32px, 50px)}; // titres Playfair des cards projet
+    --font-size-strength-title: #{typo(24px, 35px)}; // titres des cards "Mes forces"
+    --font-size-lead: #{typo(22px, 40px)}; // gros paragraphe d'intro
+    --font-size-body: #{typo(15px, 18px)};
+    --font-size-tool-label: #{typo(20px, 28px)}; // libellés sous les logos d'outils
+    --font-size-tag: #{typo(20px, 28px)}; // pastilles "Ce qui m'anime"
+    --font-size-nav: #{typo(16px, 22px)};
+    --font-size-caption: #{typo(18px, 25px)}; // "Création média – Vidéo, son et motion"
+    --font-size-cta: #{typo(18px, 22px)};
+    --font-size-footer-heading: #{typo(28px, 45px)};
+    --font-size-footer-subheading: #{typo(18px, 25px)};
+    --font-size-footer-contact: #{typo(18px, 22px)};
+    --font-size-footer-link: 16px;
+    --font-size-footer-legal: 10px;
+    --font-size-pill: #{typo(13px, 18px)}; // pastilles interactives "Ce qui m'anime"
+    --font-size-gravity-intro: #{typo(14px, 19px)}; // paragraphe dans la carte "Ce qui m'anime"
+
+    // Interlignes (unitless) — ratios exacts des styles Figma, à appliquer
+    // avec les tailles ci-dessus (sinon le line-height 1.6 du body déborde
+    // sur les gros titres).
+    --lh-hero: 0.69; // 120px / 83px
+    --lh-display: 0.92; // 90px / 83px ("Un peu de mon travail")
+    --lh-h1: 0.93; // 70px / 65px
+    --lh-h2: 1.14; // 50px / 57px
+    --lh-h3: 1.27; // 45px / 57px
+    --lh-h4: 1.6; // 25px / 40px
+    --lh-card-title: 1.14;
+    --lh-strength-title: 1.14;
+    --lh-nav: 1.32; // 22px / 29px
+    --lh-caption: 0.96; // 25px / 24px
 }

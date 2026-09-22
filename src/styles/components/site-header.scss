@@ -1,0 +1,138 @@
+/* ==========================================================================
+   SITE-HEADER / COMPONENT
+   Nav "pilule" rouge, collante en haut de toutes les pages.
+   ========================================================================== */
+
+.site-header {
+    position: sticky;
+    top: var(--spacing-sm);
+    z-index: 100;
+    padding-top: var(--spacing-sm);
+}
+
+.site-header__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--color-primary);
+    border-radius: 50px;
+    box-shadow: var(--shadow-card);
+}
+
+.site-header__logo {
+    font-family: var(--font-logo);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--color-white);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-white);
+        text-decoration: none;
+        opacity: 0.85;
+    }
+}
+
+.site-header__links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-mmd);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-header__divider {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.site-header__link {
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-medium);
+    font-size: var(--font-size-nav);
+    line-height: var(--lh-nav);
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &.is-active {
+        color: var(--color-white);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+}
+
+// Bouton hamburger — masqué en desktop, affiché en dessous de $breakpoint-sm
+.site-header__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-white);
+        transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .site-header__toggle {
+        display: flex;
+    }
+
+    .site-header__links {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--spacing-lg);
+        background-color: var(--color-primary);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s $ease-out-quad, opacity 0.3s $ease-out-quad;
+    }
+
+    .site-header__divider {
+        display: none;
+    }
+
+    .site-header__link {
+        font-size: var(--font-size-h3);
+    }
+
+    html.nav-is-active {
+        .site-header__links {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .site-header__toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .site-header__toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .site-header__toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+    }
+}

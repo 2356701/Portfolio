@@ -1,0 +1,41 @@
+/* ==========================================================================
+   CARD-TOOL / COMPONENT
+   Pastilles blanches "Mes outils de travail" (logo + nom du logiciel).
+   ========================================================================== */
+
+.card-tool-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-md) 0;
+    width: 100%;
+}
+
+.card-tool {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 187px;
+    min-height: 187px;
+    padding: var(--spacing-md);
+    background-color: var(--color-card);
+    border-radius: 25px;
+    box-shadow: var(--shadow-tool);
+}
+
+.card-tool__icon {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.card-tool__name {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--font-size-tool-label);
+    color: var(--color-text);
+    white-space: nowrap;
+}

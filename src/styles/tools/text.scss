@@ -1,0 +1,15 @@
+/* ==========================================================================
+   text / tools
+   ========================================================================== */
+
+// La maquette utilise "SF Pro Condensed" (axe de largeur "wdth" ≈ 60) pour le
+// hero et les gros chiffres. La police variable qu'on self-host n'expose que
+// l'axe "wght" (pas de largeur), donc on approxime le condensé avec un
+// scaleX() horizontal — même hauteur de capitale, largeur resserrée, comme
+// dans Figma. À utiliser sur un élément seul sur sa ligne (aligné à gauche
+// par défaut) pour que l'espace "libéré" par le rétrécissement ne gêne pas.
+@mixin text-condensed($scale: 0.6, $origin: left center) {
+    display: inline-block;
+    transform: scaleX($scale);
+    transform-origin: $origin;
+}

@@ -1,0 +1,339 @@
+/* ==========================================================================
+   PAGE — À PROPOS
+   Mise en page propre à la page apropos.html : le hero, les deux blocs
+   sombres et la section portfolio. Les éléments réutilisables (cards,
+   boutons, tags…) vivent dans styles/components.
+   ========================================================================== */
+
+// Bloc générique "section sombre" (réutilisé 2x dans la page)
+%dark-section {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0;
+    overflow: hidden;
+}
+
+// ---------------------------------------------------------------------------
+// HERO
+// ---------------------------------------------------------------------------
+.hero {
+    position: relative;
+    padding: var(--spacing-xl) 0 var(--spacing-xxl);
+    overflow: hidden;
+}
+
+.hero__decor {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.hero__decor--headphones {
+    top: -6%;
+    right: 4%;
+    width: 26%;
+    max-width: 320px;
+    transform: rotate(-18deg);
+}
+
+.hero__decor--drumsticks {
+    top: 22%;
+    right: -4%;
+    width: 40%;
+    max-width: 480px;
+    transform: rotate(18deg);
+}
+
+.hero__decor img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    max-width: 720px;
+}
+
+.hero__photo {
+    width: 100%;
+    max-width: 531px;
+    aspect-ratio: 531 / 354;
+    border-radius: 25px;
+    background-color: var(--color-black);
+    box-shadow: var(--shadow-card-lg);
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+}
+
+.hero__caption {
+    margin: 0 0 var(--spacing-sm);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: var(--font-size-caption);
+    line-height: var(--lh-caption);
+    color: var(--color-primary);
+    text-transform: uppercase;
+
+    span {
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-bold);
+        color: var(--color-text);
+    }
+}
+
+.hero__title {
+    @include text-condensed;
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-hero);
+    font-size: var(--font-size-hero);
+    line-height: var(--lh-hero);
+    letter-spacing: 2.4px;
+    color: var(--color-text);
+    text-transform: uppercase;
+}
+
+// ---------------------------------------------------------------------------
+// PROPOSITION (section sombre : "ce que je propose" + vidéo de présentation)
+// ---------------------------------------------------------------------------
+.proposition {
+    @extend %dark-section;
+}
+
+.proposition__lead {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xxl);
+
+    h2 {
+        color: var(--color-white);
+        margin: 0;
+    }
+
+    // La maquette place le titre et le paragraphe sur une grille ~50/50
+    // (title left-120 top-55, texte left-708 top-83 dans un cadre 1440px)
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.proposition__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+
+    p {
+        font-size: var(--font-size-lead);
+        font-weight: var(--fw-medium);
+        line-height: 1.4;
+        color: var(--color-white);
+
+        strong {
+            font-weight: var(--fw-bold);
+        }
+    }
+}
+
+.proposition__video {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.proposition__video-heading {
+    max-width: 600px;
+
+    p:first-child {
+        margin: 0 0 var(--spacing-sm);
+        font-family: var(--font-primary);
+        font-weight: 600;
+        font-size: var(--font-size-h2);
+        color: var(--color-primary);
+    }
+
+    p:last-child {
+        margin: 0;
+        font-size: var(--font-size-h2);
+        font-weight: var(--fw-medium);
+        text-transform: uppercase;
+        color: var(--color-white);
+    }
+}
+
+.video-card {
+    position: relative;
+    aspect-ratio: 1200 / 675;
+    border-radius: 55px;
+    background-color: var(--color-text);
+    overflow: hidden;
+}
+
+.video-card__decor {
+    position: absolute;
+    left: -14%;
+    bottom: -14%;
+    width: 46%;
+    opacity: 0.35;
+    pointer-events: none;
+    transform: rotate(-8deg);
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+.video-card__caption {
+    position: absolute;
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.video-card__name {
+    @include text-condensed;
+    display: block;
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-hero);
+    font-size: var(--font-size-hero);
+    line-height: var(--lh-hero);
+    letter-spacing: 2px;
+    color: var(--color-white);
+}
+
+.video-card__label {
+    margin: var(--spacing-sm) 0 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
+    font-size: var(--font-size-h3);
+    line-height: var(--lh-h3);
+    color: var(--color-white);
+
+    em {
+        font-family: var(--font-primary);
+        font-style: normal;
+        color: var(--color-primary);
+    }
+}
+
+.video-card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(70px, 6vw + 40px, 110px);
+    height: auto;
+    transition: transform 0.2s $ease-out-quad;
+}
+
+.video-card:hover .video-card__play {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+// ---------------------------------------------------------------------------
+// PORTFOLIO ("un peu de mon travail")
+// ---------------------------------------------------------------------------
+.portfolio {
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+}
+
+.portfolio__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+
+    h2 {
+        font-family: var(--font-primary);
+        font-weight: 800;
+        font-size: var(--font-size-display);
+        line-height: var(--lh-display);
+        text-transform: none;
+
+        em {
+            font-style: normal;
+            color: var(--color-primary);
+        }
+    }
+}
+
+.portfolio__scroll-cue {
+    width: 32px;
+    transform: rotate(90deg);
+}
+
+.projects-carousel {
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        padding: 0 var(--spacing-sm);
+        box-sizing: border-box;
+    }
+
+    .card-project {
+        height: 100%;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// EXPERTISE (section sombre : outils, ce qui m'anime, mes forces)
+// ---------------------------------------------------------------------------
+.expertise {
+    @extend %dark-section;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+}
+
+.expertise__block-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+
+    img {
+        width: 28px;
+        height: auto;
+    }
+
+    p {
+        margin: 0;
+        font-family: var(--font-primary);
+        font-weight: 700;
+        font-size: 24px;
+        color: var(--color-white);
+    }
+}
+
+.expertise__tools h2,
+.expertise__interests h2,
+.expertise__strengths h2 {
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.expertise__tools h2 {
+    text-align: left;
+}
