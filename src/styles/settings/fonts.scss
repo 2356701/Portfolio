@@ -42,13 +42,11 @@
     --font-size-footer-contact: #{typo(18px, 22px)};
     --font-size-footer-link: 16px;
     --font-size-footer-legal: 10px;
-    --font-size-pill: #{typo(13px, 18px)}; // pastilles interactives "Ce qui m'anime"
-    --font-size-gravity-intro: #{typo(14px, 19px)}; // paragraphe dans la carte "Ce qui m'anime"
 
     // Interlignes (unitless) — ratios exacts des styles Figma, à appliquer
     // avec les tailles ci-dessus (sinon le line-height 1.6 du body déborde
     // sur les gros titres).
-    --lh-hero: 0.69; // 120px / 83px
+    --lh-hero: 0.65; // 78px / 120px
     --lh-display: 0.92; // 90px / 83px ("Un peu de mon travail")
     --lh-h1: 0.93; // 70px / 65px
     --lh-h2: 1.14; // 50px / 57px

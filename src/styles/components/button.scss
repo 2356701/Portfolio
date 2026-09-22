@@ -30,14 +30,41 @@
         text-decoration: none;
     }
 
+    // Un <img> ne peut pas hériter de `color` — la flèche restait blanche
+    // (couleur codée dans le SVG) même sur fond clair, donc invisible.
+    // On la pose plutôt en masque CSS sur un <span>, coloré via
+    // `currentColor` : elle suit maintenant toujours la couleur du texte
+    // du bouton (repos, --inverse, survol).
     &__icon {
         width: 21px;
-        height: auto;
+        height: 15px;
         flex-shrink: 0;
+        background-color: currentColor;
+        mask-image: url('../assets/icons/cta-arrow.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        -webkit-mask-image: url('../assets/icons/cta-arrow.svg');
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
     }
 
     // Sur fond sombre (hero, section vidéo) : texte blanc au repos
     &--inverse {
         color: var(--color-white);
+    }
+
+    // Posé directement sur un fond rouge (--color-primary), ex. la carte
+    // "Ce qui m'anime" : le contour et le survol de --inverse resteraient
+    // rouge sur rouge et disparaîtraient, donc on passe tout en blanc.
+    &--on-primary {
+        border-color: var(--color-white);
+        color: var(--color-white);
+
+        &:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
     }
 }

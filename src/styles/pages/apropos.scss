@@ -94,15 +94,20 @@
 }
 
 .hero__title {
-    @include text-condensed;
+    // Toujours sur une seule ligne : la colonne parente (.hero__content)
+    // est plafonnée à 720px pour la photo, mais le titre doit pouvoir
+    // dépasser cette largeur plutôt que de passer à la ligne.
+    width: max-content;
+    max-width: 100%;
     margin: 0;
     font-family: var(--font-secondary);
     font-weight: var(--fw-hero);
     font-size: var(--font-size-hero);
     line-height: var(--lh-hero);
-    letter-spacing: 2.4px;
+    letter-spacing: 0.02em; // 2% (maquette Figma)
     color: var(--color-text);
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 // ---------------------------------------------------------------------------
@@ -123,11 +128,17 @@
         margin: 0;
     }
 
-    // La maquette place le titre et le paragraphe sur une grille ~50/50
-    // (title left-120 top-55, texte left-708 top-83 dans un cadre 1440px)
+    // La maquette place le titre et le paragraphe sur une grille ~50/50,
+    // mais pas alignés sur la même ligne : le texte de droite commence
+    // plus bas que le titre (title top-55, texte top-83 dans un cadre
+    // 1440px, donc 28px de décalage vers le bas pour le texte).
     @media (min-width: $breakpoint-md) {
         grid-template-columns: 1fr 1fr;
         align-items: start;
+
+        .proposition__text {
+            margin-top: 28px;
+        }
     }
 }
 
@@ -140,7 +151,8 @@
     p {
         font-size: var(--font-size-lead);
         font-weight: var(--fw-medium);
-        line-height: 1.4;
+        line-height: 1.375; // 55px / 40px (maquette Figma)
+        letter-spacing: -0.02em;
         color: var(--color-white);
 
         strong {
@@ -163,6 +175,8 @@
         font-family: var(--font-primary);
         font-weight: 600;
         font-size: var(--font-size-h2);
+        line-height: 1.1; // 55px / 50px (maquette Figma)
+        letter-spacing: -0.02em;
         color: var(--color-primary);
     }
 
@@ -170,6 +184,8 @@
         margin: 0;
         font-size: var(--font-size-h2);
         font-weight: var(--fw-medium);
+        line-height: 1.1; // 55px / 50px (maquette Figma)
+        letter-spacing: -0.02em;
         text-transform: uppercase;
         color: var(--color-white);
     }
@@ -208,14 +224,13 @@
 }
 
 .video-card__name {
-    @include text-condensed;
     display: block;
     margin: 0;
     font-family: var(--font-secondary);
     font-weight: var(--fw-hero);
     font-size: var(--font-size-hero);
     line-height: var(--lh-hero);
-    letter-spacing: 2px;
+    letter-spacing: 0.02em; // 2% (maquette Figma)
     color: var(--color-white);
 }
 
@@ -327,7 +342,6 @@
 }
 
 .expertise__tools h2,
-.expertise__interests h2,
 .expertise__strengths h2 {
     color: var(--color-white);
     text-align: center;

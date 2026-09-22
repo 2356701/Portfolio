@@ -36,6 +36,7 @@
     font-family: var(--font-secondary);
     font-weight: var(--fw-semibold);
     font-size: var(--font-size-tool-label);
+    line-height: 2.04; // 57px / 28px (maquette Figma, style "p gros")
     color: var(--color-text);
     white-space: nowrap;
 }

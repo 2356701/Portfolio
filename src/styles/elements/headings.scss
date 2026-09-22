@@ -24,17 +24,18 @@ h1 {
 
 h2 {
     font-size: var(--font-size-h2);
-    line-height: 1.2;
+    line-height: var(--lh-h2);
 }
 
 h3 {
     font-size: var(--font-size-h3);
-    line-height: 1.2;
+    line-height: var(--lh-h3);
 }
 
 h4 {
     font-size: var(--font-size-h4);
     font-weight: var(--fw-semibold);
+    line-height: var(--lh-h4);
 }
 
 .surtitle {

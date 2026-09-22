@@ -56,12 +56,17 @@ export default class GravityInterests {
     if (this.walls.length) Composite.remove(this.engine.world, this.walls);
 
     const s = this.cardSize();
-    const T = 120;
+    // Murs épais (au lieu de 120px) pour éviter qu'une pastille lancée
+    // rapidement à la souris ne les traverse (tunneling) et tombe pour de
+    // bon hors du cadre. Le plafond est posé pile sur le bord visible du
+    // haut de la carte (y = 0) : les bulles ne doivent jamais dépasser le
+    // cadre rouge vers le haut, même lancées fort à la souris.
+    const T = 260;
     this.walls = [
       Bodies.rectangle(s.w / 2, s.h + T / 2, s.w * 3, T, { isStatic: true }),
       Bodies.rectangle(-T / 2, s.h / 2, T, s.h * 4, { isStatic: true }),
       Bodies.rectangle(s.w + T / 2, s.h / 2, T, s.h * 4, { isStatic: true }),
-      Bodies.rectangle(s.w / 2, -s.h * 1.8, s.w * 3, T, { isStatic: true }),
+      Bodies.rectangle(s.w / 2, -T / 2, s.w * 3, T, { isStatic: true }),
     ];
     Composite.add(this.engine.world, this.walls);
   }
@@ -115,6 +120,23 @@ export default class GravityInterests {
     });
   }
 
+  // Empêche une pastille lancée trop fort (glisser-déposer rapide) de
+  // traverser un mur en un seul pas de simulation (tunneling) — c'est ce
+  // qui la faisait parfois disparaître pour de bon.
+  clampVelocities() {
+    const { Body } = Matter;
+    const MAX_SPEED = 28;
+
+    this.pills.forEach((p) => {
+      const v = p.body.velocity;
+      const speed = Math.hypot(v.x, v.y);
+      if (speed > MAX_SPEED) {
+        const scale = MAX_SPEED / speed;
+        Body.setVelocity(p.body, { x: v.x * scale, y: v.y * scale });
+      }
+    });
+  }
+
   tryTrigger() {
     if (this.triggered) return;
 
@@ -139,10 +161,13 @@ export default class GravityInterests {
     this.tryTrigger();
 
     if (this.triggered) {
-      const tilt = Math.max(-1, Math.min(1, delta * 0.035));
+      // Effet très atténué : au départ, le tilt réagissait presque 1:1 au
+      // scroll et faisait valser les bulles violemment. On réduit fortement
+      // la sensibilité et l'amplitude max.
+      const tilt = Math.max(-0.25, Math.min(0.25, delta * 0.006));
       this.engine.world.gravity.x = Math.max(
-        -1.2,
-        Math.min(1.2, this.engine.world.gravity.x + tilt)
+        -0.3,
+        Math.min(0.3, this.engine.world.gravity.x + tilt)
       );
     }
   }
@@ -156,12 +181,30 @@ export default class GravityInterests {
     if (this.hint) {
       this.hint.textContent = 'Scroll jusqu’à la carte pour activer la gravité';
     }
+
+    // La carte est forcément visible pour qu'on puisse cliquer sur ce
+    // bouton : on réactive la gravité tout de suite plutôt que d'attendre
+    // un prochain scroll qui pourrait ne jamais arriver (ex. l'utilisateur
+    // reste immobile après avoir cliqué) — c'est ce qui donnait
+    // l'impression que la gravité restait cassée après un reset.
+    this.tryTrigger();
   }
 
   tick() {
-    if (this.triggered) this.engine.world.gravity.x *= 0.94;
-    Matter.Engine.update(this.engine, 1000 / 60);
-    this.syncDOM();
+    try {
+      // Retour au neutre plus rapide (0.85 au lieu de 0.94) pour que
+      // l'inclinaison retombe vite plutôt que de traîner après un scroll.
+      if (this.triggered) this.engine.world.gravity.x *= 0.85;
+      Matter.Engine.update(this.engine, 1000 / 60);
+      this.clampVelocities();
+      this.syncDOM();
+    } catch (err) {
+      // On ne laisse jamais une erreur ponctuelle arrêter la boucle
+      // d'animation pour de bon (elle continuait de s'exécuter mais un
+      // throw ici tuait silencieusement le prochain requestAnimationFrame).
+      console.error('GravityInterests: erreur dans la boucle d’animation', err);
+    }
+
     requestAnimationFrame(this.tick);
   }
 

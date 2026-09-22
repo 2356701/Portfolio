@@ -32,13 +32,12 @@
 }
 
 .card-strength__number {
-    @include text-condensed;
     margin: 0;
     font-family: var(--font-secondary);
     font-weight: var(--fw-h1);
     font-size: var(--font-size-h1);
     line-height: var(--lh-h1);
-    letter-spacing: 2.8px;
+    letter-spacing: 0.04em; // 4% (maquette Figma)
     color: var(--color-text);
 }
 
