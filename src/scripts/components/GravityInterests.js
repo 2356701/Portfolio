@@ -114,7 +114,7 @@ export default class GravityInterests {
 
     labels.forEach((L) => {
       const el = document.createElement('span');
-      el.className = 'interests__pill';
+      el.className = 'interets_pastille';
       el.textContent = L.text;
       this.card.appendChild(el);
 

@@ -14,171 +14,172 @@
 }
 
 // ---------------------------------------------------------------------------
-// HERO
+// HEROS
 // ---------------------------------------------------------------------------
-.hero {
+.heros {
     position: relative;
     padding: var(--spacing-xl) 0 var(--spacing-xxl);
     overflow: hidden;
-}
 
-.hero__decor {
-    position: absolute;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.9;
-}
+    &_decor {
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.9;
 
-.hero__decor img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
 
-// Réglages simples pour repositionner/redimensionner/faire pivoter les
-// images à la main.
-//   --decor-top    : position verticale (% de la hauteur du .hero)
-//   --decor-right  : position horizontale depuis la droite (% de la largeur du .hero,
-//                    une valeur négative fait déborder l'image hors du cadre)
-//   --decor-size   : largeur de l'image (en px)
-//   --decor-rotate : rotation (en deg, négatif = sens antihoraire)
-// Le bloc de base = réglage plein écran (≥1700px). Le @media qui suit
-// rétrécit l'image ET la pousse davantage vers la droite (--decor-right
-// plus négatif) à mesure que l'écran rapetisse, pour qu'elle ne vienne
-// jamais toucher le texte. En dessous de 1200px, il n'y a plus assez de
-// place pour ça : les deux images sont simplement masquées.
-.hero__decor--headphones {
-    --decor-top: -26%;
-    --decor-right: -17%;
-    --decor-size: 900px;
-    --decor-rotate: -5deg;
-
-    top: var(--decor-top);
-    right: var(--decor-right);
-    width: var(--decor-size);
-    transform: rotate(var(--decor-rotate));
-
-    @media (max-width: 1700px) {
-        --decor-size: 760px;
-        --decor-right: -14%;
-    }
-}
-
-.hero__decor--drumsticks {
-    --decor-top: 22%;
-    --decor-right: 3%;
-    --decor-size: 850px;
-    --decor-rotate: 4deg;
-
-    top: var(--decor-top);
-    right: var(--decor-right);
-    width: var(--decor-size);
-    transform: rotate(var(--decor-rotate));
-
-    @media (max-width: 1700px) {
-        --decor-size: 720px;
-        --decor-right: -4%;
-    }
-}
-
-@media (max-width: 1200px) {
-    .hero__decor {
-        display: none;
-    }
-}
-
-.hero__content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
-    max-width: 720px;
-}
-
-// Sur mobile, la maquette Figma inverse l'ordre : le texte (surtitre +
-// titre) passe avant la photo, au lieu d'après comme sur desktop.
-@media (max-width: $breakpoint-sm) {
-    .hero__content {
-        gap: var(--spacing-mmd);
+        // En dessous de 1200px, il n'y a plus assez de place pour repousser
+        // les images sans toucher le texte : elles sont simplement masquées.
+        @media screen and (width <= 1200px) {
+            display: none;
+        }
     }
 
-    .hero__photo {
-        order: 2;
+    // Réglages simples pour repositionner/redimensionner/faire pivoter les
+    // images à la main.
+    //   --decor-top    : position verticale (% de la hauteur du .heros)
+    //   --decor-right  : position horizontale depuis la droite (% de la
+    //                    largeur du .heros, une valeur négative fait
+    //                    déborder l'image hors du cadre)
+    //   --decor-size   : largeur de l'image (en px)
+    //   --decor-rotate : rotation (en deg, négatif = sens antihoraire)
+    // Le bloc de base = réglage plein écran (≥1700px). Le @media qui suit
+    // rétrécit l'image ET la pousse davantage vers la droite (--decor-right
+    // plus négatif) à mesure que l'écran rapetisse, pour qu'elle ne vienne
+    // jamais toucher le texte.
+    &_ecouteurs {
+        --decor-top: -26%;
+        --decor-right: -17%;
+        --decor-size: 900px;
+        --decor-rotate: -5deg;
+
+        top: var(--decor-top);
+        right: var(--decor-right);
+        width: var(--decor-size);
+        transform: rotate(var(--decor-rotate));
+
+        @media screen and (width <= 1700px) {
+            --decor-size: 760px;
+            --decor-right: -14%;
+        }
     }
 
-    .hero__text {
-        order: 1;
+    &_baguettes {
+        --decor-top: 22%;
+        --decor-right: 3%;
+        --decor-size: 850px;
+        --decor-rotate: 4deg;
+
+        top: var(--decor-top);
+        right: var(--decor-right);
+        width: var(--decor-size);
+        transform: rotate(var(--decor-rotate));
+
+        @media screen and (width <= 1700px) {
+            --decor-size: 720px;
+            --decor-right: -4%;
+        }
     }
-}
 
-.hero__photo {
-    width: 100%;
-    max-width: 531px;
-    aspect-ratio: 531 / 354;
-    border-radius: 25px;
-    background-color: var(--color-black);
-    box-shadow: var(--shadow-card-lg);
-    overflow: hidden;
+    &_contenu {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        max-width: 720px;
 
-    img {
+        @media screen and (width <= $breakpoint-sm) {
+            gap: var(--spacing-mmd);
+        }
+    }
+
+    &_photo {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.5;
+        max-width: 531px;
+        aspect-ratio: 531 / 354;
+        border-radius: 25px;
+        background-color: var(--color-black);
+        box-shadow: var(--shadow-card-lg);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        // Sur mobile, la maquette Figma inverse l'ordre : le texte (surtitre
+        // + titre) passe avant la photo, au lieu d'après comme sur desktop.
+        @media screen and (width <= $breakpoint-sm) {
+            order: 2;
+        }
     }
-}
 
-.hero__caption {
-    margin: 0 0 var(--spacing-sm);
-    font-family: var(--font-primary);
-    font-weight: 700;
-    font-size: var(--font-size-caption);
-    line-height: var(--lh-caption);
-    color: var(--color-primary);
-    text-transform: uppercase;
+    &_texte {
+        @media screen and (width <= $breakpoint-sm) {
+            order: 1;
+        }
+    }
 
-    span {
+    &_legende {
+        margin: 0 0 var(--spacing-sm);
+        font-family: var(--font-primary);
+        font-weight: 700;
+        font-size: var(--font-size-caption);
+        line-height: var(--lh-caption);
+        color: var(--color-primary);
+        text-transform: uppercase;
+
+        span {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-bold);
+            color: var(--color-text);
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            font-size: 13px;
+        }
+    }
+
+    &_titre {
+        // Toujours sur une seule ligne : la colonne parente (&_contenu) est
+        // plafonnée à 720px pour la photo, mais le titre doit pouvoir
+        // dépasser cette largeur plutôt que de passer à la ligne.
+        width: max-content;
+        max-width: 100%;
+        margin: 0;
         font-family: var(--font-secondary);
-        font-weight: var(--fw-bold);
+        font-weight: var(--fw-hero);
+        font-size: var(--font-size-hero);
+        line-height: var(--lh-hero);
+        letter-spacing: 0.02em; // 2% (maquette Figma)
         color: var(--color-text);
-    }
+        text-transform: uppercase;
+        white-space: nowrap;
 
-    @media (max-width: $breakpoint-sm) {
-        font-size: 13px;
-    }
-}
-
-.hero__title {
-    // Toujours sur une seule ligne : la colonne parente (.hero__content)
-    // est plafonnée à 720px pour la photo, mais le titre doit pouvoir
-    // dépasser cette largeur plutôt que de passer à la ligne.
-    width: max-content;
-    max-width: 100%;
-    margin: 0;
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-hero);
-    font-size: var(--font-size-hero);
-    line-height: var(--lh-hero);
-    letter-spacing: 0.02em; // 2% (maquette Figma)
-    color: var(--color-text);
-    text-transform: uppercase;
-    white-space: nowrap;
-
-    // Le style "Hero" desktop (64px min, sans axe de largeur condensé) ne
-    // rentre plus sur une ligne sous ~590px : "NATHAN FORTIER" débordait de
-    // .hero (overflow: hidden), donc se faisait couper net et devenait
-    // invisible, sans même de scrollbar pour l'indiquer. La maquette mobile
-    // Figma utilise un style dédié, plus petit et resserré (axe "wdth" de la
-    // police variable), pas juste une continuation du clamp desktop.
-    @media (max-width: $breakpoint-sm) {
-        // 38px fixe (valeur Figma) débordait encore de quelques px sur les
-        // très petits téléphones (320px) — clamp() fluide entre 320 et
-        // 480px pour rester lisible sans jamais dépasser.
-        font-size: #{typo(33px, 40px, 320px, 480px)};
-        line-height: 1;
-        letter-spacing: 0;
-        font-variation-settings: 'wdth' 60;
+        // Le style "Hero" desktop (64px min, sans axe de largeur condensé)
+        // ne rentre plus sur une ligne sous ~590px : "NATHAN FORTIER"
+        // débordait de .heros (overflow: hidden), donc se faisait couper net
+        // et devenait invisible, sans même de scrollbar pour l'indiquer. La
+        // maquette mobile Figma utilise un style dédié, plus petit et
+        // resserré (axe "wdth" de la police variable), pas juste une
+        // continuation du clamp desktop.
+        @media screen and (width <= $breakpoint-sm) {
+            // 38px fixe (valeur Figma) débordait encore de quelques px sur
+            // les très petits téléphones (320px) — clamp() fluide entre 320
+            // et 480px pour rester lisible sans jamais dépasser.
+            font-size: #{typo(33px, 40px, 320px, 480px)};
+            line-height: 1;
+            letter-spacing: 0;
+            font-variation-settings: 'wdth' 60;
+        }
     }
 }
 
@@ -187,162 +188,163 @@
 // ---------------------------------------------------------------------------
 .proposition {
     @extend %dark-section;
-}
 
-.proposition__lead {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xxl);
+    &_intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xxl);
 
-    h2 {
-        color: var(--color-white);
-        margin: 0;
+        h2 {
+            margin: 0;
+            color: var(--color-white);
+        }
+
+        // La maquette place le titre et le paragraphe sur une grille ~50/50,
+        // mais pas alignés sur la même ligne : le texte de droite commence
+        // plus bas que le titre (title top-55, texte top-83 dans un cadre
+        // 1440px, donc 28px de décalage vers le bas pour le texte).
+        @media screen and (width >= $breakpoint-md) {
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+
+            .proposition_texte {
+                margin-top: 28px;
+            }
+        }
     }
 
-    // La maquette place le titre et le paragraphe sur une grille ~50/50,
-    // mais pas alignés sur la même ligne : le texte de droite commence
-    // plus bas que le titre (title top-55, texte top-83 dans un cadre
-    // 1440px, donc 28px de décalage vers le bas pour le texte).
-    @media (min-width: $breakpoint-md) {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
+    &_texte {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
 
-        .proposition__text {
-            margin-top: 28px;
+        p {
+            font-size: var(--font-size-lead);
+            font-weight: var(--fw-medium);
+            line-height: 1.375; // 55px / 40px (maquette Figma)
+            letter-spacing: -0.02em;
+            color: var(--color-white);
+
+            strong {
+                font-weight: var(--fw-bold);
+            }
+        }
+    }
+
+    &_video {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        &-titre {
+            max-width: 600px;
+
+            p:first-child {
+                margin: 0 0 var(--spacing-sm);
+                font-family: var(--font-primary);
+                font-weight: 600;
+                font-size: var(--font-size-h2);
+                line-height: 1.1; // 55px / 50px (maquette Figma)
+                letter-spacing: -0.02em;
+                color: var(--color-primary);
+            }
+
+            p:last-child {
+                margin: 0;
+                font-size: var(--font-size-h2);
+                font-weight: var(--fw-medium);
+                line-height: 1.1; // 55px / 50px (maquette Figma)
+                letter-spacing: -0.02em;
+                text-transform: uppercase;
+                color: var(--color-white);
+            }
         }
     }
 }
 
-.proposition__text {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    align-items: flex-start;
-
-    p {
-        font-size: var(--font-size-lead);
-        font-weight: var(--fw-medium);
-        line-height: 1.375; // 55px / 40px (maquette Figma)
-        letter-spacing: -0.02em;
-        color: var(--color-white);
-
-        strong {
-            font-weight: var(--fw-bold);
-        }
-    }
-}
-
-.proposition__video {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-}
-
-.proposition__video-heading {
-    max-width: 600px;
-
-    p:first-child {
-        margin: 0 0 var(--spacing-sm);
-        font-family: var(--font-primary);
-        font-weight: 600;
-        font-size: var(--font-size-h2);
-        line-height: 1.1; // 55px / 50px (maquette Figma)
-        letter-spacing: -0.02em;
-        color: var(--color-primary);
-    }
-
-    p:last-child {
-        margin: 0;
-        font-size: var(--font-size-h2);
-        font-weight: var(--fw-medium);
-        line-height: 1.1; // 55px / 50px (maquette Figma)
-        letter-spacing: -0.02em;
-        text-transform: uppercase;
-        color: var(--color-white);
-    }
-}
-
-.video-card {
+.carte-video {
     position: relative;
     aspect-ratio: 1200 / 675;
     border-radius: 55px;
     background-color: var(--color-text);
     overflow: hidden;
-}
 
-.video-card__decor {
-    position: absolute;
-    left: -14%;
-    bottom: -14%;
-    width: 46%;
-    opacity: 0.35;
-    pointer-events: none;
-    transform: rotate(-8deg);
+    &:hover {
+        .carte-video_lecture {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+    }
 
-    img {
-        width: 100%;
-        height: auto;
+    &_decor {
+        position: absolute;
+        left: -14%;
+        bottom: -14%;
+        width: 46%;
+        opacity: 0.35;
+        pointer-events: none;
+        transform: rotate(-8deg);
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &_legende {
+        position: absolute;
+        top: var(--spacing-lg);
+        left: var(--spacing-lg);
+        z-index: 1;
+        text-transform: uppercase;
+
+        // Sur une carte vidéo mobile (beaucoup plus basse), le nom "Nathan
+        // Fortier" en gros (--font-size-hero) déborderait de la carte — le
+        // nom est déjà bien visible juste au-dessus dans le hero, donc on
+        // masque cette légende en double plutôt que de la faire déborder.
+        // La maquette mobile Figma ne garde d'ailleurs qu'un simple bouton
+        // play, sans légende superposée.
+        @media screen and (width <= $breakpoint-sm) {
+            display: none;
+        }
+    }
+
+    &_nom {
         display: block;
+        margin: 0;
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-hero);
+        font-size: var(--font-size-hero);
+        line-height: var(--lh-hero);
+        letter-spacing: 0.02em; // 2% (maquette Figma)
+        color: var(--color-white);
     }
-}
 
-.video-card__caption {
-    position: absolute;
-    top: var(--spacing-lg);
-    left: var(--spacing-lg);
-    z-index: 1;
-    text-transform: uppercase;
-}
+    &_etiquette {
+        margin: var(--spacing-sm) 0 0;
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-bold);
+        font-size: var(--font-size-h3);
+        line-height: var(--lh-h3);
+        color: var(--color-white);
 
-.video-card__name {
-    display: block;
-    margin: 0;
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-hero);
-    font-size: var(--font-size-hero);
-    line-height: var(--lh-hero);
-    letter-spacing: 0.02em; // 2% (maquette Figma)
-    color: var(--color-white);
-}
-
-.video-card__label {
-    margin: var(--spacing-sm) 0 0;
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-bold);
-    font-size: var(--font-size-h3);
-    line-height: var(--lh-h3);
-    color: var(--color-white);
-
-    em {
-        font-family: var(--font-primary);
-        font-style: normal;
-        color: var(--color-primary);
+        em {
+            font-family: var(--font-primary);
+            font-style: normal;
+            color: var(--color-primary);
+        }
     }
-}
 
-.video-card__play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: clamp(70px, 6vw + 40px, 110px);
-    height: auto;
-    transition: transform 0.2s $ease-out-quad;
-}
-
-.video-card:hover .video-card__play {
-    transform: translate(-50%, -50%) scale(1.08);
-}
-
-// Sur une carte vidéo mobile (beaucoup plus basse), le nom "Nathan Fortier"
-// en gros (--font-size-hero) déborderait de la carte — le nom est déjà
-// bien visible juste au-dessus dans le hero, donc on masque cette légende
-// en double plutôt que de la faire déborder. La maquette mobile Figma ne
-// garde d'ailleurs qu'un simple bouton play, sans légende superposée.
-@media (max-width: $breakpoint-sm) {
-    .video-card__caption {
-        display: none;
+    &_lecture {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(70px, 6vw + 40px, 110px);
+        height: auto;
+        transition: transform 0.2s $ease-out-quad;
     }
 }
 
@@ -352,35 +354,35 @@
 .portfolio {
     padding: var(--spacing-xxl) 0;
     text-align: center;
-}
 
-.portfolio__heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    &_entete {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xl);
 
-    h2 {
-        font-family: var(--font-primary);
-        font-weight: 800;
-        font-size: var(--font-size-display);
-        line-height: var(--lh-display);
-        text-transform: none;
+        h2 {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: var(--font-size-display);
+            line-height: var(--lh-display);
+            text-transform: none;
 
-        em {
-            font-style: normal;
-            color: var(--color-primary);
+            em {
+                font-style: normal;
+                color: var(--color-primary);
+            }
         }
+    }
+
+    &_indice-scroll {
+        width: 32px;
+        transform: rotate(90deg);
     }
 }
 
-.portfolio__scroll-cue {
-    width: 32px;
-    transform: rotate(90deg);
-}
-
-.projects-carousel {
+.carousel-projets {
     .swiper-slide {
         display: flex;
         justify-content: center;
@@ -389,7 +391,7 @@
         box-sizing: border-box;
     }
 
-    .card-project {
+    .carte-projet {
         height: 100%;
     }
 }
@@ -402,35 +404,35 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xxl);
-}
 
-.expertise__block-heading {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    &_entete-bloc {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
 
-    img {
-        width: 28px;
-        height: auto;
+        img {
+            width: 28px;
+            height: auto;
+        }
+
+        p {
+            margin: 0;
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--color-white);
+        }
     }
 
-    p {
-        margin: 0;
-        font-family: var(--font-primary);
-        font-weight: 700;
-        font-size: 24px;
+    &_outils h2,
+    &_forces h2 {
+        margin-bottom: var(--spacing-lg);
         color: var(--color-white);
+        text-align: center;
     }
-}
 
-.expertise__tools h2,
-.expertise__strengths h2 {
-    color: var(--color-white);
-    text-align: center;
-    margin-bottom: var(--spacing-lg);
-}
-
-.expertise__tools h2 {
-    text-align: left;
+    &_outils h2 {
+        text-align: left;
+    }
 }

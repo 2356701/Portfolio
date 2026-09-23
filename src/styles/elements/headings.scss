@@ -10,11 +10,11 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: var(--font-secondary);
-    line-height: 1;
-    font-weight: var(--fw-bold);
-    letter-spacing: 0;
     margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    letter-spacing: 0;
     color: var(--color-text);
 }
 
@@ -38,35 +38,8 @@ h4 {
     line-height: var(--lh-h4);
 }
 
-.surtitle {
-    font-size: var(--font-size-caption);
-    font-family: var(--font-primary);
-    font-weight: var(--fw-bold);
-    line-height: 1;
-    position: relative;
-    width: fit-content;
-    margin-bottom: 0;
-    color: var(--color-primary);
-    text-transform: uppercase;
-}
-
-.p-big {
-    font-size: var(--font-size-lead);
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-medium);
-    letter-spacing: 0;
-    line-height: 1.4;
-}
-
 p {
     margin: 0;
     font-size: var(--font-size-body);
     line-height: 1.6;
-}
-
-.menu {
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-bold);
-    font-size: var(--font-size-nav);
-    text-transform: uppercase;
 }

@@ -1,9 +1,9 @@
 /* ==========================================================================
-   SITE-HEADER / COMPONENT
+   ENTETE / COMPONENT
    Nav "pilule" rouge, collante en haut de toutes les pages.
    ========================================================================== */
 
-.site-header {
+.entete {
     // "fixed" plutôt que "sticky" : sticky réserve sa hauteur dans le flux
     // (ce qui pousse le hero plus bas et laisse voir le fond de page — blanc
     // — juste en dessous de la pilule). En fixed, le header flotte par-dessus
@@ -16,155 +16,156 @@
     right: 0;
     z-index: 100;
     padding-top: var(--spacing-sm);
-}
 
-.site-header__nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--spacing-md);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background-color: var(--color-primary);
-    border-radius: 50px;
-    box-shadow: var(--shadow-card);
-}
-
-.site-header__logo {
-    font-family: var(--font-logo);
-    font-style: italic;
-    font-size: 22px;
-    line-height: 1;
-    color: var(--color-white);
-    text-decoration: none;
-
-    &:hover {
-        color: var(--color-white);
-        text-decoration: none;
-        opacity: 0.85;
-    }
-}
-
-.site-header__links {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-mmd);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.site-header__divider {
-    width: 1px;
-    height: 24px;
-    background-color: rgba(255, 255, 255, 0.4);
-}
-
-.site-header__link {
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-medium);
-    font-size: var(--font-size-nav);
-    line-height: var(--lh-nav);
-    color: var(--color-white);
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-
-    &:hover,
-    &.is-active {
-        color: var(--color-white);
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
-}
-
-// Bouton hamburger — masqué en desktop, affiché en dessous de $breakpoint-sm
-.site-header__toggle {
-    position: relative;
-    // Le menu mobile (.site-header__links) est en position: fixed avec
-    // z-index: 90 et recouvre tout l'écran, y compris ce bouton : sans son
-    // propre z-index (plus élevé), il passait sous l'overlay une fois le
-    // menu ouvert — invisible ET impossible à cliquer pour refermer.
-    z-index: 91;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-
-    span {
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-white);
-        transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
-    }
-}
-
-@media (max-width: $breakpoint-sm) {
-    // La maquette mobile colle la barre de nav pleine largeur, sans le
-    // décollement/l'arrondi "pilule" flottante du desktop.
-    .site-header {
+    @media screen and (width <= $breakpoint-sm) {
+        // La maquette mobile colle la barre de nav pleine largeur, sans le
+        // décollement/l'arrondi "pilule" flottante du desktop.
         top: 0;
         padding-top: 0;
+
+        .conteneur {
+            max-width: none;
+            width: 100%;
+        }
     }
 
-    .site-header .wrapper {
-        max-width: none;
-        width: 100%;
-    }
-
-    .site-header__nav {
-        border-radius: 0;
-        padding: var(--spacing-sm) var(--spacing-mmd);
-        box-shadow: none;
-    }
-
-    .site-header__toggle {
+    &_nav {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-md);
+        padding: var(--spacing-sm) var(--spacing-lg);
+        background-color: var(--color-primary);
+        border-radius: 50px;
+        box-shadow: var(--shadow-card);
+
+        @media screen and (width <= $breakpoint-sm) {
+            border-radius: 0;
+            padding: var(--spacing-sm) var(--spacing-mmd);
+            box-shadow: none;
+        }
     }
 
-    .site-header__links {
-        position: fixed;
-        inset: 0;
-        z-index: 90;
+    &_logo {
+        font-family: var(--font-logo);
+        font-style: italic;
+        font-size: 22px;
+        line-height: 1;
+        color: var(--color-white);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--color-white);
+            text-decoration: none;
+            opacity: 0.85;
+        }
+    }
+
+    &_liens {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-mmd);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        @media screen and (width <= $breakpoint-sm) {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            background-color: var(--color-primary);
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.3s $ease-out-quad, opacity 0.3s $ease-out-quad;
+        }
+    }
+
+    &_separateur {
+        width: 1px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.4);
+
+        @media screen and (width <= $breakpoint-sm) {
+            display: none;
+        }
+    }
+
+    &_lien {
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-medium);
+        font-size: var(--font-size-nav);
+        line-height: var(--lh-nav);
+        color: var(--color-white);
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+
+        &:hover,
+        &.actif {
+            color: var(--color-white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            font-size: var(--font-size-h3);
+        }
+    }
+
+    // Bouton hamburger — masqué en desktop, affiché en dessous de $breakpoint-sm
+    &_bouton-menu {
+        position: relative;
+        // Le menu mobile (&_liens) est en position: fixed avec z-index: 90
+        // et recouvre tout l'écran, y compris ce bouton : sans son propre
+        // z-index (plus élevé), il passait sous l'overlay une fois le menu
+        // ouvert — invisible ET impossible à cliquer pour refermer.
+        z-index: 91;
+        display: none;
         flex-direction: column;
         justify-content: center;
-        gap: var(--spacing-lg);
-        background-color: var(--color-primary);
-        transform: translateY(-100%);
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+
+        span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            display: flex;
+        }
+    }
+}
+
+// Le menu mobile plein écran ouvre/ferme le hamburger en croix : posé à
+// part (plutôt que nesté dans .entete) pour rester après les règles de
+// base ci-dessus dans la cascade.
+html.menu-ouvert {
+    .entete_liens {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .entete_bouton-menu span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .entete_bouton-menu span:nth-child(2) {
         opacity: 0;
-        pointer-events: none;
-        transition: transform 0.3s $ease-out-quad, opacity 0.3s $ease-out-quad;
     }
-
-    .site-header__divider {
-        display: none;
-    }
-
-    .site-header__link {
-        font-size: var(--font-size-h3);
-    }
-
-    html.nav-is-active {
-        .site-header__links {
-            transform: translateY(0);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .site-header__toggle span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .site-header__toggle span:nth-child(2) {
-            opacity: 0;
-        }
-        .site-header__toggle span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
+    .entete_bouton-menu span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
     }
 }

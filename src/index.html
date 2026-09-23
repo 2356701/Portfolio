@@ -2,27 +2,27 @@
 
 <main class="apropos">
     <!-- ==================================================================
-         HERO
+         HEROS
          ================================================================== -->
-    <section class="hero" id="apropos">
-        <div class="hero__decor hero__decor--headphones" aria-hidden="true">
+    <section class="heros" id="apropos">
+        <div class="heros_decor heros_ecouteurs" aria-hidden="true">
             <img src="assets/images/Écouteur.png" alt="" />
         </div>
-        <div class="hero__decor hero__decor--drumsticks" aria-hidden="true">
+        <div class="heros_decor heros_baguettes" aria-hidden="true">
             <img src="assets/images/Drumsticks.png" alt="" />
         </div>
 
-        <div class="wrapper">
-            <div class="hero__content" data-scrolly="fromBottom">
-                <div class="hero__photo">
+        <div class="conteneur">
+            <div class="heros_contenu" data-scrolly="fromBottom">
+                <div class="heros_photo">
                     <img src="assets/images/hero-photo.webp" alt="" />
                 </div>
 
-                <div class="hero__text">
-                    <p class="hero__caption">
+                <div class="heros_texte">
+                    <p class="heros_legende">
                         Création média <span>– Vidéo, son et motion</span>
                     </p>
-                    <h1 class="hero__title">Nathan Fortier</h1>
+                    <h1 class="heros_titre">Nathan Fortier</h1>
                 </div>
             </div>
         </div>
@@ -32,46 +32,46 @@
          CE QUE JE PROPOSE + VIDÉO DE PRÉSENTATION
          ================================================================== -->
     <section class="proposition">
-        <div class="wrapper proposition__lead">
+        <div class="conteneur proposition_intro">
             <h2>Ce que je propose …</h2>
-            <div class="proposition__text">
+            <div class="proposition_texte">
                 <p>
                     Passionné de son, vidéo et postproduction, je crée des
                     <strong>expériences audiovisuelles</strong> pensées pour chaque client.
                 </p>
-                <a href="index.html#projets" class="btn btn--inverse">
+                <a href="index.html#projets" class="bouton bouton_inverse">
                     Voir mes projets
-                    <span class="btn__icon" aria-hidden="true"></span>
+                    <span class="bouton_icone" aria-hidden="true"></span>
                 </a>
             </div>
         </div>
 
-        <div class="wrapper proposition__video" data-scrolly="fromBottom">
-            <div class="proposition__video-heading">
+        <div class="conteneur proposition_video" data-scrolly="fromBottom">
+            <div class="proposition_video-titre">
                 <p>Musicien et vidéaste.</p>
                 <p>Un jeune homme pleins d’idées</p>
             </div>
 
             <!--
                 TODO Nat : quand tu as une vraie vidéo YouTube, ajoute
-                data-component="Youtube" data-video-id="TON_ID" sur .video-card,
+                data-component="Youtube" data-video-id="TON_ID" sur .carte-video,
                 un <div class="js-video"></div> à la place du <img> ci-dessous,
                 et le composant Youtube.js (déjà dans le projet) prendra le relais.
             -->
-            <div class="video-card" id="video-presentation">
-                <div class="video-card__decor" aria-hidden="true">
+            <div class="carte-video" id="video-presentation">
+                <div class="carte-video_decor" aria-hidden="true">
                     <img src="assets/images/Drumsticks.png" alt="" />
                 </div>
 
-                <div class="video-card__caption">
-                    <p class="video-card__name">Nathan Fortier</p>
-                    <p class="video-card__label">vidéo de <em>présentation</em></p>
+                <div class="carte-video_legende">
+                    <p class="carte-video_nom">Nathan Fortier</p>
+                    <p class="carte-video_etiquette">vidéo de <em>présentation</em></p>
                 </div>
 
                 <img
                     src="assets/icons/youtube-play-button.svg"
                     alt="Lire la vidéo de présentation"
-                    class="video-card__play"
+                    class="carte-video_lecture"
                 />
             </div>
         </div>
@@ -80,53 +80,53 @@
     <!-- ==================================================================
          UN PEU DE MON TRAVAIL
          ================================================================== -->
-    <section class="portfolio wrapper" id="projets">
-        <div class="portfolio__heading">
+    <section class="portfolio conteneur" id="projets">
+        <div class="portfolio_entete">
             <h2>Un peu de mon <em>travail</em></h2>
             <img
                 src="assets/icons/arrow-travail.svg"
                 alt=""
-                class="portfolio__scroll-cue"
+                class="portfolio_indice-scroll"
                 aria-hidden="true"
             />
         </div>
 
-        <div class="projects-carousel swiper" data-component="Carousel" data-breakpoints>
+        <div class="carousel-projets swiper" data-component="Carousel" data-breakpoints>
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <article class="card-project">
-                        <div class="card-project__media">
+                    <article class="carte-projet">
+                        <div class="carte-projet_media">
                             <img
                                 src="assets/images/project-reaper-bg.webp"
                                 alt="Bande-annonce montée et sonorisée sur Reaper"
                             />
                         </div>
-                        <div class="card-project__body">
-                            <p class="card-project__label">Conception et montage sonore</p>
-                            <h3 class="card-project__title">Bande-annonce sur Reaper</h3>
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Conception et montage sonore</p>
+                            <h3 class="carte-projet_titre">Bande-annonce sur Reaper</h3>
                             <!-- TODO Nat : lien vers une fiche projet dédiée une fois créée -->
-                            <a href="index.html#projets" class="btn">
+                            <a href="index.html#projets" class="bouton">
                                 Voir ce projet
-                                <span class="btn__icon" aria-hidden="true"></span>
+                                <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
                         </div>
                     </article>
                 </div>
 
                 <div class="swiper-slide">
-                    <article class="card-project">
-                        <div class="card-project__media">
+                    <article class="carte-projet">
+                        <div class="carte-projet_media">
                             <img
                                 src="assets/images/project-3d-bg.webp"
                                 alt="Animation d’une scène 3D"
                             />
                         </div>
-                        <div class="card-project__body">
-                            <p class="card-project__label">Design et animation 3D</p>
-                            <h3 class="card-project__title">Animation d’une scène 3D</h3>
-                            <a href="index.html#projets" class="btn">
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Design et animation 3D</p>
+                            <h3 class="carte-projet_titre">Animation d’une scène 3D</h3>
+                            <a href="index.html#projets" class="bouton">
                                 Voir ce projet
-                                <span class="btn__icon" aria-hidden="true"></span>
+                                <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
                         </div>
                     </article>
@@ -136,57 +136,57 @@
                      (mêmes images/textes que les 2 premières) — à remplacer par
                      tes 3 prochains projets. -->
                 <div class="swiper-slide">
-                    <article class="card-project">
-                        <div class="card-project__media">
+                    <article class="carte-projet">
+                        <div class="carte-projet_media">
                             <img
                                 src="assets/images/project-reaper-bg.webp"
                                 alt="Bande-annonce montée et sonorisée sur Reaper"
                             />
                         </div>
-                        <div class="card-project__body">
-                            <p class="card-project__label">Conception et montage sonore</p>
-                            <h3 class="card-project__title">Bande-annonce sur Reaper</h3>
-                            <a href="index.html#projets" class="btn">
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Conception et montage sonore</p>
+                            <h3 class="carte-projet_titre">Bande-annonce sur Reaper</h3>
+                            <a href="index.html#projets" class="bouton">
                                 Voir ce projet
-                                <span class="btn__icon" aria-hidden="true"></span>
+                                <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
                         </div>
                     </article>
                 </div>
 
                 <div class="swiper-slide">
-                    <article class="card-project">
-                        <div class="card-project__media">
+                    <article class="carte-projet">
+                        <div class="carte-projet_media">
                             <img
                                 src="assets/images/project-3d-bg.webp"
                                 alt="Animation d’une scène 3D"
                             />
                         </div>
-                        <div class="card-project__body">
-                            <p class="card-project__label">Design et animation 3D</p>
-                            <h3 class="card-project__title">Animation d’une scène 3D</h3>
-                            <a href="index.html#projets" class="btn">
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Design et animation 3D</p>
+                            <h3 class="carte-projet_titre">Animation d’une scène 3D</h3>
+                            <a href="index.html#projets" class="bouton">
                                 Voir ce projet
-                                <span class="btn__icon" aria-hidden="true"></span>
+                                <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
                         </div>
                     </article>
                 </div>
 
                 <div class="swiper-slide">
-                    <article class="card-project">
-                        <div class="card-project__media">
+                    <article class="carte-projet">
+                        <div class="carte-projet_media">
                             <img
                                 src="assets/images/project-reaper-bg.webp"
                                 alt="Bande-annonce montée et sonorisée sur Reaper"
                             />
                         </div>
-                        <div class="card-project__body">
-                            <p class="card-project__label">Conception et montage sonore</p>
-                            <h3 class="card-project__title">Bande-annonce sur Reaper</h3>
-                            <a href="index.html#projets" class="btn">
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Conception et montage sonore</p>
+                            <h3 class="carte-projet_titre">Bande-annonce sur Reaper</h3>
+                            <a href="index.html#projets" class="bouton">
                                 Voir ce projet
-                                <span class="btn__icon" aria-hidden="true"></span>
+                                <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
                         </div>
                     </article>
@@ -201,37 +201,37 @@
          COMPÉTENCES · CE QUI M'ANIME · MES FORCES
          ================================================================== -->
     <section class="expertise">
-        <div class="wrapper expertise__tools">
-            <div class="expertise__block-heading">
+        <div class="conteneur expertise_outils">
+            <div class="expertise_entete-bloc">
                 <img src="assets/icons/arrow-competences.svg" alt="" aria-hidden="true" />
                 <p>Compétences techniques</p>
             </div>
             <h2>Mes outils de travail</h2>
 
-            <div class="card-tool-grid">
-                <div class="card-tool">
-                    <img src="assets/icons/Figma.png" alt="" class="card-tool__icon" />
-                    <p class="card-tool__name">Figma</p>
+            <div class="grille-outils">
+                <div class="carte-outil">
+                    <img src="assets/icons/Figma.png" alt="" class="carte-outil_icone" />
+                    <p class="carte-outil_nom">Figma</p>
                 </div>
 
-                <div class="card-tool">
-                    <img src="assets/icons/Resolve.png" alt="" class="card-tool__icon" />
-                    <p class="card-tool__name">Resolve</p>
+                <div class="carte-outil">
+                    <img src="assets/icons/Resolve.png" alt="" class="carte-outil_icone" />
+                    <p class="carte-outil_nom">Resolve</p>
                 </div>
 
-                <div class="card-tool">
-                    <img src="assets/icons/Reaper.png" alt="" class="card-tool__icon" />
-                    <p class="card-tool__name">Reaper</p>
+                <div class="carte-outil">
+                    <img src="assets/icons/Reaper.png" alt="" class="carte-outil_icone" />
+                    <p class="carte-outil_nom">Reaper</p>
                 </div>
 
-                <div class="card-tool">
-                    <img src="assets/icons/Photoshop.png" alt="" class="card-tool__icon" />
-                    <p class="card-tool__name">Photoshop</p>
+                <div class="carte-outil">
+                    <img src="assets/icons/Photoshop.png" alt="" class="carte-outil_icone" />
+                    <p class="carte-outil_nom">Photoshop</p>
                 </div>
 
-                <div class="card-tool">
-                    <img src="assets/icons/After effct.png" alt="" class="card-tool__icon" />
-                    <p class="card-tool__name">After Effects</p>
+                <div class="carte-outil">
+                    <img src="assets/icons/After effct.png" alt="" class="carte-outil_icone" />
+                    <p class="carte-outil_nom">After Effects</p>
                 </div>
             </div>
         </div>
@@ -241,17 +241,17 @@
             gravité au scroll et se déplacent à la souris — voir
             src/scripts/components/GravityInterests.js.
         -->
-        <div class="wrapper expertise__interests" data-component="GravityInterests">
-            <p class="interests__hint" data-gravity-hint>
+        <div class="conteneur expertise_interets" data-component="GravityInterests">
+            <p class="interets_indice" data-gravity-hint>
                 Scroll jusqu’à la carte pour activer la gravité
             </p>
 
-            <div class="interests" data-gravity-card>
-                <p class="interests__title">Ce qui m’anime</p>
+            <div class="interets" data-gravity-card>
+                <p class="interets_titre">Ce qui m’anime</p>
 
                 <button
                     type="button"
-                    class="btn btn--on-primary interests__reset"
+                    class="bouton bouton_sur-primaire interets_reinitialiser"
                     data-gravity-reset
                 >
                     Réinitialiser
@@ -259,25 +259,25 @@
             </div>
         </div>
 
-        <div class="wrapper expertise__strengths">
+        <div class="conteneur expertise_forces">
             <h2>Mes forces</h2>
 
-            <div class="strengths-grid">
-                <div class="card-strength">
-                    <p class="card-strength__title">Sociabilité</p>
-                    <p class="card-strength__number">01</p>
+            <div class="grille-forces">
+                <div class="carte-force">
+                    <p class="carte-force_titre">Sociabilité</p>
+                    <p class="carte-force_numero">01</p>
                 </div>
-                <div class="card-strength">
-                    <p class="card-strength__title">Organisation</p>
-                    <p class="card-strength__number">02</p>
+                <div class="carte-force">
+                    <p class="carte-force_titre">Organisation</p>
+                    <p class="carte-force_numero">02</p>
                 </div>
-                <div class="card-strength">
-                    <p class="card-strength__title">Polyvalence</p>
-                    <p class="card-strength__number">03</p>
+                <div class="carte-force">
+                    <p class="carte-force_titre">Polyvalence</p>
+                    <p class="carte-force_numero">03</p>
                 </div>
-                <div class="card-strength">
-                    <p class="card-strength__title">Gestion du temps</p>
-                    <p class="card-strength__number">04</p>
+                <div class="carte-force">
+                    <p class="carte-force_titre">Gestion du temps</p>
+                    <p class="carte-force_numero">04</p>
                 </div>
             </div>
         </div>

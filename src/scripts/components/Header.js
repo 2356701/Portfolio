@@ -51,9 +51,9 @@ export default class Header {
   }
 
   onToggleNav() {
-    const isActive = this.html.classList.toggle('nav-is-active');
+    const isActive = this.html.classList.toggle('menu-ouvert');
     // Le bouton devient visuellement un X quand le menu est ouvert (voir
-    // site-header.scss) : on garde aria-expanded/aria-label synchronisés
+    // entete.scss) : on garde aria-expanded/aria-label synchronisés
     // pour les lecteurs d'écran.
     this.toggle.setAttribute('aria-expanded', String(isActive));
     this.toggle.setAttribute('aria-label', isActive ? 'Fermer le menu' : 'Ouvrir le menu');

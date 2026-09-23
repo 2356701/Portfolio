@@ -1,10 +1,10 @@
 /* ==========================================================================
-   BUTTON / COMPONENT
+   BOUTON / COMPONENT
    Bouton "CTA" à contour rouge utilisé partout dans la maquette
    (hero, cards projet, section vidéo…).
    ========================================================================== */
 
-.btn {
+.bouton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -34,8 +34,8 @@
     // (couleur codée dans le SVG) même sur fond clair, donc invisible.
     // On la pose plutôt en masque CSS sur un <span>, coloré via
     // `currentColor` : elle suit maintenant toujours la couleur du texte
-    // du bouton (repos, --inverse, survol).
-    &__icon {
+    // du bouton (repos, _inverse, survol).
+    &_icone {
         width: 21px;
         height: 15px;
         flex-shrink: 0;
@@ -51,14 +51,14 @@
     }
 
     // Sur fond sombre (hero, section vidéo) : texte blanc au repos
-    &--inverse {
+    &_inverse {
         color: var(--color-white);
     }
 
     // Posé directement sur un fond rouge (--color-primary), ex. la carte
-    // "Ce qui m'anime" : le contour et le survol de --inverse resteraient
+    // "Ce qui m'anime" : le contour et le survol de _inverse resteraient
     // rouge sur rouge et disparaîtraient, donc on passe tout en blanc.
-    &--on-primary {
+    &_sur-primaire {
         border-color: var(--color-white);
         color: var(--color-white);
 

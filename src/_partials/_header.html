@@ -18,13 +18,13 @@
         <script src="scripts/main.js" defer></script>
     </head>
     <body data-component="Scrolly">
-        <header class="site-header" data-component="Header">
-            <div class="wrapper">
-                <nav class="site-header__nav" aria-label="Navigation principale">
-                    <a href="index.html" class="site-header__logo">The_Nat</a>
+        <header class="entete" data-component="Header">
+            <div class="conteneur">
+                <nav class="entete_nav" aria-label="Navigation principale">
+                    <a href="index.html" class="entete_logo">The_Nat</a>
 
                     <button
-                        class="site-header__toggle js-toggle"
+                        class="entete_bouton-menu js-toggle"
                         type="button"
                         aria-label="Ouvrir le menu"
                         aria-expanded="false"
@@ -39,21 +39,21 @@
                         sections de index.html, pas des pages séparées — on y
                         fait défiler avec des ancres plutôt que de naviguer.
                     -->
-                    <ul class="site-header__links">
+                    <ul class="entete_liens">
                         <li>
                             <a
                                 href="index.html#apropos"
-                                class="site-header__link {% if activePage == 'apropos' %}is-active{% endif %}"
+                                class="entete_lien {% if activePage == 'apropos' %}actif{% endif %}"
                                 >À propos</a
                             >
                         </li>
-                        <li class="site-header__divider" aria-hidden="true"></li>
+                        <li class="entete_separateur" aria-hidden="true"></li>
                         <li>
-                            <a href="index.html#projets" class="site-header__link">Projets</a>
+                            <a href="index.html#projets" class="entete_lien">Projets</a>
                         </li>
-                        <li class="site-header__divider" aria-hidden="true"></li>
+                        <li class="entete_separateur" aria-hidden="true"></li>
                         <li>
-                            <a href="index.html#contact" class="site-header__link">Contact</a>
+                            <a href="index.html#contact" class="entete_lien">Contact</a>
                         </li>
                     </ul>
                 </nav>

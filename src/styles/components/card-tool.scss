@@ -1,17 +1,28 @@
 /* ==========================================================================
-   CARD-TOOL / COMPONENT
+   CARTE-OUTIL / COMPONENT
    Pastilles blanches "Mes outils de travail" (logo + nom du logiciel).
    ========================================================================== */
 
-.card-tool-grid {
+.grille-outils {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--spacing-md) 0;
     width: 100%;
+
+    // Sous $breakpoint-sm, les 5 pastilles de 187px avec justify-content:
+    // space-between ne tiennent plus à deux par rangée sans un fossé énorme
+    // entre elles. La maquette Figma mobile les pose plutôt en grille de 3
+    // colonnes fixes, alignées à gauche (comme le reste de la page) — la
+    // dernière rangée (2 pastilles) reste donc collée à gauche elle aussi.
+    @media screen and (width <= $breakpoint-sm) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-sm);
+    }
 }
 
-.card-tool {
+.carte-outil {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,37 +34,8 @@
     background-color: var(--color-card);
     border-radius: 25px;
     box-shadow: var(--shadow-tool);
-}
 
-.card-tool__icon {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-}
-
-.card-tool__name {
-    margin: 0;
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-semibold);
-    font-size: var(--font-size-tool-label);
-    line-height: 2.04; // 57px / 28px (maquette Figma, style "p gros")
-    color: var(--color-text);
-    white-space: nowrap;
-}
-
-// Sous $breakpoint-sm, les 5 pastilles de 187px avec justify-content:
-// space-between ne tiennent plus à deux par rangée sans un fossé énorme
-// entre elles. La maquette Figma mobile les pose plutôt en grille de 3
-// colonnes fixes, alignées à gauche (comme le reste de la page) — la
-// dernière rangée (2 pastilles) reste donc collée à gauche elle aussi.
-@media (max-width: $breakpoint-sm) {
-    .card-tool-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-sm);
-    }
-
-    .card-tool {
+    @media screen and (width <= $breakpoint-sm) {
         width: auto;
         min-height: 0;
         aspect-ratio: 1 / 1;
@@ -61,15 +43,31 @@
         padding: var(--spacing-sm);
     }
 
-    .card-tool__icon {
-        width: 32px;
-        height: 32px;
+    &_icone {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+
+        @media screen and (width <= $breakpoint-sm) {
+            width: 32px;
+            height: 32px;
+        }
     }
 
-    .card-tool__name {
-        font-size: 12px;
-        line-height: 1.25;
-        white-space: normal;
-        text-align: center;
+    &_nom {
+        margin: 0;
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-semibold);
+        font-size: var(--font-size-tool-label);
+        line-height: 2.04; // 57px / 28px (maquette Figma, style "p gros")
+        color: var(--color-text);
+        white-space: nowrap;
+
+        @media screen and (width <= $breakpoint-sm) {
+            font-size: 12px;
+            line-height: 1.25;
+            white-space: normal;
+            text-align: center;
+        }
     }
 }

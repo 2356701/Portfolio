@@ -1,9 +1,9 @@
 /* ==========================================================================
-   WRAPPER / ELEMENT
+   CONTENEUR / ELEMENT
    ========================================================================== */
 
-.wrapper {
-    max-width: $breakpoint-xl;
+.conteneur {
     width: calc(100% - var(--spacing-wr));
+    max-width: $breakpoint-xl;
     margin: 0 auto;
 }
