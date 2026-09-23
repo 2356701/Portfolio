@@ -18,6 +18,31 @@ const LABELS = [
   { text: 'Sonorisation de scene', px: 86.4, py: 85.8, rot: -3 },
 ];
 
+// Positions dédiées à la carte mobile : LABELS est calibré pour une carte
+// très large (ratio ~2.36/1) ; sur une carte étroite mais haute (voir
+// tag-lozenge.scss), ces mêmes % placent plusieurs pastilles hors cadre,
+// coupées par l'overflow: hidden. On répartit ici les 9 pastilles plus
+// franchement à l'intérieur (marge horizontale plus large pour le libellé
+// le plus long) sur toute la hauteur de la carte.
+// Le titre + le bouton réinitialiser occupent maintenant le haut de la
+// carte en flux normal (voir tag-lozenge.scss) au lieu d'être posés en
+// absolute par-dessus : la première rangée démarre plus bas (py 32) pour
+// ne pas passer sous le bouton.
+const MOBILE_LABELS = [
+  { text: 'Montage vidéo', px: 30, py: 40, rot: -6 },
+  { text: 'Web Design', px: 70, py: 38, rot: 4 },
+  { text: 'UI / UX', px: 50, py: 52, rot: -3 },
+  { text: 'Modélisation 3D', px: 28, py: 64, rot: 5 },
+  { text: 'Batterie', px: 70, py: 64, rot: -4 },
+  { text: 'Motion Graphic', px: 50, py: 76, rot: 3 },
+  { text: 'Visual Effect', px: 29, py: 87, rot: -5 },
+  { text: 'Graphic Design', px: 70, py: 87, rot: 4 },
+  { text: 'Sonorisation de scene', px: 50, py: 96, rot: -2 },
+];
+
+// Même seuil que $breakpoint-sm (styles/settings/dimensions.scss).
+const MOBILE_BREAKPOINT = 715;
+
 export default class GravityInterests {
   constructor(element) {
     this.element = element;
@@ -51,6 +76,10 @@ export default class GravityInterests {
     return { w: r.width, h: r.height };
   }
 
+  isMobile() {
+    return window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+  }
+
   buildWalls() {
     const { Bodies, Composite } = Matter;
     if (this.walls.length) Composite.remove(this.engine.world, this.walls);
@@ -81,8 +110,9 @@ export default class GravityInterests {
     this.pills = [];
 
     const s = this.cardSize();
+    const labels = this.isMobile() ? MOBILE_LABELS : LABELS;
 
-    LABELS.forEach((L) => {
+    labels.forEach((L) => {
       const el = document.createElement('span');
       el.className = 'interests__pill';
       el.textContent = L.text;
@@ -233,10 +263,23 @@ export default class GravityInterests {
       this.resetBtn.addEventListener('click', this.onReset);
     }
 
+    // Si le resize fait passer la carte au-dessus/en dessous de
+    // MOBILE_BREAKPOINT, on rebâtit aussi les pastilles pour reprendre le
+    // bon jeu de positions (desktop vs mobile) — sinon juste les murs.
+    this._wasMobile = this.isMobile();
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => this.buildWalls(), 150);
+      resizeTimer = setTimeout(() => {
+        this.buildWalls();
+        if (this.isMobile() !== this._wasMobile) {
+          this._wasMobile = this.isMobile();
+          this.triggered = false;
+          this.engine.world.gravity.x = 0;
+          this.engine.world.gravity.y = 0;
+          this.buildPills();
+        }
+      }, 150);
     });
 
     this.tick();

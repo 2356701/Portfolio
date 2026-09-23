@@ -4,8 +4,16 @@
    ========================================================================== */
 
 .site-header {
-    position: sticky;
+    // "fixed" plutôt que "sticky" : sticky réserve sa hauteur dans le flux
+    // (ce qui pousse le hero plus bas et laisse voir le fond de page — blanc
+    // — juste en dessous de la pilule). En fixed, le header flotte par-dessus
+    // le hero qui remonte alors jusqu'en haut de la page ; les images du hero
+    // (écouteurs, baguettes) passent donc derrière la pilule au lieu de
+    // s'arrêter sur un fond blanc.
+    position: fixed;
     top: var(--spacing-sm);
+    left: 0;
+    right: 0;
     z-index: 100;
     padding-top: var(--spacing-sm);
 }
@@ -71,6 +79,12 @@
 
 // Bouton hamburger — masqué en desktop, affiché en dessous de $breakpoint-sm
 .site-header__toggle {
+    position: relative;
+    // Le menu mobile (.site-header__links) est en position: fixed avec
+    // z-index: 90 et recouvre tout l'écran, y compris ce bouton : sans son
+    // propre z-index (plus élevé), il passait sous l'overlay une fois le
+    // menu ouvert — invisible ET impossible à cliquer pour refermer.
+    z-index: 91;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -92,6 +106,24 @@
 }
 
 @media (max-width: $breakpoint-sm) {
+    // La maquette mobile colle la barre de nav pleine largeur, sans le
+    // décollement/l'arrondi "pilule" flottante du desktop.
+    .site-header {
+        top: 0;
+        padding-top: 0;
+    }
+
+    .site-header .wrapper {
+        max-width: none;
+        width: 100%;
+    }
+
+    .site-header__nav {
+        border-radius: 0;
+        padding: var(--spacing-sm) var(--spacing-mmd);
+        box-shadow: none;
+    }
+
     .site-header__toggle {
         display: flex;
     }

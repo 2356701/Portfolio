@@ -20,3 +20,15 @@ $breakpoint-xl: 1440px;
     --spacing-xl: 100px;
     --spacing-xxl: 150px;
 }
+
+// Les espacements ci-dessus sont des valeurs fixes (contrairement aux
+// tailles de police, déjà fluides via typo()). Sous $breakpoint-sm, les
+// plus gros (lg/xl/xxl) sont resserrés pour éviter d'immenses blancs entre
+// les sections sur téléphone — le reste (xs à md) reste inchangé.
+@media (max-width: $breakpoint-sm) {
+    :root {
+        --spacing-lg: 40px;
+        --spacing-xl: 60px;
+        --spacing-xxl: 90px;
+    }
+}

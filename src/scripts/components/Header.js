@@ -46,11 +46,16 @@ export default class Header {
   }
 
   initNavMobile() {
-    const toogle = this.element.querySelector('.js-toggle');
-    toogle.addEventListener('click', this.onToggleNav.bind(this));
+    this.toggle = this.element.querySelector('.js-toggle');
+    this.toggle.addEventListener('click', this.onToggleNav.bind(this));
   }
 
   onToggleNav() {
-    this.html.classList.toggle('nav-is-active');
+    const isActive = this.html.classList.toggle('nav-is-active');
+    // Le bouton devient visuellement un X quand le menu est ouvert (voir
+    // site-header.scss) : on garde aria-expanded/aria-label synchronisés
+    // pour les lecteurs d'écran.
+    this.toggle.setAttribute('aria-expanded', String(isActive));
+    this.toggle.setAttribute('aria-label', isActive ? 'Fermer le menu' : 'Ouvrir le menu');
   }
 }

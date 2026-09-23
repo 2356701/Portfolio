@@ -159,3 +159,14 @@
         justify-content: space-between;
     }
 }
+
+@media (max-width: $breakpoint-sm) {
+    // 55px fixes entre 4 icônes tient large sur un écran de téléphone.
+    .site-footer__socials {
+        gap: var(--spacing-md);
+    }
+
+    .site-footer__content {
+        gap: var(--spacing-xl);
+    }
+}

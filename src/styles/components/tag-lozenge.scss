@@ -17,6 +17,23 @@
     touch-action: pan-y;
 }
 
+// Le ratio 1199/508 (très large) écrase la carte à ~165px de haut sur un
+// écran de téléphone — pas assez pour les 9 pastilles, qui se retrouvent
+// coupées par l'overflow:hidden. On abandonne le ratio fixe sous
+// $breakpoint-sm pour une hauteur minimale confortable à la place (le
+// passage du titre + bouton réinitialiser en pile normale est plus bas
+// dans ce fichier, après leurs styles de base, pour gagner la cascade).
+@media (max-width: $breakpoint-sm) {
+    .interests {
+        aspect-ratio: auto;
+        min-height: 580px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+}
+
 .interests__title {
     position: absolute;
     top: var(--spacing-lg);
@@ -57,6 +74,15 @@
     &:active {
         cursor: grabbing;
     }
+
+    // Le libellé le plus long ("Sonorisation de scene") déborderait de la
+    // carte mobile à --font-size-tag (20px mini) + le padding desktop.
+    // Maquette Figma mobile : pastilles nettement plus petites.
+    @media (max-width: $breakpoint-sm) {
+        padding: 10px 18px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -79,4 +105,14 @@
     z-index: 1;
     top: var(--spacing-lg);
     right: var(--spacing-md);
+}
+
+// Le titre et le bouton se chevauchaient sur une carte étroite (tous deux
+// ancrés en haut, à gauche/droite) : ils passent en pile normale au lieu
+// d'être superposés en absolute.
+@media (max-width: $breakpoint-sm) {
+    .interests__title,
+    .interests__reset {
+        position: static;
+    }
 }

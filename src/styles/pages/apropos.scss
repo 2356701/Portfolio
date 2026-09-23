@@ -29,26 +29,62 @@
     opacity: 0.9;
 }
 
-.hero__decor--headphones {
-    top: -6%;
-    right: 4%;
-    width: 26%;
-    max-width: 320px;
-    transform: rotate(-18deg);
-}
-
-.hero__decor--drumsticks {
-    top: 22%;
-    right: -4%;
-    width: 40%;
-    max-width: 480px;
-    transform: rotate(18deg);
-}
-
 .hero__decor img {
     width: 100%;
     height: auto;
     display: block;
+}
+
+// Réglages simples pour repositionner/redimensionner/faire pivoter les
+// images à la main.
+//   --decor-top    : position verticale (% de la hauteur du .hero)
+//   --decor-right  : position horizontale depuis la droite (% de la largeur du .hero,
+//                    une valeur négative fait déborder l'image hors du cadre)
+//   --decor-size   : largeur de l'image (en px)
+//   --decor-rotate : rotation (en deg, négatif = sens antihoraire)
+// Le bloc de base = réglage plein écran (≥1700px). Le @media qui suit
+// rétrécit l'image ET la pousse davantage vers la droite (--decor-right
+// plus négatif) à mesure que l'écran rapetisse, pour qu'elle ne vienne
+// jamais toucher le texte. En dessous de 1200px, il n'y a plus assez de
+// place pour ça : les deux images sont simplement masquées.
+.hero__decor--headphones {
+    --decor-top: -26%;
+    --decor-right: -17%;
+    --decor-size: 900px;
+    --decor-rotate: -5deg;
+
+    top: var(--decor-top);
+    right: var(--decor-right);
+    width: var(--decor-size);
+    transform: rotate(var(--decor-rotate));
+
+    @media (max-width: 1700px) {
+        --decor-size: 760px;
+        --decor-right: -14%;
+    }
+}
+
+.hero__decor--drumsticks {
+    --decor-top: 22%;
+    --decor-right: 3%;
+    --decor-size: 850px;
+    --decor-rotate: 4deg;
+
+    top: var(--decor-top);
+    right: var(--decor-right);
+    width: var(--decor-size);
+    transform: rotate(var(--decor-rotate));
+
+    @media (max-width: 1700px) {
+        --decor-size: 720px;
+        --decor-right: -4%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero__decor {
+        display: none;
+    }
 }
 
 .hero__content {
@@ -58,6 +94,22 @@
     flex-direction: column;
     gap: var(--spacing-xl);
     max-width: 720px;
+}
+
+// Sur mobile, la maquette Figma inverse l'ordre : le texte (surtitre +
+// titre) passe avant la photo, au lieu d'après comme sur desktop.
+@media (max-width: $breakpoint-sm) {
+    .hero__content {
+        gap: var(--spacing-mmd);
+    }
+
+    .hero__photo {
+        order: 2;
+    }
+
+    .hero__text {
+        order: 1;
+    }
 }
 
 .hero__photo {
@@ -91,6 +143,10 @@
         font-weight: var(--fw-bold);
         color: var(--color-text);
     }
+
+    @media (max-width: $breakpoint-sm) {
+        font-size: 13px;
+    }
 }
 
 .hero__title {
@@ -108,6 +164,22 @@
     color: var(--color-text);
     text-transform: uppercase;
     white-space: nowrap;
+
+    // Le style "Hero" desktop (64px min, sans axe de largeur condensé) ne
+    // rentre plus sur une ligne sous ~590px : "NATHAN FORTIER" débordait de
+    // .hero (overflow: hidden), donc se faisait couper net et devenait
+    // invisible, sans même de scrollbar pour l'indiquer. La maquette mobile
+    // Figma utilise un style dédié, plus petit et resserré (axe "wdth" de la
+    // police variable), pas juste une continuation du clamp desktop.
+    @media (max-width: $breakpoint-sm) {
+        // 38px fixe (valeur Figma) débordait encore de quelques px sur les
+        // très petits téléphones (320px) — clamp() fluide entre 320 et
+        // 480px pour rester lisible sans jamais dépasser.
+        font-size: #{typo(33px, 40px, 320px, 480px)};
+        line-height: 1;
+        letter-spacing: 0;
+        font-variation-settings: 'wdth' 60;
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -261,6 +333,17 @@
 
 .video-card:hover .video-card__play {
     transform: translate(-50%, -50%) scale(1.08);
+}
+
+// Sur une carte vidéo mobile (beaucoup plus basse), le nom "Nathan Fortier"
+// en gros (--font-size-hero) déborderait de la carte — le nom est déjà
+// bien visible juste au-dessus dans le hero, donc on masque cette légende
+// en double plutôt que de la faire déborder. La maquette mobile Figma ne
+// garde d'ailleurs qu'un simple bouton play, sans légende superposée.
+@media (max-width: $breakpoint-sm) {
+    .video-card__caption {
+        display: none;
+    }
 }
 
 // ---------------------------------------------------------------------------
