@@ -376,8 +376,20 @@
         }
     }
 
+    // Même flèche que partout ailleurs sur le site (voir bouton.scss),
+    // posée en masque CSS plutôt qu'en <img> et simplement pivotée à 90°.
     &_indice-scroll {
         width: 32px;
+        height: 20px;
+        background-color: currentColor;
+        mask-image: url('../assets/icons/fleche.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        -webkit-mask-image: url('../assets/icons/fleche.svg');
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
         transform: rotate(90deg);
     }
 }
@@ -411,9 +423,20 @@
         gap: var(--spacing-md);
         margin-bottom: var(--spacing-lg);
 
-        img {
+        // Même flèche que partout ailleurs sur le site (voir bouton.scss) —
+        // en blanc ici via currentColor, hérité du texte de la section sombre.
+        span {
             width: 28px;
-            height: auto;
+            height: 19px;
+            background-color: currentColor;
+            mask-image: url('../assets/icons/fleche.svg');
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: contain;
+            -webkit-mask-image: url('../assets/icons/fleche.svg');
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            -webkit-mask-size: contain;
         }
 
         p {

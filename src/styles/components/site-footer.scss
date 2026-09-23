@@ -86,9 +86,22 @@
         }
     }
 
+    // Même flèche que partout ailleurs sur le site (voir bouton.scss),
+    // posée en masque CSS plutôt qu'en <img> : elle suit maintenant la
+    // couleur du lien (gris au repos, rouge au survol) au lieu d'un gris
+    // fixe codé dans le fichier SVG.
     &_fleche {
         width: 22px;
-        height: auto;
+        height: 15px;
+        background-color: currentColor;
+        mask-image: url('../assets/icons/fleche.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+        -webkit-mask-image: url('../assets/icons/fleche.svg');
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
     }
 
     &_reseaux {
