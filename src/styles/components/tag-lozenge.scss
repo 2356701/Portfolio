@@ -11,7 +11,11 @@
     width: 100%;
     aspect-ratio: 1199 / 508.611;
     padding: var(--spacing-lg) var(--spacing-md);
-    background: linear-gradient(155deg, var(--color-primary), var(--color-primary-deep));
+    background: linear-gradient(
+        155deg,
+        var(--color-primary),
+        var(--color-primary-deep)
+    );
     border-radius: 55px;
     overflow: hidden;
     touch-action: pan-y;
@@ -37,7 +41,7 @@
         margin: 0;
         font-family: var(--font-secondary);
         font-weight: var(--fw-bold);
-        font-size: var(--font-size-h3);
+        font-size: var(--font-size-h1);
         line-height: var(--lh-h3);
         color: var(--color-white);
         text-transform: uppercase;
