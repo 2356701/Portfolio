@@ -33,16 +33,35 @@
         gap: var(--spacing-sm);
     }
 
-    &_titre {
+    // Titre + sous-titre, posés ensemble en haut à gauche de la carte
+    // (maquette Figma : x 59.5, y 47 dans la carte de 1199px).
+    &_entete {
         position: absolute;
-        top: var(--spacing-lg);
-        left: var(--spacing-md);
+        top: 47px;
+        left: var(--spacing-lg);
         z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        max-width: 348px; // force "Compétences / & Loisirs" sur 2 lignes
+        pointer-events: none;
+    }
+
+    &_titre {
         margin: 0;
         @include text-h3;
         color: var(--color-white);
         text-transform: uppercase;
-        pointer-events: none;
+    }
+
+    // Style "P" de la maquette : SF Pro Medium 18px / 22px
+    &_sous-titre {
+        max-width: 339px;
+        margin: 0;
+        font-weight: var(--fw-medium);
+        font-size: var(--font-size-body);
+        line-height: 1.22; // 22px / 18px
+        color: var(--color-white);
     }
 
     &_pastille {
@@ -104,7 +123,7 @@
 // d'être superposés en absolute. Posé à part (après les règles de base
 // ci-dessus) pour rester prioritaire dans la cascade.
 @media screen and (width <= $breakpoint-sm) {
-    .interets_titre,
+    .interets_entete,
     .interets_reinitialiser {
         position: static;
     }
