@@ -19,17 +19,14 @@
         margin: 0;
         font-family: var(--font-primary);
         font-weight: 600;
-        font-size: var(--font-size-footer-subheading);
+        font-size: var(--font-size-caption);
         color: var(--color-primary);
     }
 
     &_titre {
         max-width: 900px;
         margin: 0;
-        font-family: var(--font-secondary);
-        font-weight: var(--fw-bold);
-        font-size: var(--font-size-footer-heading);
-        line-height: var(--lh-h3); // 57px / 45px (maquette Figma)
+        @include text-h3;
         text-transform: uppercase;
         color: var(--color-black);
     }
@@ -65,43 +62,19 @@
         display: inline-flex;
         align-items: center;
         gap: 24px;
-        font-family: var(--font-secondary);
-        font-weight: var(--fw-medium);
-        font-size: var(--font-size-footer-contact);
-        line-height: var(--lh-nav);
+        // Même style que les liens de la nav, mais sans les majuscules.
+        @include text-nav;
         color: var(--color-text);
-        text-transform: uppercase;
-        text-decoration: none;
 
         &:hover {
             color: var(--color-primary);
             text-decoration: underline;
         }
-
-        // Le courriel est au format "caption" dans la maquette (25px), un cran
-        // au-dessus du téléphone (22px) — les deux partageaient la même
-        // variable avant ce correctif.
-        &-email {
-            font-size: var(--font-size-caption);
-        }
     }
 
-    // Même flèche que partout ailleurs sur le site (voir bouton.scss),
-    // posée en masque CSS plutôt qu'en <img> : elle suit maintenant la
-    // couleur du lien (gris au repos, rouge au survol) au lieu d'un gris
-    // fixe codé dans le fichier SVG.
+    // Flèche du site (voir tools/icons) : grise au repos, rouge au survol.
     &_fleche {
-        width: 22px;
-        height: 15px;
-        background-color: currentColor;
-        mask-image: url('../assets/icons/fleche.svg');
-        mask-repeat: no-repeat;
-        mask-position: center;
-        mask-size: contain;
-        -webkit-mask-image: url('../assets/icons/fleche.svg');
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        -webkit-mask-size: contain;
+        @include icone-fleche(22px, 15px);
     }
 
     &_reseaux {

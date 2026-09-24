@@ -8,13 +8,12 @@ import Matter from 'matter-js';
  */
 const LABELS = [
   { text: 'Montage vidéo', px: 84.3, py: 56.0, rot: -35 },
-  { text: 'Web Design', px: 66.2, py: 58.9, rot: 2 },
-  { text: 'UI / UX', px: 62.9, py: 74.5, rot: -2 },
+  { text: 'Gestion événementielle', px: 66.2, py: 58.9, rot: 2 },
   { text: 'Modélisation 3D', px: 79.4, py: 74.1, rot: 3 },
   { text: 'Batterie', px: 48.0, py: 74.1, rot: -3 },
   { text: 'Motion Graphic', px: 29.9, py: 78.4, rot: -35 },
-  { text: 'Visual Effect', px: 43.9, py: 91.4, rot: 2 },
-  { text: 'Graphic Design', px: 63.5, py: 90.1, rot: -2 },
+  { text: 'Effets Visuels', px: 43.9, py: 91.4, rot: 2 },
+  { text: 'Design Graphique', px: 63.5, py: 90.1, rot: -2 },
   { text: 'Sonorisation de scene', px: 86.4, py: 85.8, rot: -3 },
 ];
 
@@ -30,13 +29,12 @@ const LABELS = [
 // ne pas passer sous le bouton.
 const MOBILE_LABELS = [
   { text: 'Montage vidéo', px: 30, py: 40, rot: -6 },
-  { text: 'Web Design', px: 70, py: 38, rot: 4 },
-  { text: 'UI / UX', px: 50, py: 52, rot: -3 },
+  { text: 'Gestion Événementielle', px: 70, py: 38, rot: 4 },
   { text: 'Modélisation 3D', px: 28, py: 64, rot: 5 },
   { text: 'Batterie', px: 70, py: 64, rot: -4 },
   { text: 'Motion Graphic', px: 50, py: 76, rot: 3 },
-  { text: 'Visual Effect', px: 29, py: 87, rot: -5 },
-  { text: 'Graphic Design', px: 70, py: 87, rot: 4 },
+  { text: 'Effets Visuels', px: 29, py: 87, rot: -5 },
+  { text: 'Design Graphique', px: 70, py: 87, rot: 4 },
   { text: 'Sonorisation de scene', px: 50, py: 96, rot: -2 },
 ];
 
@@ -51,7 +49,9 @@ export default class GravityInterests {
     this.resetBtn = element.querySelector('[data-gravity-reset]');
 
     if (!this.card) {
-      console.error('GravityInterests : élément [data-gravity-card] introuvable');
+      console.error(
+        'GravityInterests : élément [data-gravity-card] introuvable',
+      );
       return;
     }
 
@@ -179,7 +179,8 @@ export default class GravityInterests {
     this.pills.forEach((p) => Matter.Body.setStatic(p.body, false));
 
     if (this.hint) {
-      this.hint.textContent = "La gravité est active — continue de scroller pour l'incliner";
+      this.hint.textContent =
+        "La gravité est active — continue de scroller pour l'incliner";
     }
   }
 
@@ -197,7 +198,7 @@ export default class GravityInterests {
       const tilt = Math.max(-0.25, Math.min(0.25, delta * 0.006));
       this.engine.world.gravity.x = Math.max(
         -0.3,
-        Math.min(0.3, this.engine.world.gravity.x + tilt)
+        Math.min(0.3, this.engine.world.gravity.x + tilt),
       );
     }
   }

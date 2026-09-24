@@ -15,12 +15,8 @@
     border-radius: 25px;
     background: transparent;
     color: var(--color-text);
-    font-family: var(--font-secondary);
-    font-weight: var(--fw-medium);
-    font-size: var(--font-size-cta);
-    line-height: var(--lh-nav);
+    @include text-nav(var(--font-size-cta));
     text-transform: uppercase;
-    text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s $ease-out-quad, color 0.2s $ease-out-quad;
 
@@ -36,18 +32,8 @@
     // `currentColor` : elle suit maintenant toujours la couleur du texte
     // du bouton (repos, _inverse, survol).
     &_icone {
-        width: 21px;
-        height: 15px;
+        @include icone-fleche(21px, 15px);
         flex-shrink: 0;
-        background-color: currentColor;
-        mask-image: url('../assets/icons/fleche.svg');
-        mask-repeat: no-repeat;
-        mask-position: center;
-        mask-size: contain;
-        -webkit-mask-image: url('../assets/icons/fleche.svg');
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        -webkit-mask-size: contain;
     }
 
     // Sur fond sombre (hero, section vidéo) : texte blanc au repos

@@ -13,3 +13,47 @@
     transform: scaleX($scale);
     transform-origin: $origin;
 }
+
+// ---------------------------------------------------------------------------
+// STYLES DE TEXTE PARTAGÉS
+// Un style qui revient à plusieurs endroits du site est défini une seule
+// fois ici, puis appelé avec @include. Chaque composant n'ajoute ensuite que
+// ce qui lui est propre (couleur, majuscules, survol…).
+// ---------------------------------------------------------------------------
+
+// Texte "nav" : liens de la nav, courriel et téléphone du footer, boutons.
+// $size permet aux boutons de garder leur propre taille (--font-size-cta).
+@mixin text-nav($size: var(--font-size-nav)) {
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-medium);
+    font-size: $size;
+    line-height: var(--lh-nav);
+    text-decoration: none;
+}
+
+// Style "p gros" de la maquette : noms des outils et pastilles
+// "Ce qui m'anime".
+@mixin text-p-gros {
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--font-size-p-gros);
+    line-height: 2.04; // 57px / 28px (maquette Figma)
+}
+
+// Style "Hero" : "Nathan Fortier" (hero + carte vidéo).
+@mixin text-hero {
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-hero);
+    font-size: var(--font-size-hero);
+    line-height: var(--lh-hero);
+    letter-spacing: 0.02em; // 2% (maquette Figma)
+}
+
+// Style "H3" de la maquette appliqué à un élément qui n'est pas un <h3>
+// (ex. un <p> ou un <h2> qui doit avoir l'allure d'un H3).
+@mixin text-h3 {
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-bold);
+    font-size: var(--font-size-h3);
+    line-height: var(--lh-h3);
+}

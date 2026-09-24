@@ -39,10 +39,7 @@
         left: var(--spacing-md);
         z-index: 1;
         margin: 0;
-        font-family: var(--font-secondary);
-        font-weight: var(--fw-bold);
-        font-size: var(--font-size-h1);
-        line-height: var(--lh-h3);
+        @include text-h3;
         color: var(--color-white);
         text-transform: uppercase;
         pointer-events: none;
@@ -56,16 +53,11 @@
         align-items: center;
         justify-content: center;
         white-space: nowrap;
-        // Même gabarit que les pastilles statiques d'origine (--font-size-tag) :
-        // déjà calibré pour cette carte, et plus visible pour l'interaction.
         padding: 18px 32px;
         background-color: var(--color-white);
         border-radius: 999px;
         box-shadow: var(--shadow-pill);
-        font-family: var(--font-secondary);
-        font-weight: var(--fw-semibold); // style "p gros" (590), pas bold
-        font-size: var(--font-size-tag);
-        line-height: 2.04; // 57px / 28px (maquette Figma, style "p gros")
+        @include text-p-gros;
         color: var(--color-text);
         will-change: transform;
         cursor: grab;
@@ -75,7 +67,7 @@
         }
 
         // Le libellé le plus long ("Sonorisation de scene") déborderait de la
-        // carte mobile à --font-size-tag (20px mini) + le padding desktop.
+        // carte mobile à --font-size-p-gros (20px mini) + le padding desktop.
         // Maquette Figma mobile : pastilles nettement plus petites.
         @media screen and (width <= $breakpoint-sm) {
             padding: 10px 18px;

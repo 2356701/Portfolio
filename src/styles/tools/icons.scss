@@ -1,0 +1,21 @@
+/* ==========================================================================
+   icons / tools
+   ========================================================================== */
+
+// Flèche du site (assets/icons/fleche.svg) posée en masque CSS plutôt qu'en
+// <img> : elle prend la couleur du texte (currentColor), donc elle suit
+// automatiquement la couleur du lien ou du bouton (repos, survol, fond
+// sombre…). Utilisée dans les boutons, le footer et la page À propos.
+@mixin icone-fleche($width, $height) {
+    width: $width;
+    height: $height;
+    background-color: currentColor;
+    mask-image: url('../assets/icons/fleche.svg');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-image: url('../assets/icons/fleche.svg');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+}
