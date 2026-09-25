@@ -1,11 +1,5 @@
 import Matter from 'matter-js';
 
-/*
- * Pastilles "Ce qui m'anime" : simulation physique Matter.js, adaptée du
- * prototype de Nat (gravity-matterjs_2.html). Les pastilles sont statiques
- * jusqu'à ce que la carte entre dans le viewport (scroll), puis tombent et
- * s'inclinent selon le sens/la vitesse du scroll. Attrapables à la souris.
- */
 const LABELS = [
   { text: 'Montage vidéo', px: 84.3, py: 56.0, rot: -35 },
   { text: 'Gestion événementielle', px: 66.2, py: 58.9, rot: 2 },
@@ -17,16 +11,6 @@ const LABELS = [
   { text: 'Sonorisation de scene', px: 86.4, py: 85.8, rot: -3 },
 ];
 
-// Positions dédiées à la carte mobile : LABELS est calibré pour une carte
-// très large (ratio ~2.36/1) ; sur une carte étroite mais haute (voir
-// tag-lozenge.scss), ces mêmes % placent plusieurs pastilles hors cadre,
-// coupées par l'overflow: hidden. On répartit ici les 9 pastilles plus
-// franchement à l'intérieur (marge horizontale plus large pour le libellé
-// le plus long) sur toute la hauteur de la carte.
-// Le titre + le bouton réinitialiser occupent maintenant le haut de la
-// carte en flux normal (voir tag-lozenge.scss) au lieu d'être posés en
-// absolute par-dessus : la première rangée démarre plus bas (py 32) pour
-// ne pas passer sous le bouton.
 const MOBILE_LABELS = [
   { text: 'Montage vidéo', px: 30, py: 40, rot: -6 },
   { text: 'Gestion Événementielle', px: 70, py: 38, rot: 4 },
@@ -38,7 +22,6 @@ const MOBILE_LABELS = [
   { text: 'Sonorisation de scene', px: 50, py: 96, rot: -2 },
 ];
 
-// Même seuil que $breakpoint-sm (styles/settings/dimensions.scss).
 const MOBILE_BREAKPOINT = 715;
 
 export default class GravityInterests {
@@ -85,11 +68,6 @@ export default class GravityInterests {
     if (this.walls.length) Composite.remove(this.engine.world, this.walls);
 
     const s = this.cardSize();
-    // Murs épais (au lieu de 120px) pour éviter qu'une pastille lancée
-    // rapidement à la souris ne les traverse (tunneling) et tombe pour de
-    // bon hors du cadre. Le plafond est posé pile sur le bord visible du
-    // haut de la carte (y = 0) : les bulles ne doivent jamais dépasser le
-    // cadre rouge vers le haut, même lancées fort à la souris.
     const T = 260;
     this.walls = [
       Bodies.rectangle(s.w / 2, s.h + T / 2, s.w * 3, T, { isStatic: true }),
@@ -150,9 +128,6 @@ export default class GravityInterests {
     });
   }
 
-  // Empêche une pastille lancée trop fort (glisser-déposer rapide) de
-  // traverser un mur en un seul pas de simulation (tunneling) — c'est ce
-  // qui la faisait parfois disparaître pour de bon.
   clampVelocities() {
     const { Body } = Matter;
     const MAX_SPEED = 28;
@@ -192,9 +167,6 @@ export default class GravityInterests {
     this.tryTrigger();
 
     if (this.triggered) {
-      // Effet très atténué : au départ, le tilt réagissait presque 1:1 au
-      // scroll et faisait valser les bulles violemment. On réduit fortement
-      // la sensibilité et l'amplitude max.
       const tilt = Math.max(-0.25, Math.min(0.25, delta * 0.006));
       this.engine.world.gravity.x = Math.max(
         -0.3,
@@ -213,26 +185,16 @@ export default class GravityInterests {
       this.hint.textContent = 'Scroll jusqu’à la carte pour activer la gravité';
     }
 
-    // La carte est forcément visible pour qu'on puisse cliquer sur ce
-    // bouton : on réactive la gravité tout de suite plutôt que d'attendre
-    // un prochain scroll qui pourrait ne jamais arriver (ex. l'utilisateur
-    // reste immobile après avoir cliqué) — c'est ce qui donnait
-    // l'impression que la gravité restait cassée après un reset.
     this.tryTrigger();
   }
 
   tick() {
     try {
-      // Retour au neutre plus rapide (0.85 au lieu de 0.94) pour que
-      // l'inclinaison retombe vite plutôt que de traîner après un scroll.
       if (this.triggered) this.engine.world.gravity.x *= 0.85;
       Matter.Engine.update(this.engine, 1000 / 60);
       this.clampVelocities();
       this.syncDOM();
     } catch (err) {
-      // On ne laisse jamais une erreur ponctuelle arrêter la boucle
-      // d'animation pour de bon (elle continuait de s'exécuter mais un
-      // throw ici tuait silencieusement le prochain requestAnimationFrame).
       console.error('GravityInterests: erreur dans la boucle d’animation', err);
     }
 
@@ -252,8 +214,6 @@ export default class GravityInterests {
     });
     Composite.add(this.engine.world, mouseConstraint);
 
-    // On laisse le scroll de la page fonctionner normalement au-dessus de
-    // la carte (Matter capte sinon la molette pour le zoom du mouse constraint).
     ['mousewheel', 'DOMMouseScroll', 'wheel'].forEach((evt) => {
       mouse.element.removeEventListener(evt, mouse.mousewheel);
     });
@@ -264,9 +224,6 @@ export default class GravityInterests {
       this.resetBtn.addEventListener('click', this.onReset);
     }
 
-    // Si le resize fait passer la carte au-dessus/en dessous de
-    // MOBILE_BREAKPOINT, on rebâtit aussi les pastilles pour reprendre le
-    // bon jeu de positions (desktop vs mobile) — sinon juste les murs.
     this._wasMobile = this.isMobile();
     let resizeTimer;
     window.addEventListener('resize', () => {

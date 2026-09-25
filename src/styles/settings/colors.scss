@@ -1,29 +1,19 @@
-/* ==========================================================================
-   COLORS / SETTINGS
-   Palette de la maquette "À propos" (Figma — Portfolio 2026, Gabarit Fortier)
-   ========================================================================== */
-
 :root {
-    // Neutres
     --color-white: #ffffff;
     --color-black: #070707;
 
-    // Fonds
-    --color-bg: #f9f9f9; // fond des sections claires
-    --color-dark: #262626; // fond des sections sombres (vidéo, compétences, footer)
-    --color-card: #ffffff; // fond des cards (projets, outils, forces)
+    --color-bg: #f9f9f9;
+    --color-dark: #262626;
+    --color-card: #ffffff;
 
-    // Texte
-    --color-text: #333333; // texte principal sur fond clair
-    --color-text-inverse: var(--color-white); // texte sur fond sombre
+    --color-text: #333333;
+    --color-text-inverse: var(--color-white);
 
-    // Accent
-    --color-primary: #c64340; // rouge — CTA, liens, mise en évidence
-    --color-primary-deep: #a3392d; // rouge foncé — dégradé de la carte "Ce qui m'anime"
+    --color-primary: #c64340;
+    --color-primary-deep: #a3392d;
 
-    // Ombres (cards, nav, logos outils)
     --shadow-card: 0 6px 32px rgba(112, 144, 176, 0.1);
     --shadow-card-lg: 0 6px 64px rgba(112, 144, 176, 0.1);
     --shadow-tool: 0 40px 48px rgba(21, 21, 21, 0.06);
-    --shadow-pill: 0 10px 18px rgba(0, 0, 0, 0.2); // pastilles de la carte "Ce qui m'anime"
+    --shadow-pill: 0 10px 18px rgba(0, 0, 0, 0.2);
 }

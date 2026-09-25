@@ -1,25 +1,20 @@
-/* ==========================================================================
-   ENTETE / COMPONENT
-   Nav "pilule" rouge, collante en haut de toutes les pages.
-   ========================================================================== */
+$entete-bp: 1024px;
 
 .entete {
-    // "fixed" plutôt que "sticky" : sticky réserve sa hauteur dans le flux
-    // (ce qui pousse le hero plus bas et laisse voir le fond de page — blanc
-    // — juste en dessous de la pilule). En fixed, le header flotte par-dessus
-    // le hero qui remonte alors jusqu'en haut de la page ; les images du hero
-    // (écouteurs, baguettes) passent donc derrière la pilule au lieu de
-    // s'arrêter sur un fond blanc.
+    --font-size-entete: #{typo(14px, 16px)};
+
+    --bulle-h: #{typo(52px, 68px)};
+    --bulle-pad: #{typo(20px, 32px)};
+
     position: fixed;
     top: var(--spacing-sm);
     left: 0;
     right: 0;
     z-index: 100;
     padding-top: var(--spacing-sm);
+    pointer-events: none;
 
     @media screen and (width <= $breakpoint-sm) {
-        // La maquette mobile colle la barre de nav pleine largeur, sans le
-        // décollement/l'arrondi "pilule" flottante du desktop.
         top: 0;
         padding-top: 0;
 
@@ -29,47 +24,131 @@
         }
     }
 
-    &_nav {
+    &_barre {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: var(--spacing-md);
-        padding: var(--spacing-sm) var(--spacing-lg);
-        background-color: var(--color-primary);
-        border-radius: 50px;
-        box-shadow: var(--shadow-card);
+        gap: #{typo(12px, 24px)};
+
+        > * {
+            pointer-events: auto;
+        }
+
+        @media screen and (width <= $entete-bp) {
+            justify-content: space-between;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background-color: var(--color-primary);
+            border-radius: 50px;
+            box-shadow: var(--shadow-card);
+            pointer-events: auto;
+        }
 
         @media screen and (width <= $breakpoint-sm) {
-            border-radius: 0;
             padding: var(--spacing-sm) var(--spacing-mmd);
+            border-radius: 0;
+            box-shadow: none;
+        }
+    }
+
+    &_bulle {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        height: var(--bulle-h);
+        padding-inline: var(--bulle-pad);
+        background-color: var(--color-primary);
+        border-radius: 999px;
+        box-shadow: var(--shadow-card-lg);
+        transition: height 0.4s $ease-out-quint, padding 0.4s $ease-out-quint,
+            transform 0.45s $ease-out-back;
+
+        @media screen and (width <= $entete-bp) {
+            height: auto;
+            padding: 0;
+            background-color: transparent;
             box-shadow: none;
         }
     }
 
     &_logo {
+        margin-right: auto;
         font-family: var(--font-logo);
         font-style: italic;
-        font-size: 22px;
-        line-height: 1;
+        font-size: #{typo(14px, 16px)};
+        line-height: 0.95;
+        text-align: center;
         color: var(--color-white);
         text-decoration: none;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
             color: var(--color-white);
             text-decoration: none;
-            opacity: 0.85;
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        &:active {
+            transform: scale(0.96);
+        }
+
+        @media screen and (width <= $entete-bp) {
+            &:hover,
+            &:focus-visible {
+                transform: none;
+            }
+        }
+    }
+
+    &_logo-texte {
+        display: block;
+        max-width: 4.2em;
+
+        @media screen and (width <= $entete-bp) {
+            max-width: none;
+        }
+    }
+
+    &_nav {
+        position: relative;
+    }
+
+    &_indicateur {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: var(--ind-w, 0);
+        height: max(30px, calc(var(--bulle-h) * 0.55));
+        background-color: var(--color-white);
+        border-radius: 999px;
+        opacity: 0;
+        transform: translate(var(--ind-x, 0), -50%);
+        transition: transform 0.5s $ease-out-back, width 0.5s $ease-out-back,
+            height 0.4s $ease-out-quint, opacity 0.2s $ease-out-quad;
+        pointer-events: none;
+
+        .entete_nav.a-indicateur & {
+            opacity: 1;
+        }
+
+        .entete_nav.sans-transition & {
+            transition: none;
+        }
+
+        @media screen and (width <= $entete-bp) {
+            display: none;
         }
     }
 
     &_liens {
+        position: relative;
+        z-index: 1;
         display: flex;
         align-items: center;
-        gap: var(--spacing-mmd);
+        gap: 12px;
         list-style: none;
         margin: 0;
         padding: 0;
 
-        @media screen and (width <= $breakpoint-sm) {
+        @media screen and (width <= $entete-bp) {
             position: fixed;
             inset: 0;
             z-index: 90;
@@ -86,68 +165,183 @@
 
     &_separateur {
         width: 1px;
-        height: 24px;
-        background-color: rgba(255, 255, 255, 0.4);
+        height: 20px;
+        background-color: var(--color-white);
 
-        @media screen and (width <= $breakpoint-sm) {
+        @media screen and (width <= $entete-bp) {
             display: none;
         }
     }
 
     &_lien {
-        @include text-nav;
+        @include text-nav(var(--font-size-entete));
+        display: block;
         color: var(--color-white);
         text-transform: uppercase;
         white-space: nowrap;
+        transition: color 0.25s $ease-out-quad;
 
         &:hover,
         &.actif {
             color: var(--color-white);
-            text-decoration: underline;
-            text-underline-offset: 4px;
+            text-decoration: none;
         }
 
-        @media screen and (width <= $breakpoint-sm) {
+        &.sous-indicateur,
+        &.sous-indicateur:hover {
+            color: var(--color-primary);
+        }
+
+        @media screen and (width <= $entete-bp) {
             font-size: var(--font-size-h3);
+
+            &:hover,
+            &.actif {
+                text-decoration: underline;
+                text-underline-offset: 4px;
+            }
+
+            &.sous-indicateur {
+                color: var(--color-white);
+            }
         }
     }
 
-    // Bouton hamburger — masqué en desktop, affiché en dessous de $breakpoint-sm
-    &_bouton-menu {
-        position: relative;
-        // Le menu mobile (&_liens) est en position: fixed avec z-index: 90
-        // et recouvre tout l'écran, y compris ce bouton : sans son propre
-        // z-index (plus élevé), il passait sous l'overlay une fois le menu
-        // ouvert — invisible ET impossible à cliquer pour refermer.
-        z-index: 91;
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 32px;
-        height: 32px;
+    &_reseaux {
+        display: grid;
+        grid-template-columns: var(--bulle-h) 0fr;
+        padding-inline: 0;
+        transition: grid-template-columns 0.5s $ease-out-quint, height 0.4s $ease-out-quint;
+
+        @media screen and (width <= $entete-bp) {
+            display: none;
+        }
+    }
+
+    &_reseaux-bouton {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
         padding: 0;
         border: 0;
         background: transparent;
+        color: var(--color-white);
         cursor: pointer;
+        overflow: hidden;
+        transition: opacity 0.2s $ease-out-quad;
 
-        span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background-color: var(--color-white);
-            transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
+        svg {
+            width: calc(var(--bulle-h) * 0.3);
+            height: auto;
+            transition: transform 0.45s $ease-out-back;
         }
 
-        @media screen and (width <= $breakpoint-sm) {
-            display: flex;
+        &:hover svg {
+            transform: rotate(-15deg) scale(1.1);
+        }
+    }
+
+    &_reseaux-contenu {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    &_reseaux-liste {
+        --taille: 0.5;
+        --reseaux-lettres: var(--color-primary);
+        flex-shrink: 0;
+        padding-inline: var(--bulle-pad);
+        color: var(--color-white);
+
+        @media screen and (width >= 1200px) {
+            --taille: 0.62;
+        }
+
+        li {
+            opacity: 0;
+            transform: translateY(10px) scale(0.5);
+            transition: opacity 0.2s $ease-out-quad, transform 0.3s $ease-out-quint;
+        }
+
+        a:hover,
+        a:focus-visible {
+            color: var(--color-white);
+            text-decoration: none;
+            transform: scale(1.15);
         }
     }
 }
 
-// Le menu mobile plein écran ouvre/ferme le hamburger en croix : posé à
-// part (plutôt que nesté dans .entete) pour rester après les règles de
-// base ci-dessus dans la cascade.
+@mixin reseaux-ouverts {
+    grid-template-columns: 0px 1fr;
+    transition: grid-template-columns 0.6s $ease-out-back, height 0.4s $ease-out-quint;
+
+    .entete_reseaux-bouton {
+        opacity: 0;
+    }
+
+    .entete_reseaux-liste li {
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.3s $ease-out-quad calc(0.08s + var(--i) * 0.07s),
+            transform 0.5s $ease-out-back calc(0.08s + var(--i) * 0.07s);
+    }
+}
+
+.entete_reseaux.est-ouvert,
+.entete_reseaux:focus-within {
+    @include reseaux-ouverts;
+}
+
+@media (hover: hover) {
+    .entete_reseaux:hover {
+        @include reseaux-ouverts;
+    }
+}
+
+html.entete-compact {
+    .entete {
+        --bulle-h: 46px;
+        --bulle-pad: 18px;
+    }
+
+    .entete_reseaux-liste {
+        --taille: 0.45;
+    }
+}
+
+.entete_bouton-menu {
+    position: relative;
+    z-index: 91;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-white);
+        transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
+    }
+
+    @media screen and (width <= $entete-bp) {
+        display: flex;
+    }
+}
+
 html.menu-ouvert {
     .entete_liens {
         transform: translateY(0);
@@ -163,5 +357,12 @@ html.menu-ouvert {
     }
     .entete_bouton-menu span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .entete,
+    .entete * {
+        transition-duration: 0.01ms !important;
     }
 }

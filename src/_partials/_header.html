@@ -19,26 +19,14 @@
     </head>
     <body data-component="Scrolly">
         <header class="entete" data-component="Header">
-            <div class="conteneur">
-                <nav class="entete_nav" aria-label="Navigation principale">
-                    <a href="index.html" class="entete_logo">The_Nat</a>
+            <div class="conteneur entete_barre">
+                <a href="index.html" class="entete_bulle entete_logo">
+                    <span class="entete_logo-texte">The_<wbr />Nat</span>
+                </a>
 
-                    <button
-                        class="entete_bouton-menu js-toggle"
-                        type="button"
-                        aria-label="Ouvrir le menu"
-                        aria-expanded="false"
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                <nav class="entete_bulle entete_nav" aria-label="Navigation principale">
+                    <span class="entete_indicateur" aria-hidden="true"></span>
 
-                    <!--
-                        Site one-page : "À propos", "Projets" et "Contact" sont des
-                        sections de index.html, pas des pages séparées — on y
-                        fait défiler avec des ancres plutôt que de naviguer.
-                    -->
                     <ul class="entete_liens">
                         <li>
                             <a
@@ -57,5 +45,49 @@
                         </li>
                     </ul>
                 </nav>
+
+                <div class="entete_bulle entete_reseaux" data-reseaux>
+                    <button
+                        class="entete_reseaux-bouton"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="entete-reseaux-liste"
+                        aria-label="Afficher mes réseaux sociaux"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" />
+                            <line x1="15.4" y1="6.5" x2="8.6" y2="10.5" />
+                        </svg>
+                    </button>
+
+                    <div class="entete_reseaux-contenu">
+                        {% include "_reseaux.html" with {classe: "entete_reseaux-liste", id: "entete-reseaux-liste"} %}
+                    </div>
+                </div>
+
+                <button
+                    class="entete_bouton-menu js-toggle"
+                    type="button"
+                    aria-label="Ouvrir le menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </header>

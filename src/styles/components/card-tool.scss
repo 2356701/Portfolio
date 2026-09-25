@@ -1,8 +1,3 @@
-/* ==========================================================================
-   CARTE-OUTIL / COMPONENT
-   Pastilles blanches "Mes outils de travail" (logo + nom du logiciel).
-   ========================================================================== */
-
 .grille-outils {
     display: flex;
     flex-wrap: wrap;
@@ -10,11 +5,6 @@
     gap: var(--spacing-md) 0;
     width: 100%;
 
-    // Sous $breakpoint-sm, les 5 pastilles de 187px avec justify-content:
-    // space-between ne tiennent plus à deux par rangée sans un fossé énorme
-    // entre elles. La maquette Figma mobile les pose plutôt en grille de 3
-    // colonnes fixes, alignées à gauche (comme le reste de la page) — la
-    // dernière rangée (2 pastilles) reste donc collée à gauche elle aussi.
     @media screen and (width <= $breakpoint-sm) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

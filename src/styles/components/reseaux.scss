@@ -1,0 +1,44 @@
+.reseaux {
+    --taille: 1;
+    display: flex;
+    align-items: center;
+    gap: calc(25px * var(--taille));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        width: calc(80px * var(--taille));
+        height: calc(38px * var(--taille));
+
+        &:not(:last-child) {
+            border-right: 1px solid currentColor;
+        }
+
+        &:last-child {
+            width: auto;
+        }
+    }
+
+    a {
+        display: block;
+        color: inherit;
+        transition: color 0.2s $ease-out-quad, transform 0.3s $ease-out-back;
+    }
+
+    svg {
+        display: block;
+        width: auto;
+        height: calc(44px * var(--taille));
+    }
+
+    &_youtube svg {
+        height: calc(59px * var(--taille));
+    }
+
+    .social-lettres {
+        fill: var(--reseaux-lettres, var(--color-white));
+    }
+}

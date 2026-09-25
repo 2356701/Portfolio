@@ -1,11 +1,3 @@
-/* ==========================================================================
-   FONT-FACE / SETTINGS
-   SF Pro est une police système Apple : pas de CDN légal (Google Fonts ne
-   l'héberge pas). On self-host la police variable fournie par Nat
-   (axe "wght" 1–1000, fidèle aux graisses de la maquette : 400/510/590/700/860).
-   Playfair Display et Shrikhand viennent de Google Fonts (voir main.scss).
-   ========================================================================== */
-
 @font-face {
     font-family: 'SF Pro';
     src: url('../assets/fonts/SF-Pro.ttf') format('truetype-variations'),
