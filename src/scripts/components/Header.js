@@ -1,3 +1,7 @@
+import { gsap } from 'gsap';
+
+gsap.defaults({ overwrite: 'auto' });
+
 export default class Header {
   constructor(element) {
     this.element = element;
@@ -63,107 +67,97 @@ export default class Header {
   initIndicateur() {
     this.nav = this.element.querySelector('.entete_nav');
     this.indicateur = this.element.querySelector('.entete_indicateur');
-    if (!this.nav || !this.indicateur) return;
+    this.indicateurVisible = false;
+    this.lienSurvole = null;
 
-    this.liens = [...this.nav.querySelectorAll('.entete_lien')];
-    this.lienCourant = null;
-
-    this.liens.forEach((lien) => {
-      lien.addEventListener('mouseenter', () => this.placerIndicateur(lien));
-      lien.addEventListener('focus', () => this.placerIndicateur(lien));
+    const liens = this.element.querySelectorAll('.entete_lien');
+    liens.forEach((lien) => {
+      lien.addEventListener('mouseenter', () => this.montrerIndicateur(lien));
     });
     this.nav.addEventListener('mouseleave', () => this.cacherIndicateur());
-    this.nav.addEventListener('focusout', (e) => {
-      if (!this.nav.contains(e.relatedTarget)) this.cacherIndicateur();
-    });
-
-    const recaler = () => {
-      if (this.lienCourant) this.placerIndicateur(this.lienCourant, false);
-    };
-    window.addEventListener('resize', recaler);
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(recaler).observe(this.nav);
-    }
   }
 
-  placerIndicateur(lien, anime = true) {
-    if (!this.nav.classList.contains('a-indicateur')) anime = false;
-    const marge = 7;
-    const navRect = this.nav.getBoundingClientRect();
-    const lienRect = lien.getBoundingClientRect();
+  montrerIndicateur(lien) {
+    if (this.lienSurvole) this.lienSurvole.classList.remove('survol');
+    lien.classList.add('survol');
+    this.lienSurvole = lien;
 
-    if (!anime) this.nav.classList.add('sans-transition');
-    this.nav.style.setProperty('--ind-x', `${lienRect.left - navRect.left - marge}px`);
-    this.nav.style.setProperty('--ind-w', `${lienRect.width + marge * 2}px`);
-    this.nav.classList.add('a-indicateur');
+    const x = lien.offsetLeft - 7;
+    const largeur = lien.offsetWidth + 14;
 
-    this.liens.forEach((l) => l.classList.toggle('sous-indicateur', l === lien));
-    this.lienCourant = lien;
-
-    if (!anime) {
-      this.nav.getBoundingClientRect();
-      this.nav.classList.remove('sans-transition');
+    if (this.indicateurVisible) {
+      gsap.to(this.indicateur, { x: x, width: largeur, duration: 0.45, ease: 'back.out(1.7)' });
+    } else {
+      gsap.set(this.indicateur, { x: x, width: largeur });
+      gsap.to(this.indicateur, { autoAlpha: 1, duration: 0.2 });
+      this.indicateurVisible = true;
     }
   }
 
   cacherIndicateur() {
-    this.nav.classList.remove('a-indicateur');
-    this.liens.forEach((l) => l.classList.remove('sous-indicateur'));
-    this.lienCourant = null;
+    if (this.lienSurvole) this.lienSurvole.classList.remove('survol');
+    this.lienSurvole = null;
+
+    gsap.to(this.indicateur, { autoAlpha: 0, duration: 0.2 });
+    this.indicateurVisible = false;
   }
 
   initReseaux() {
-    this.reseaux = this.element.querySelector('[data-reseaux]');
-    if (!this.reseaux) return;
-    this.reseauxBouton = this.reseaux.querySelector('.entete_reseaux-bouton');
+    this.reseaux = this.element.querySelector('.entete_reseaux');
+    this.reseauxBouton = this.element.querySelector('.entete_reseaux-bouton');
+    this.reseauxIcones = this.element.querySelectorAll('.entete_reseaux-liste li');
+    this.reseauxOuvert = false;
 
-    this.reseauxBouton.addEventListener('click', () => {
-      this.ouvrirReseaux(!this.reseaux.classList.contains('est-ouvert'));
-    });
-
-    this.reseaux.addEventListener('mouseenter', () => this.majAriaReseaux(true));
-    this.reseaux.addEventListener('mouseleave', () =>
-      this.majAriaReseaux(this.reseaux.classList.contains('est-ouvert'))
-    );
+    this.reseaux.addEventListener('mouseenter', () => this.ouvrirReseaux());
+    this.reseaux.addEventListener('mouseleave', () => this.fermerReseaux());
+    this.reseauxBouton.addEventListener('click', () => this.ouvrirReseaux());
 
     document.addEventListener('click', (e) => {
-      if (!this.reseaux.contains(e.target)) this.ouvrirReseaux(false);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.reseaux.contains(document.activeElement)) {
-        this.ouvrirReseaux(false);
-        this.reseauxBouton.focus();
-        this.reseauxBouton.blur();
-      }
+      if (!this.reseaux.contains(e.target)) this.fermerReseaux();
     });
   }
 
-  ouvrirReseaux(ouvert) {
-    this.reseaux.classList.toggle('est-ouvert', ouvert);
-    this.majAriaReseaux(ouvert);
+  ouvrirReseaux() {
+    if (this.reseauxOuvert) return;
+    this.reseauxOuvert = true;
+    this.reseauxBouton.setAttribute('aria-expanded', 'true');
+
+    gsap.to(this.reseauxBouton, { opacity: 0, pointerEvents: 'none', duration: 0.15 });
+    gsap.to(this.reseaux, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)' });
+    gsap.fromTo(
+      this.reseauxIcones,
+      { autoAlpha: 0, scale: 0.5, y: 10 },
+      { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07, delay: 0.1 }
+    );
   }
 
-  majAriaReseaux(ouvert) {
-    this.reseauxBouton.setAttribute('aria-expanded', String(ouvert));
+  fermerReseaux() {
+    if (!this.reseauxOuvert) return;
+    this.reseauxOuvert = false;
+    this.reseauxBouton.setAttribute('aria-expanded', 'false');
+
+    gsap.to(this.reseauxIcones, { autoAlpha: 0, duration: 0.15 });
+    gsap.to(this.reseauxBouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2 });
+    gsap.to(this.reseaux, {
+      width: this.reseaux.offsetHeight,
+      duration: 0.4,
+      ease: 'power3.out',
+      onComplete: () => {
+        this.reseaux.style.width = '';
+      },
+    });
   }
 
   initLogo() {
     const logo = this.element.querySelector('.entete_logo');
-    if (!logo) return;
 
     logo.addEventListener('click', (e) => {
-      const cible = new URL(logo.href, window.location.href);
-      const memePage = cible.pathname === window.location.pathname ||
-        (cible.pathname.endsWith('/index.html') &&
-          window.location.pathname === cible.pathname.replace(/index\.html$/, ''));
-      if (!memePage) return;
-
       e.preventDefault();
-      const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      window.scrollTo({ top: 0, behavior: reduit ? 'auto' : 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      if (this.html.classList.contains('menu-ouvert')) this.onToggleNav();
+      if (this.html.classList.contains('menu-ouvert')) {
+        this.onToggleNav();
+      }
     });
   }
 }

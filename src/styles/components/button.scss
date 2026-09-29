@@ -12,7 +12,8 @@
     @include text-nav(var(--font-size-cta));
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.2s $ease-out-quad, color 0.2s $ease-out-quad;
+    transition: background-color 0.2s $ease-out-quad, color 0.2s $ease-out-quad, $souleve-transition;
+    @include souleve(true);
 
     &:hover {
         background-color: var(--color-primary);

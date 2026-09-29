@@ -66,6 +66,10 @@
     &_reseaux {
         color: var(--color-text);
 
+        a {
+            @include souleve;
+        }
+
         a:hover {
             color: var(--color-primary);
         }
@@ -111,6 +115,8 @@
             color: var(--color-black);
             text-transform: uppercase;
             text-decoration: none;
+            transition: color 0.2s $ease-out-quad, $souleve-transition;
+            @include souleve;
 
             &:hover {
                 color: var(--color-primary);

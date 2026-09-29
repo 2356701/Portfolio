@@ -24,6 +24,13 @@
     background-color: var(--color-card);
     border-radius: 25px;
     box-shadow: var(--shadow-tool);
+    text-decoration: none;
+    transition: $souleve-transition;
+    @include souleve(true);
+
+    &:hover {
+        text-decoration: none;
+    }
 
     @media screen and (width <= $breakpoint-sm) {
         width: auto;

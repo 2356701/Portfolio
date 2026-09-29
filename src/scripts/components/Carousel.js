@@ -33,12 +33,6 @@ export default class Carousel {
         1000: {
           slidesPerView: 2,
         },
-        1330: {
-          slidesPerView: 2.5,
-        },
-        1331: {
-          slidesPerView: 3,
-        },
       };
       if ('space' in this.element.dataset) {
         this.options.spaceBetween = 30;

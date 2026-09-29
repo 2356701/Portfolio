@@ -1,0 +1,11 @@
+$souleve-transition: transform 0.3s $ease-out-back, box-shadow 0.3s $ease-out-quad;
+
+@mixin souleve($ombre: false) {
+    &:hover {
+        transform: translateY(-8px);
+
+        @if $ombre {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+    }
+}
