@@ -1,0 +1,144 @@
+.proposition {
+    @extend %section-sombre;
+
+    &_intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xxl);
+
+        h2 {
+            margin: 0;
+            color: var(--color-white);
+        }
+
+        @media screen and (width >= $breakpoint-md) {
+            grid-template-columns: 1fr 1fr;
+            align-items: start;
+
+            .proposition_texte {
+                margin-top: 28px;
+            }
+        }
+    }
+
+    &_texte {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg);
+
+        p {
+            font-size: var(--font-size-lead);
+            font-weight: var(--fw-medium);
+            line-height: 1.375;
+            letter-spacing: -0.02em;
+            color: var(--color-white);
+
+            strong {
+                font-weight: var(--fw-bold);
+            }
+        }
+    }
+
+    &_video {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+
+        &-titre {
+            max-width: 600px;
+
+            p:first-child {
+                margin: 0 0 var(--spacing-sm);
+                font-family: var(--font-primary);
+                font-weight: 600;
+                font-size: var(--font-size-h2);
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+                color: var(--color-primary);
+            }
+
+            p:last-child {
+                margin: 0;
+                font-size: var(--font-size-h2);
+                font-weight: var(--fw-medium);
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+                text-transform: uppercase;
+                color: var(--color-white);
+            }
+        }
+    }
+}
+
+.carte-video {
+    position: relative;
+    aspect-ratio: 1200 / 675;
+    border-radius: 55px;
+    background-color: var(--color-text);
+    overflow: hidden;
+
+    &:hover {
+        .carte-video_lecture {
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+    }
+
+    &_decor {
+        position: absolute;
+        left: -14%;
+        bottom: -14%;
+        width: 46%;
+        opacity: 0.35;
+        pointer-events: none;
+        transform: rotate(-8deg);
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &_legende {
+        position: absolute;
+        top: var(--spacing-lg);
+        left: var(--spacing-lg);
+        z-index: 1;
+        text-transform: uppercase;
+
+        @media screen and (width <= $breakpoint-sm) {
+            display: none;
+        }
+    }
+
+    &_nom {
+        display: block;
+        margin: 0;
+        @include text-hero;
+        color: var(--color-white);
+    }
+
+    &_etiquette {
+        margin: var(--spacing-sm) 0 0;
+        @include text-h3;
+        color: var(--color-white);
+
+        em {
+            font-family: var(--font-primary);
+            font-style: normal;
+            color: var(--color-primary);
+        }
+    }
+
+    &_lecture {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(70px, 6vw + 40px, 110px);
+        height: auto;
+        transition: transform 0.2s $ease-out-quad;
+    }
+}

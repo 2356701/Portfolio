@@ -1,0 +1,176 @@
+<main class="fiche" data-component="FondScroll">
+    <section class="fiche-heros" data-fond="clair">
+        <div class="wrapper fiche-heros_grille">
+            <a href="index.html#projets" class="bouton fiche-heros_retour">
+                <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
+                Tous les projets
+            </a>
+
+            <h1 class="fiche-heros_titre">{{ projet.titre }}</h1>
+
+            <div class="fiche-heros_infos">
+                <p class="fiche-heros_description">
+                    <span class="fiche-heros_type">{{ projet.type }}</span> : {{ projet.description }}
+                </p>
+
+                <div class="fiche-heros_meta">
+                    <p class="fiche-heros_meta-titre">{{ projet.ia }}</p>
+
+                    <div>
+                        <p class="fiche-heros_meta-titre">Rôle</p>
+                        <ul class="fiche-heros_roles">
+                            {% for role in projet.roles %}
+                            <li>{{ role }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fiche-heros_collage" role="img" aria-label="{{ projet.imageAlt }}">
+                <span style="background-image: url('{{ projet.image }}')"></span>
+                <span style="background-image: url('{{ projet.image }}')"></span>
+                <span style="background-image: url('{{ projet.image }}')"></span>
+            </div>
+
+            <ul class="fiche-heros_outils">
+                {% for outil in projet.outils %}
+                <li>
+                    <a href="{{ outil.lien }}" target="_blank" rel="noopener" aria-label="{{ outil.nom }}">
+                        <img src="{{ outil.logo }}" alt="" />
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="fiche-etapes" data-fond="clair">
+        <div class="wrapper">
+            <div class="fiche-etapes_entete">
+                <h2>Étapes de réalisation</h2>
+                <p class="fiche-etapes_sous-titre">Les {{ projet.etapes|length }} grandes étapes du projet</p>
+            </div>
+
+            <ol class="fiche-etapes_liste">
+                {% for etape in projet.etapes %}
+                <li class="etape {% if loop.index is even %}etape_inverse{% endif %}" data-scrolly="fromBottom">
+                    <div class="etape_entete">
+                        <h3 class="etape_titre">{{ etape.titre }}</h3>
+                        <p class="etape_numero" aria-hidden="true">{{ "%02d"|format(loop.index) }}</p>
+                    </div>
+
+                    <div class="etape_media">
+                        <img src="{{ etape.image }}" alt="{{ etape.alt }}" loading="lazy" />
+                    </div>
+
+                    <p class="etape_texte"><strong>{{ etape.fort }}</strong> {{ etape.texte }}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </section>
+
+    <section class="fiche-resultat" data-fond="clair">
+        <div class="wrapper">
+            <h2 class="fiche-resultat_titre">Résultat final</h2>
+
+            {% if projet.resultat.video %}
+            <a href="{{ projet.resultat.video }}" class="fiche-resultat_video" target="_blank" rel="noopener">
+            {% else %}
+            <div class="fiche-resultat_video">
+            {% endif %}
+                <img src="{{ projet.resultat.image }}" alt="" class="fiche-resultat_image" loading="lazy" />
+
+                <div class="fiche-resultat_video-texte">
+                    <p class="fiche-resultat_video-titre">{{ projet.resultat.titre }}</p>
+                    <p class="fiche-resultat_video-sous-titre">{{ projet.resultat.sousTitre }}</p>
+                </div>
+
+                {% if projet.resultat.video %}
+                <img src="assets/icons/youtube-play-button.svg" alt="Voir la vidéo" class="fiche-resultat_lecture" />
+                {% endif %}
+
+                <ul class="fiche-resultat_equipe">
+                    {% for nom in projet.resultat.equipe %}
+                    <li>{{ nom }}</li>
+                    {% endfor %}
+                </ul>
+            {% if projet.resultat.video %}
+            </a>
+            {% else %}
+            </div>
+            {% endif %}
+
+            <div class="fiche-resultat_credits">
+                <div>
+                    <h3 class="fiche-resultat_credits-titre">Collaborateurs :</h3>
+                    <p>{{ projet.collaborateurs }}</p>
+                </div>
+
+                <div>
+                    <h3 class="fiche-resultat_credits-titre">Crédits :</h3>
+                    <ul>
+                        {% for credit in projet.credits %}
+                        <li>{{ credit }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fiche-defis" data-fond="sombre" data-component="Defis">
+        <div class="wrapper fiche-defis_interieur">
+            <div>
+                <div class="surtitre">
+                    <span aria-hidden="true"></span>
+                    <p>Défis et solutions</p>
+                </div>
+                <h2 class="fiche-defis_titre">Des problèmes à régler</h2>
+            </div>
+
+            <div class="fiche-defis_jeu">
+                <ul class="fiche-defis_cartes">
+                    {% for defi in projet.defis %}
+                    <li class="carte-defi">
+                        <button
+                            type="button"
+                            class="carte-defi_bouton"
+                            aria-expanded="false"
+                            aria-controls="solution-{{ loop.index }}"
+                            aria-label="Voir la solution : {{ defi.titre }}"
+                        ></button>
+                        <img src="{{ defi.icone }}" alt="" class="carte-defi_icone" />
+                        <h3 class="carte-defi_titre">{{ defi.titre }}</h3>
+                        <p class="carte-defi_texte">{{ defi.texte }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div>
+                    <h3 class="fiche-defis_solutions-titre">Solutions</h3>
+                    <ul class="fiche-defis_solutions">
+                        {% for solution in projet.solutions %}
+                        <li class="carte-solution" id="solution-{{ loop.index }}"><p><strong>{{ solution.fort }}</strong> {{ solution.texte }}</p></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav class="wrapper fiche-navigation" data-fond="clair" aria-label="Navigation entre les projets">
+        <a href="index.html#projets" class="bouton">
+            <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
+            Tous les projets
+        </a>
+
+        {% if projet.suivant %}
+        <a href="{{ projet.suivant.lien }}" class="bouton">
+            Projet suivant : {{ projet.suivant.titre }}
+            <span class="bouton_icone" aria-hidden="true"></span>
+        </a>
+        {% endif %}
+    </nav>
+</main>

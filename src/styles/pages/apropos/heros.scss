@@ -1,0 +1,137 @@
+.heros {
+    position: relative;
+    padding: var(--spacing-xl) 0 var(--spacing-section);
+    overflow: hidden;
+
+    @media screen and (width > 1024px) {
+        padding-top: calc(var(--spacing-xl) + 30px);
+    }
+
+    &_decor {
+        position: absolute;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.9;
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media screen and (width <= 1200px) {
+            display: none;
+        }
+    }
+
+    &_ecouteurs {
+        --decor-top: -26%;
+        --decor-right: -17%;
+        --decor-size: 900px;
+        --decor-rotate: -5deg;
+
+        top: var(--decor-top);
+        right: var(--decor-right);
+        width: var(--decor-size);
+        transform: rotate(var(--decor-rotate));
+
+        @media screen and (width <= 1700px) {
+            --decor-size: 760px;
+            --decor-right: -14%;
+        }
+    }
+
+    &_baguettes {
+        --decor-top: 22%;
+        --decor-right: 3%;
+        --decor-size: 850px;
+        --decor-rotate: 4deg;
+
+        top: var(--decor-top);
+        right: var(--decor-right);
+        width: var(--decor-size);
+        transform: rotate(var(--decor-rotate));
+
+        @media screen and (width <= 1700px) {
+            --decor-size: 720px;
+            --decor-right: -4%;
+        }
+    }
+
+    &_contenu {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        max-width: 720px;
+
+        @media screen and (width <= $breakpoint-sm) {
+            gap: var(--spacing-mmd);
+        }
+    }
+
+    &_photo {
+        width: 100%;
+        max-width: 531px;
+        aspect-ratio: 531 / 354;
+        border-radius: 25px;
+        background-color: var(--color-black);
+        box-shadow: var(--shadow-card-lg);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            order: 2;
+        }
+    }
+
+    &_texte {
+        @media screen and (width <= $breakpoint-sm) {
+            order: 1;
+        }
+    }
+
+    &_legende {
+        margin: 0 0 var(--spacing-sm);
+        font-family: var(--font-primary);
+        font-weight: 700;
+        font-size: var(--font-size-caption);
+        line-height: var(--lh-caption);
+        color: var(--color-primary);
+        text-transform: uppercase;
+
+        span {
+            font-family: var(--font-secondary);
+            font-weight: var(--fw-bold);
+            color: var(--color-text);
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            font-size: 13px;
+        }
+    }
+
+    &_titre {
+        width: max-content;
+        max-width: 100%;
+        margin: 0;
+        @include text-hero;
+        color: var(--color-text);
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        @media screen and (width <= $breakpoint-sm) {
+            font-size: #{typo(33px, 40px, 320px, 480px)};
+            line-height: 1;
+            letter-spacing: 0;
+            font-variation-settings: 'wdth' 60;
+        }
+    }
+}

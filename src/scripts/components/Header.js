@@ -14,7 +14,7 @@ export default class Header {
     this.init();
     this.initNavMobile();
     this.initIndicateur();
-    this.initReseaux();
+    this.initBulles();
     this.initLogo();
   }
 
@@ -102,48 +102,56 @@ export default class Header {
     this.indicateurVisible = false;
   }
 
-  initReseaux() {
-    this.reseaux = this.element.querySelector('.entete_reseaux');
-    this.reseauxBouton = this.element.querySelector('.entete_reseaux-bouton');
-    this.reseauxIcones = this.element.querySelectorAll('.entete_reseaux-liste li');
-    this.reseauxOuvert = false;
+  initBulles() {
+    this.bulles = this.element.querySelectorAll('[data-extensible]');
 
-    this.reseaux.addEventListener('mouseenter', () => this.ouvrirReseaux());
-    this.reseaux.addEventListener('mouseleave', () => this.fermerReseaux());
-    this.reseauxBouton.addEventListener('click', () => this.ouvrirReseaux());
+    this.bulles.forEach((bulle) => {
+      const bouton = bulle.querySelector('.entete_extensible-bouton');
+      bulle.addEventListener('mouseenter', () => this.ouvrirBulle(bulle));
+      bulle.addEventListener('mouseleave', () => this.fermerBulle(bulle));
+      bouton.addEventListener('click', () => this.ouvrirBulle(bulle));
+    });
 
     document.addEventListener('click', (e) => {
-      if (!this.reseaux.contains(e.target)) this.fermerReseaux();
+      this.bulles.forEach((bulle) => {
+        if (!bulle.contains(e.target)) this.fermerBulle(bulle);
+      });
     });
   }
 
-  ouvrirReseaux() {
-    if (this.reseauxOuvert) return;
-    this.reseauxOuvert = true;
-    this.reseauxBouton.setAttribute('aria-expanded', 'true');
+  ouvrirBulle(bulle) {
+    if (bulle.classList.contains('est-ouverte')) return;
+    bulle.classList.add('est-ouverte');
 
-    gsap.to(this.reseauxBouton, { opacity: 0, pointerEvents: 'none', duration: 0.15 });
-    gsap.to(this.reseaux, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)' });
+    const bouton = bulle.querySelector('.entete_extensible-bouton');
+    const elements = bulle.querySelectorAll('.entete_extensible-liste li');
+    bouton.setAttribute('aria-expanded', 'true');
+
+    gsap.to(bouton, { opacity: 0, pointerEvents: 'none', duration: 0.15 });
+    gsap.to(bulle, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)' });
     gsap.fromTo(
-      this.reseauxIcones,
+      elements,
       { autoAlpha: 0, scale: 0.5, y: 10 },
       { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07, delay: 0.1 }
     );
   }
 
-  fermerReseaux() {
-    if (!this.reseauxOuvert) return;
-    this.reseauxOuvert = false;
-    this.reseauxBouton.setAttribute('aria-expanded', 'false');
+  fermerBulle(bulle) {
+    if (!bulle.classList.contains('est-ouverte')) return;
+    bulle.classList.remove('est-ouverte');
 
-    gsap.to(this.reseauxIcones, { autoAlpha: 0, duration: 0.15 });
-    gsap.to(this.reseauxBouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2 });
-    gsap.to(this.reseaux, {
-      width: this.reseaux.offsetHeight,
+    const bouton = bulle.querySelector('.entete_extensible-bouton');
+    const elements = bulle.querySelectorAll('.entete_extensible-liste li');
+    bouton.setAttribute('aria-expanded', 'false');
+
+    gsap.to(elements, { autoAlpha: 0, duration: 0.15 });
+    gsap.to(bouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2 });
+    gsap.to(bulle, {
+      width: bulle.offsetHeight,
       duration: 0.4,
       ease: 'power3.out',
       onComplete: () => {
-        this.reseaux.style.width = '';
+        bulle.style.width = '';
       },
     });
   }
@@ -152,6 +160,9 @@ export default class Header {
     const logo = this.element.querySelector('.entete_logo');
 
     logo.addEventListener('click', (e) => {
+      const surPageAccueil = document.querySelector('#apropos');
+      if (!surPageAccueil) return;
+
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
 

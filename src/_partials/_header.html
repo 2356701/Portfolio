@@ -19,7 +19,7 @@
     </head>
     <body data-component="Scrolly">
         <header class="entete" data-component="Header">
-            <div class="conteneur entete_barre">
+            <div class="wrapper entete_barre">
                 <a href="index.html" class="entete_bulle entete_logo">
                     <span class="entete_logo-texte">The_<wbr />Nat</span>
                 </a>
@@ -46,9 +46,45 @@
                     </ul>
                 </nav>
 
-                <div class="entete_bulle entete_reseaux" data-reseaux>
+                <div class="entete_bulle entete_extensible" data-extensible>
                     <button
-                        class="entete_reseaux-bouton"
+                        class="entete_extensible-bouton"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="entete-media-liste"
+                        aria-label="Afficher la vidéo de présentation et le CV"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <circle cx="12" cy="12" r="10" />
+                            <polygon points="10 8 16 12 10 16 10 8" />
+                        </svg>
+                    </button>
+
+                    <ul class="entete_extensible-liste entete_media" id="entete-media-liste">
+                        <li>
+                            <a href="#video-presentation" class="entete_media-lien">Vidéo</a>
+                        </li>
+                        <li class="entete_separateur" aria-hidden="true"></li>
+                        <li>
+                            <a href="#cv" class="entete_media-lien">CV</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="entete_bulle entete_extensible" data-extensible>
+                    <button
+                        class="entete_extensible-bouton"
                         type="button"
                         aria-expanded="false"
                         aria-controls="entete-reseaux-liste"
@@ -74,7 +110,7 @@
                         </svg>
                     </button>
 
-                    {% include "_reseaux.html" with {classe: "entete_reseaux-liste", id: "entete-reseaux-liste"} %}
+                    {% include "_reseaux.html" with {classe: "entete_extensible-liste entete_reseaux-liste", id: "entete-reseaux-liste"} %}
                 </div>
 
                 <button
@@ -89,3 +125,6 @@
                 </button>
             </div>
         </header>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">

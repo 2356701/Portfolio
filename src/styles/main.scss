@@ -11,6 +11,7 @@
 @import 'settings/font-face';
 @import 'settings/dimensions';
 @import 'tools/hover';
+@import 'tools/section-sombre';
 
 @import 'generic/normalize';
 @import 'generic/reset';
@@ -33,5 +34,18 @@
 @import 'components/tag-lozenge';
 @import 'components/card-strength';
 @import 'components/pagination';
+@import 'components/surtitre';
+@import 'components/etape';
+@import 'components/card-defi';
+@import 'components/card-solution';
 
-@import 'pages/apropos';
+@import 'pages/apropos/heros';
+@import 'pages/apropos/proposition';
+@import 'pages/apropos/portfolio';
+@import 'pages/apropos/expertise';
+
+@import 'pages/projet/heros';
+@import 'pages/projet/etapes';
+@import 'pages/projet/resultat';
+@import 'pages/projet/defis';
+@import 'pages/projet/navigation';

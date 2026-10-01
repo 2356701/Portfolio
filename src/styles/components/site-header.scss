@@ -18,7 +18,7 @@ $entete-bp: 1024px;
         top: 0;
         padding-top: 0;
 
-        .conteneur {
+        .wrapper {
             max-width: none;
             width: 100%;
         }
@@ -197,7 +197,7 @@ $entete-bp: 1024px;
         }
     }
 
-    &_reseaux {
+    &_extensible {
         position: relative;
         width: var(--bulle-h);
         padding-inline: 0;
@@ -208,7 +208,7 @@ $entete-bp: 1024px;
         }
     }
 
-    &_reseaux-bouton {
+    &_extensible-bouton {
         position: absolute;
         top: 0;
         left: 0;
@@ -233,20 +233,47 @@ $entete-bp: 1024px;
         }
     }
 
-    &_reseaux-liste {
-        --taille: 0.5;
-        --reseaux-lettres: var(--color-primary);
+    &_extensible-liste {
         flex-shrink: 0;
         padding-inline: var(--bulle-pad);
-        color: var(--color-white);
-
-        @media screen and (width >= 1200px) {
-            --taille: 0.62;
-        }
 
         li {
             opacity: 0;
             visibility: hidden;
+        }
+    }
+
+    &_media {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0;
+        list-style: none;
+    }
+
+    &_media-lien {
+        @include text-nav(var(--font-size-entete));
+        display: block;
+        color: var(--color-white);
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: transform 0.3s $ease-out-back;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-white);
+            text-decoration: none;
+            transform: scale(1.1);
+        }
+    }
+
+    &_reseaux-liste {
+        --taille: 0.5;
+        --reseaux-lettres: var(--color-primary);
+        color: var(--color-white);
+
+        @media screen and (width >= 1200px) {
+            --taille: 0.62;
         }
 
         a:hover,

@@ -1,0 +1,81 @@
+{% set projet = {
+    titre: "Montage et création sonore de bande-annonce sur Reaper",
+    type: "Projet d’équipe",
+    description: "<strong>Création</strong> de la bande son d’une bande-annonce de jeu vidéo. L’objectif était de <strong>synchroniser</strong> parfaitement le son à l’image pour <strong>reproduire</strong> un rendu professionnel et réaliste.",
+    ia: "Aucune utilisation de l’IA",
+    roles: [
+        "Mixage des effets sonores",
+        "Création de la musique de fond",
+        "Coordination des équipiers"
+    ],
+    image: "assets/images/projets/reaper/hero.webp",
+    imageAlt: "Projet Reaper ouvert sur un ordinateur portable",
+    outils: [
+        { nom: "Reaper", logo: "assets/icons/outils/reaper.svg", lien: "https://www.reaper.fm/" },
+        { nom: "DaVinci Resolve", logo: "assets/icons/outils/resolve.webp", lien: "https://www.blackmagicdesign.com/products/davinciresolve" }
+    ],
+    etapes: [
+        {
+            titre: "Le plan sonore",
+            image: "assets/images/projets/reaper/etape-01.webp",
+            alt: "Extrait du plan sonore : liste des scènes et des ambiances",
+            fort: "Plan sonore complet",
+            texte: "écrit en équipe avec les pistes réparties selon la charge de travail pour accélérer la production et assurer la cohérence."
+        },
+        {
+            titre: "Recherche de sons",
+            image: "assets/images/projets/reaper/etape-02.webp",
+            alt: "Arborescence des dossiers de sons classés par catégorie",
+            fort: "Plus de 50 sons",
+            texte: "téléchargés sur Freesound et Soundsnap classés pour couvrir un maximum de scénarios."
+        },
+        {
+            titre: "Montage image-son",
+            image: "assets/images/projets/reaper/etape-03.webp",
+            alt: "Projet Reaper avec la vidéo et les pistes audio alignées",
+            fort: "Sons calés",
+            texte: "aux images clés de la vidéo, via les waveforms Reaper, pour coller à l’action."
+        },
+        {
+            titre: "Composition musicale",
+            image: "assets/images/projets/reaper/etape-04.webp",
+            alt: "Piano roll et pistes MIDI de la musique dans Reaper",
+            fort: "Les 3 mixages",
+            texte: "avaient des volumes et une ambiance différents : réimportés dans Reaper, harmonisés puis exportés sur DaVinci Resolve."
+        },
+        {
+            titre: "Mixage final",
+            image: "assets/images/projets/reaper/etape-05.webp",
+            alt: "Session de mixage final dans Reaper",
+            fort: "Fusion",
+            texte: "des 3 parties de chaque collaborateur avec Reaper et DaVinci Resolve et mixage global pour avoir un ensemble cohérent."
+        }
+    ],
+    resultat: {
+        titre: "Bande-annonce sur Reaper",
+        sousTitre: "Projet portfolio 2026",
+        image: "assets/images/projets/reaper/resultat.webp",
+        video: "",
+        equipe: ["Jérémy Bourg", "Nathan Fortier", "Étienne Frenette"]
+    },
+    collaborateurs: "Jérémy Bourg, curateur et monteur de la 1re partie. Étienne Frenette, curateur et monteur de la 2e partie.",
+    credits: [
+        "Photos : créées et modifiées pour ce projet par moi",
+        "Audio : effets sonores tirés de Freesound.org et Soundsnap.com, sous licences Creative Commons"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/casque.svg", titre: "Musique adaptée", texte: "Trouver une musique qui correspondait à l’ambiance de la bande-annonce." },
+        { icone: "assets/icons/defis/horloge.svg", titre: "Travail d’équipe", texte: "Coordonner le travail de personnes ayant des rythmes et des horaires différents." }
+    ],
+    solutions: [
+        { fort: "Créer", texte: "sa propre musique à l’aide d’instruments MIDI et de ma connaissance musicale qui se lie bien avec le projet." },
+        { fort: "Bloquer", texte: "une heure par semaine de travail d’équipe et utiliser Discord et Teams (pour le transfert de fichier)." }
+    ],
+    suivant: { titre: "Animation d’une scène 3D", lien: "index.html#projets" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.resultat.titre, activePage: "projets"} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

@@ -26,6 +26,10 @@
         flex-shrink: 0;
     }
 
+    &_icone-retour {
+        transform: rotate(180deg);
+    }
+
     &_inverse {
         color: var(--color-white);
     }

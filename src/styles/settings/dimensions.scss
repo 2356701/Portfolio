@@ -14,6 +14,7 @@ $breakpoint-xl: 1440px;
     --spacing-lg: 60px;
     --spacing-xl: 100px;
     --spacing-xxl: 150px;
+    --spacing-section: 140px;
 }
 
 @media (max-width: $breakpoint-sm) {
@@ -21,5 +22,6 @@ $breakpoint-xl: 1440px;
         --spacing-lg: 40px;
         --spacing-xl: 60px;
         --spacing-xxl: 90px;
+        --spacing-section: 110px;
     }
 }

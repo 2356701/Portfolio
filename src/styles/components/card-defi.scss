@@ -1,0 +1,79 @@
+.carte-defi {
+    --rotation: 0.4deg;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 33px;
+    width: 470px;
+    max-width: 100%;
+    min-height: 615px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--color-card);
+    border-radius: 55px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    transform: rotate(var(--rotation));
+    transition: transform 0.4s $ease-out-back;
+
+    &:nth-child(2) {
+        --rotation: 4deg;
+        margin-left: -70px;
+    }
+
+    &:hover,
+    &.est-active {
+        z-index: 1;
+        transform: rotate(0deg) translateY(-8px);
+    }
+
+    &_bouton {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        padding: 0;
+        border: 0;
+        border-radius: inherit;
+        background: transparent;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+    }
+
+    &_icone {
+        width: 140px;
+        height: 140px;
+    }
+
+    &_titre {
+        max-width: 350px;
+        color: var(--color-text);
+    }
+
+    &_texte {
+        max-width: 330px;
+        font-weight: var(--fw-medium);
+        line-height: 1.22;
+        color: var(--color-text);
+    }
+
+    @media screen and (width <= $breakpoint-sm) {
+        min-height: 0;
+        padding: var(--spacing-lg) var(--spacing-mmd);
+        border-radius: 25px;
+
+        &:nth-child(2) {
+            --rotation: 2deg;
+            margin: -20px 0 0;
+        }
+
+        &_icone {
+            width: 90px;
+            height: 90px;
+        }
+    }
+}

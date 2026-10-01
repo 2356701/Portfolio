@@ -1,0 +1,29 @@
+.carte-solution {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 214px;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background-color: var(--color-card);
+    border-radius: 25px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+
+    p {
+        font-weight: var(--fw-semibold);
+        font-size: var(--font-size-h4);
+        line-height: var(--lh-h4);
+        color: var(--color-text);
+    }
+
+    strong {
+        font-weight: var(--fw-heavy);
+        color: var(--color-primary);
+    }
+
+    @media screen and (width <= $breakpoint-sm) {
+        min-height: 0;
+        padding: var(--spacing-lg) var(--spacing-mmd);
+    }
+}

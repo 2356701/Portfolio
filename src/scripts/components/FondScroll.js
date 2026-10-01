@@ -8,12 +8,13 @@ export default class FondScroll {
   }
 
   changerFond() {
-    const milieu = window.innerHeight / 2;
+    const milieu = window.scrollY + window.innerHeight / 2;
 
     this.sections.forEach((section) => {
-      const position = section.getBoundingClientRect();
+      const haut = section.offsetTop;
+      const bas = haut + section.offsetHeight;
 
-      if (position.top < milieu && position.bottom > milieu) {
+      if (haut < milieu && bas > milieu) {
         const sombre = section.dataset.fond === 'sombre';
         document.body.classList.toggle('fond-sombre', sombre);
       }

@@ -1,0 +1,17 @@
+.expertise {
+    @extend %section-sombre;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+
+    &_outils h2,
+    &_forces h3 {
+        margin-bottom: var(--spacing-lg);
+        color: var(--color-white);
+        text-align: center;
+    }
+
+    &_outils h2 {
+        text-align: left;
+    }
+}

@@ -1,0 +1,45 @@
+.portfolio {
+    padding: var(--spacing-section) 0;
+    text-align: center;
+
+    &_entete {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-lg);
+        margin-bottom: var(--spacing-xl);
+
+        h2 {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: var(--font-size-display);
+            line-height: var(--lh-display);
+            text-transform: none;
+            max-width: 40%;
+
+            em {
+                font-style: normal;
+                color: var(--color-primary);
+            }
+        }
+    }
+
+    &_indice-scroll {
+        @include icone-fleche(32px, 20px);
+        transform: rotate(90deg);
+    }
+}
+
+.carousel-projets {
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        padding: 0 var(--spacing-sm);
+        box-sizing: border-box;
+    }
+
+    .carte-projet {
+        height: 100%;
+    }
+}

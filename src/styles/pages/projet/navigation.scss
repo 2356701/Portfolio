@@ -1,0 +1,14 @@
+.fiche-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-section);
+
+    .bouton {
+        height: auto;
+        min-height: 51px;
+        padding-block: 12px;
+        text-align: left;
+    }
+}

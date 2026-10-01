@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Scrolly from './components/Scrolly';
 import GravityInterests from './components/GravityInterests';
 import FondScroll from './components/FondScroll';
+import Defis from './components/Defis';
 
 export default class ComponentFactory {
   constructor() {
@@ -19,6 +20,7 @@ export default class ComponentFactory {
       Scrolly,
       GravityInterests,
       FondScroll,
+      Defis,
     };
     this.init();
   }
