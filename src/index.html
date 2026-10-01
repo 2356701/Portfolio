@@ -1,7 +1,7 @@
 {% include "_partials/_header.html" with {title:"À propos", activePage:"apropos"} %}
 
-<main class="apropos">
-    <section class="heros" id="apropos">
+<main class="apropos" data-component="FondScroll">
+    <section class="heros" id="apropos" data-fond="clair">
         <div class="heros_decor heros_ecouteurs" aria-hidden="true">
             <img src="assets/images/Écouteur.png" alt="" />
         </div>
@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <section class="proposition">
+    <section class="proposition" data-fond="sombre">
         <div class="conteneur proposition_intro">
             <h2>Ce que je propose …</h2>
             <div class="proposition_texte">
@@ -72,7 +72,7 @@
         </div>
     </section>
 
-    <section class="portfolio conteneur" id="projets">
+    <section class="portfolio conteneur" id="projets" data-fond="clair">
         <div class="portfolio_entete">
             <h2>
                 Un peu de mon
@@ -172,7 +172,7 @@
         </div>
     </section>
 
-    <section class="expertise">
+    <section class="expertise" data-fond="sombre">
         <div class="conteneur expertise_outils">
             <div class="expertise_entete-bloc">
                 <span aria-hidden="true"></span>

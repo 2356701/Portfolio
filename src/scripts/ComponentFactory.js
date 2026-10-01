@@ -5,6 +5,7 @@ import Youtube from './components/Youtube';
 import Header from './components/Header';
 import Scrolly from './components/Scrolly';
 import GravityInterests from './components/GravityInterests';
+import FondScroll from './components/FondScroll';
 
 export default class ComponentFactory {
   constructor() {
@@ -17,6 +18,7 @@ export default class ComponentFactory {
       Header,
       Scrolly,
       GravityInterests,
+      FondScroll,
     };
     this.init();
   }
