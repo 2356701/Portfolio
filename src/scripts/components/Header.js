@@ -127,12 +127,12 @@ export default class Header {
     const elements = bulle.querySelectorAll('.entete_extensible-liste li');
     bouton.setAttribute('aria-expanded', 'true');
 
-    gsap.to(bouton, { opacity: 0, pointerEvents: 'none', duration: 0.15 });
-    gsap.to(bulle, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)' });
+    gsap.to(bouton, { opacity: 0, pointerEvents: 'none', duration: 0.15, overwrite: true });
+    gsap.to(bulle, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)', overwrite: true });
     gsap.fromTo(
       elements,
       { autoAlpha: 0, scale: 0.5, y: 10 },
-      { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07, delay: 0.1 }
+      { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07, delay: 0.1, overwrite: true }
     );
   }
 
@@ -144,12 +144,13 @@ export default class Header {
     const elements = bulle.querySelectorAll('.entete_extensible-liste li');
     bouton.setAttribute('aria-expanded', 'false');
 
-    gsap.to(elements, { autoAlpha: 0, duration: 0.15 });
-    gsap.to(bouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2 });
+    gsap.to(elements, { autoAlpha: 0, duration: 0.15, overwrite: true });
+    gsap.to(bouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2, overwrite: true });
     gsap.to(bulle, {
       width: bulle.offsetHeight,
       duration: 0.4,
       ease: 'power3.out',
+      overwrite: true,
       onComplete: () => {
         bulle.style.width = '';
       },
