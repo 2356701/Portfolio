@@ -1,9 +1,5 @@
 .fiche-heros {
-    padding: var(--spacing-xl) 0 0;
-
-    @media screen and (width > 1024px) {
-        padding-top: calc(var(--spacing-xl) + 30px);
-    }
+    padding: calc(var(--spacing-xl) + 30px) 0 0;
 
     &_grille {
         display: grid;

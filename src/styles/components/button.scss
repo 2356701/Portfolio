@@ -16,9 +16,12 @@
     @include souleve(true);
 
     &:hover {
+        text-decoration: none;
+    }
+
+    @include survol {
         background-color: var(--color-primary);
         color: var(--color-white);
-        text-decoration: none;
     }
 
     &_icone {
@@ -38,7 +41,7 @@
         border-color: var(--color-white);
         color: var(--color-white);
 
-        &:hover {
+        @include survol {
             background-color: var(--color-white);
             color: var(--color-primary);
         }

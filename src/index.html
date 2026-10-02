@@ -48,26 +48,27 @@
                 <p>Un jeune homme pleins d’idées</p>
             </div>
 
-            <!--
-                TODO Nat : quand tu as une vraie vidéo YouTube, ajoute
-                data-component="Youtube" data-video-id="TON_ID" sur .carte-video,
-                un <div class="js-video"></div> à la place du <img> ci-dessous,
-                et le composant Youtube.js (déjà dans le projet) prendra le relais.
-            -->
+            <!-- TODO : quand la vidéo est sur YouTube, ajouter data-component="Youtube" data-video-id="ID_DE_LA_VIDEO" sur .carte-video -->
             <div class="carte-video" id="video-presentation">
-                <div class="carte-video_decor" aria-hidden="true">
-                    <img src="assets/images/Drumsticks.png" alt="" />
+                <div class="carte-video_affiche js-poster">
+                    <div class="carte-video_decor" aria-hidden="true">
+                        <img src="assets/images/Drumsticks.png" alt="" />
+                    </div>
+
+                    <div class="carte-video_legende">
+                        <p class="carte-video_nom">Nathan Fortier</p>
+                        <p class="carte-video_etiquette">
+                            vidéo de
+                            <em>présentation</em>
+                        </p>
+                    </div>
+
+                    {% include "_partials/_bouton-lecture.html" with {label: "Voir la vidéo de présentation"} %}
                 </div>
 
-                <div class="carte-video_legende">
-                    <p class="carte-video_nom">Nathan Fortier</p>
-                    <p class="carte-video_etiquette">
-                        vidéo de
-                        <em>présentation</em>
-                    </p>
+                <div class="lecteur-video">
+                    <div class="js-video"></div>
                 </div>
-
-                <img src="assets/icons/youtube-play-button.svg" alt="Lire la vidéo de présentation" class="carte-video_lecture" />
             </div>
         </div>
     </section>

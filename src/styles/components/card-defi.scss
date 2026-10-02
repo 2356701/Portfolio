@@ -12,18 +12,26 @@
     padding: var(--spacing-lg) var(--spacing-md);
     background-color: var(--color-card);
     border-radius: 55px;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
     text-align: center;
     transform: rotate(var(--rotation));
     transition: transform 0.4s $ease-out-back;
+
+    &:nth-child(1) {
+        padding-right: calc(var(--spacing-md) + 70px);
+    }
 
     &:nth-child(2) {
         --rotation: 4deg;
         margin-left: -70px;
     }
 
-    &:hover,
     &.est-active {
+        z-index: 1;
+        transform: rotate(0deg) translateY(-8px);
+    }
+
+    @include survol {
         z-index: 1;
         transform: rotate(0deg) translateY(-8px);
     }
@@ -54,6 +62,48 @@
         color: var(--color-text);
     }
 
+    &_indice {
+        @include text-nav(typo(14px, 16px));
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.8em 1.4em;
+        border-radius: 999px;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        text-transform: uppercase;
+        transition: transform 0.45s $ease-out-back;
+    }
+
+    &_indice-cacher {
+        display: none;
+    }
+
+    &_indice-fleche {
+        @include icone-fleche(18px, 12px);
+        transform: rotate(90deg);
+        animation: rebond-fleche 1.2s $ease-out-quad infinite;
+    }
+
+    &.est-active &_indice-voir {
+        display: none;
+    }
+
+    &.est-active &_indice-cacher {
+        display: inline;
+    }
+
+    &.est-active &_indice-fleche {
+        transform: rotate(-90deg);
+        animation: none;
+    }
+
+    @include survol {
+        .carte-defi_indice {
+            transform: rotate(-4deg) scale(1.05);
+        }
+    }
+
     &_texte {
         max-width: 330px;
         font-weight: var(--fw-medium);
@@ -66,6 +116,10 @@
         padding: var(--spacing-lg) var(--spacing-mmd);
         border-radius: 25px;
 
+        &:nth-child(1) {
+            padding-right: var(--spacing-mmd);
+        }
+
         &:nth-child(2) {
             --rotation: 2deg;
             margin: -20px 0 0;
@@ -75,5 +129,16 @@
             width: 90px;
             height: 90px;
         }
+    }
+}
+
+@keyframes rebond-fleche {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 5px;
     }
 }

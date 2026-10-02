@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1199 / 508.611;
+    min-height: 460px;
     padding: var(--spacing-lg) var(--spacing-md);
     background: linear-gradient(
         155deg,
@@ -68,6 +69,11 @@
 
         &:active {
             cursor: grabbing;
+        }
+
+        @media screen and (width <= $breakpoint-lg) {
+            padding: 12px 22px;
+            font-size: 16px;
         }
 
         @media screen and (width <= $breakpoint-sm) {

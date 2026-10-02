@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 gsap.defaults({ overwrite: 'auto' });
 
@@ -56,10 +57,17 @@ export default class Header {
   initNavMobile() {
     this.toggle = this.element.querySelector('.js-toggle');
     this.toggle.addEventListener('click', this.onToggleNav.bind(this));
+
+    this.element.querySelectorAll('.entete_panneau a').forEach((lien) => {
+      lien.addEventListener('click', () => {
+        if (this.html.classList.contains('menu-ouvert')) this.onToggleNav();
+      });
+    });
   }
 
   onToggleNav() {
     const isActive = this.html.classList.toggle('menu-ouvert');
+    ScrollSmoother.get().paused(isActive);
     this.toggle.setAttribute('aria-expanded', String(isActive));
     this.toggle.setAttribute('aria-label', isActive ? 'Fermer le menu' : 'Ouvrir le menu');
   }

@@ -52,7 +52,7 @@
         @include text-nav;
         color: var(--color-text);
 
-        &:hover {
+        @include survol {
             color: var(--color-primary);
             text-decoration: underline;
         }
@@ -69,8 +69,10 @@
             @include souleve;
         }
 
-        a:hover {
-            color: var(--color-primary);
+        a {
+            @include survol {
+                color: var(--color-primary);
+            }
         }
 
         @media screen and (width <= $breakpoint-sm) {
@@ -117,7 +119,7 @@
             transition: color 0.2s $ease-out-quad, $souleve-transition;
             @include souleve;
 
-            &:hover {
+            @include survol {
                 color: var(--color-primary);
             }
         }

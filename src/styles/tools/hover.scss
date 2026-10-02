@@ -1,11 +1,23 @@
 $souleve-transition: transform 0.3s $ease-out-back, box-shadow 0.3s $ease-out-quad;
 
+@mixin survol {
+    @media (hover: hover) and (width > $breakpoint-tablette) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
 @mixin souleve($ombre: false) {
-    &:hover {
+    @include survol {
         transform: translateY(-8px);
 
         @if $ombre {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: var(--ombre-souleve, 0 20px 40px rgba(0, 0, 0, 0.25));
         }
+    }
+
+    &:active {
+        transform: scale(0.96);
     }
 }

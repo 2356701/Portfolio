@@ -8,6 +8,8 @@ body {
 }
 
 body.fond-sombre {
+    --shadow-card: none;
+    --shadow-card-lg: none;
     background-color: var(--color-dark);
 }
 

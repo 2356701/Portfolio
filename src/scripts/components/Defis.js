@@ -7,11 +7,16 @@ export default class Defis {
     this.solutions = element.querySelectorAll('.carte-solution');
     this.solutionEpinglee = null;
     this.solutionAffichee = null;
+    this.survolPossible = window.matchMedia('(hover: hover) and (min-width: 1025px)');
 
     this.cartes.forEach((carte, index) => {
       const bouton = carte.querySelector('.carte-defi_bouton');
-      carte.addEventListener('mouseenter', () => this.afficher(index));
-      carte.addEventListener('mouseleave', () => this.afficher(this.solutionEpinglee));
+      carte.addEventListener('mouseenter', () => {
+        if (this.survolPossible.matches) this.afficher(index);
+      });
+      carte.addEventListener('mouseleave', () => {
+        if (this.survolPossible.matches) this.afficher(this.solutionEpinglee);
+      });
       bouton.addEventListener('click', () => this.epingler(index));
     });
   }
@@ -29,7 +34,7 @@ export default class Defis {
       carte.querySelector('.carte-defi_bouton').setAttribute('aria-expanded', String(estEpinglee));
     });
 
-    this.afficher(index);
+    this.afficher(this.solutionEpinglee);
   }
 
   afficher(index) {

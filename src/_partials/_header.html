@@ -18,6 +18,12 @@
         <script src="scripts/main.js" defer></script>
     </head>
     <body data-component="Scrolly">
+        {% set liensNav = [
+            { texte: "À propos", lien: "index.html#apropos", page: "apropos" },
+            { texte: "Projets", lien: "index.html#projets", page: "projets" },
+            { texte: "Contact", lien: "index.html#contact", page: "contact" }
+        ] %}
+
         <header class="entete" data-component="Header">
             <div class="wrapper entete_barre">
                 <a href="index.html" class="entete_bulle entete_logo">
@@ -28,21 +34,14 @@
                     <span class="entete_indicateur" aria-hidden="true"></span>
 
                     <ul class="entete_liens">
+                        {% for item in liensNav %}
                         <li>
-                            <a
-                                href="index.html#apropos"
-                                class="entete_lien {% if activePage == 'apropos' %}actif{% endif %}"
-                                >À propos</a
-                            >
+                            <a href="{{ item.lien }}" class="entete_lien{% if activePage == item.page %} actif{% endif %}">{{ item.texte }}</a>
                         </li>
+                        {% if not loop.last %}
                         <li class="entete_separateur" aria-hidden="true"></li>
-                        <li>
-                            <a href="index.html#projets" class="entete_lien">Projets</a>
-                        </li>
-                        <li class="entete_separateur" aria-hidden="true"></li>
-                        <li>
-                            <a href="index.html#contact" class="entete_lien">Contact</a>
-                        </li>
+                        {% endif %}
+                        {% endfor %}
                     </ul>
                 </nav>
 
@@ -73,7 +72,7 @@
 
                     <ul class="entete_extensible-liste entete_media" id="entete-media-liste">
                         <li>
-                            <a href="#video-presentation" class="entete_media-lien">Vidéo</a>
+                            <a href="index.html#video-presentation" class="entete_media-lien">Vidéo</a>
                         </li>
                         <li class="entete_separateur" aria-hidden="true"></li>
                         <li>
@@ -118,11 +117,35 @@
                     type="button"
                     aria-label="Ouvrir le menu"
                     aria-expanded="false"
+                    aria-controls="entete-panneau"
                 >
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
+
+                <div class="entete_panneau" id="entete-panneau">
+                    <ul class="entete_panneau-liens">
+                        {% for item in liensNav %}
+                        <li style="--i: {{ loop.index }}">
+                            <a href="{{ item.lien }}" class="entete_panneau-lien{% if activePage == item.page %} actif{% endif %}">{{ item.texte }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <ul class="entete_panneau-media">
+                        <li style="--i: 4">
+                            <a href="index.html#video-presentation" class="entete_panneau-media-lien">Vidéo</a>
+                        </li>
+                        <li style="--i: 5">
+                            <a href="#cv" class="entete_panneau-media-lien">CV</a>
+                        </li>
+                    </ul>
+
+                    <div class="entete_panneau-reseaux" style="--i: 6">
+                        {% include "_reseaux.html" with {classe: "entete_reseaux-liste"} %}
+                    </div>
+                </div>
             </div>
         </header>
 

@@ -26,6 +26,11 @@
         display: block;
         color: inherit;
         transition: color 0.2s $ease-out-quad, transform 0.3s $ease-out-back;
+
+        @media (hover: none) {
+            margin: -10px;
+            padding: 10px;
+        }
     }
 
     svg {

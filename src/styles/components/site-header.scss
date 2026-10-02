@@ -1,4 +1,4 @@
-$entete-bp: 1024px;
+$entete-bp: $breakpoint-tablette;
 
 .entete {
     --font-size-entete: #{typo(14px, 16px)};
@@ -14,16 +14,6 @@ $entete-bp: 1024px;
     padding-top: var(--spacing-sm);
     pointer-events: none;
 
-    @media screen and (width <= $breakpoint-sm) {
-        top: 0;
-        padding-top: 0;
-
-        .wrapper {
-            max-width: none;
-            width: 100%;
-        }
-    }
-
     &_barre {
         display: flex;
         align-items: center;
@@ -35,17 +25,6 @@ $entete-bp: 1024px;
 
         @media screen and (width <= $entete-bp) {
             justify-content: space-between;
-            padding: var(--spacing-sm) var(--spacing-lg);
-            background-color: var(--color-primary);
-            border-radius: 50px;
-            box-shadow: var(--shadow-card);
-            pointer-events: auto;
-        }
-
-        @media screen and (width <= $breakpoint-sm) {
-            padding: var(--spacing-sm) var(--spacing-mmd);
-            border-radius: 0;
-            box-shadow: none;
         }
     }
 
@@ -60,16 +39,11 @@ $entete-bp: 1024px;
         box-shadow: var(--shadow-card-lg);
         transition: height 0.4s $ease-out-quint, padding 0.4s $ease-out-quint,
             transform 0.45s $ease-out-back;
-
-        @media screen and (width <= $entete-bp) {
-            height: auto;
-            padding: 0;
-            background-color: transparent;
-            box-shadow: none;
-        }
     }
 
     &_logo {
+        position: relative;
+        z-index: 91;
         margin-right: auto;
         font-family: var(--font-logo);
         font-style: italic;
@@ -83,6 +57,9 @@ $entete-bp: 1024px;
         &:focus-visible {
             color: var(--color-white);
             text-decoration: none;
+        }
+
+        @include survol {
             transform: scale(1.08) rotate(-4deg);
         }
 
@@ -90,25 +67,19 @@ $entete-bp: 1024px;
             transform: scale(0.96);
         }
 
-        @media screen and (width <= $entete-bp) {
-            &:hover,
-            &:focus-visible {
-                transform: none;
-            }
-        }
     }
 
     &_logo-texte {
         display: block;
         max-width: 4.2em;
-
-        @media screen and (width <= $entete-bp) {
-            max-width: none;
-        }
     }
 
     &_nav {
         position: relative;
+
+        @media screen and (width <= $entete-bp) {
+            display: none;
+        }
     }
 
     &_indicateur {
@@ -125,9 +96,6 @@ $entete-bp: 1024px;
         visibility: hidden;
         pointer-events: none;
 
-        @media screen and (width <= $entete-bp) {
-            display: none;
-        }
     }
 
     &_liens {
@@ -137,30 +105,12 @@ $entete-bp: 1024px;
         list-style: none;
         margin: 0;
         padding: 0;
-
-        @media screen and (width <= $entete-bp) {
-            position: fixed;
-            inset: 0;
-            z-index: 90;
-            flex-direction: column;
-            justify-content: center;
-            gap: var(--spacing-lg);
-            background-color: var(--color-primary);
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 0.3s $ease-out-quad, opacity 0.3s $ease-out-quad;
-        }
     }
 
     &_separateur {
         width: 1px;
         height: 20px;
         background-color: var(--color-white);
-
-        @media screen and (width <= $entete-bp) {
-            display: none;
-        }
     }
 
     &_lien {
@@ -182,18 +132,6 @@ $entete-bp: 1024px;
         &.survol,
         &.survol:hover {
             color: var(--color-primary);
-        }
-
-        @media screen and (width <= $entete-bp) {
-            font-size: var(--font-size-h3);
-
-            &:hover,
-            &.actif,
-            &.survol {
-                color: var(--color-white);
-                text-decoration: underline;
-                text-underline-offset: 4px;
-            }
         }
     }
 
@@ -283,6 +221,132 @@ $entete-bp: 1024px;
             transform: scale(1.15);
         }
     }
+
+    &_panneau {
+        display: none;
+
+        @media screen and (width <= $entete-bp) {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-xl) var(--spacing-mmd);
+            background-color: var(--color-dark);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s $ease-out-quad, visibility 0.3s;
+        }
+    }
+
+    &_panneau-liens,
+    &_panneau-media {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &_panneau-liens {
+        flex-direction: column;
+        gap: var(--spacing-mmd);
+    }
+
+    &_panneau-media {
+        gap: 12px;
+    }
+
+    &_panneau-liens li,
+    &_panneau-media li,
+    &_panneau-reseaux {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        transition: opacity 0.3s $ease-out-quad, transform 0.5s $ease-out-back;
+        transition-delay: calc(var(--i) * 60ms);
+    }
+
+    &_panneau-lien {
+        @include text-nav(var(--font-size-h3));
+        display: block;
+        padding: 0.4em 1.2em;
+        border-radius: 999px;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        text-transform: uppercase;
+        transition: transform 0.45s $ease-out-back;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        @include survol {
+            transform: rotate(-4deg) scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &.actif,
+        &.actif:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary);
+        }
+    }
+
+    &_panneau-media-lien {
+        @include text-nav(18px);
+        display: block;
+        padding: 0.7em 1.5em;
+        border: 2px solid var(--color-white);
+        border-radius: 999px;
+        color: var(--color-white);
+        text-transform: uppercase;
+        transition: transform 0.45s $ease-out-back;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        @include survol {
+            transform: rotate(-4deg) scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &_panneau-reseaux {
+        max-width: 100%;
+        padding: 22px 32px;
+        border-radius: 999px;
+        background-color: var(--color-primary);
+
+        .entete_reseaux-liste.reseaux {
+            --taille: 0.85;
+
+            @media screen and (width <= $breakpoint-sm) {
+                --taille: 0.7;
+            }
+
+            @media screen and (width <= 360px) {
+                --taille: 0.58;
+            }
+        }
+
+        @media screen and (width <= $breakpoint-sm) {
+            padding: 18px 24px;
+        }
+    }
 }
 
 html.entete-compact {
@@ -301,18 +365,30 @@ html.entete-compact {
     z-index: 91;
     display: none;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 5px;
-    width: 32px;
-    height: 32px;
+    width: var(--bulle-h);
+    height: var(--bulle-h);
     padding: 0;
     border: 0;
-    background: transparent;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-card-lg);
     cursor: pointer;
+    transition: width 0.4s $ease-out-quint, height 0.4s $ease-out-quint, transform 0.45s $ease-out-back;
+
+    @include survol {
+        transform: rotate(-8deg) scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.92);
+    }
 
     span {
         display: block;
-        width: 100%;
+        width: 38%;
         height: 2px;
         background-color: var(--color-white);
         transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
@@ -324,10 +400,20 @@ html.entete-compact {
 }
 
 html.menu-ouvert {
-    .entete_liens {
-        transform: translateY(0);
+    .entete {
+        --shadow-card-lg: none;
+    }
+
+    .entete_panneau {
         opacity: 1;
-        pointer-events: auto;
+        visibility: visible;
+    }
+
+    .entete_panneau-liens li,
+    .entete_panneau-media li,
+    .entete_panneau-reseaux {
+        opacity: 1;
+        transform: none;
     }
 
     .entete_bouton-menu span:nth-child(1) {

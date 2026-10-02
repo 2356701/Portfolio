@@ -75,6 +75,14 @@ export default class GravityInterests {
       Bodies.rectangle(s.w + T / 2, s.h / 2, T, s.h * 4, { isStatic: true }),
       Bodies.rectangle(s.w / 2, -T / 2, s.w * 3, T, { isStatic: true }),
     ];
+
+    const carte = this.card.getBoundingClientRect();
+    this.card.querySelectorAll('.interets_entete, [data-gravity-reset]').forEach((zone) => {
+      const r = zone.getBoundingClientRect();
+      const x = r.left - carte.left + r.width / 2;
+      const y = r.top - carte.top + r.height / 2;
+      this.walls.push(Bodies.rectangle(x, y, r.width, r.height, { isStatic: true }));
+    });
     Composite.add(this.engine.world, this.walls);
   }
 

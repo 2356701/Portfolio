@@ -5,20 +5,20 @@
 
     &_entete {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-lg);
         align-self: flex-end;
+        min-width: min(645px, 100%);
         max-width: 100%;
+        padding: 30px 60px 70px 80px;
+        background-color: var(--color-primary);
+        border-radius: 25px;
+        color: var(--color-white);
     }
 
     &_titre {
-        display: flex;
-        align-items: center;
-        min-width: min(519px, 100%);
-        min-height: 165px;
-        padding: 0 72px 0 80px;
         white-space: nowrap;
-        background-color: var(--color-primary);
-        border-radius: 25px;
         font-size: var(--font-size-strength-title);
         line-height: 1.63;
         letter-spacing: -0.01em;
@@ -26,29 +26,18 @@
     }
 
     &_numero {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        flex-shrink: 0;
-        width: 183px;
-        height: 211px;
-        margin: 0 0 0 -57px;
-        padding-top: 40px;
-        background-color: var(--color-primary);
-        border-radius: 25px;
         font-family: var(--font-secondary);
         font-weight: var(--fw-h1);
         font-size: var(--font-size-h1);
         line-height: var(--lh-h1);
         letter-spacing: 0.04em;
-        color: var(--color-white);
     }
 
     &_media {
         position: relative;
         z-index: 1;
         width: 87.7%;
-        margin-top: -79px;
+        margin-top: -40px;
         aspect-ratio: 844 / 607;
         border-radius: 55px;
         overflow: hidden;
@@ -68,8 +57,9 @@
         margin-top: -74px;
         padding: 45px 86px;
         background-color: var(--color-card);
+        border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 25px;
-        box-shadow: var(--shadow-card);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
         font-weight: var(--fw-semibold);
         font-size: var(--font-size-h4);
         line-height: var(--lh-h4);
@@ -88,21 +78,11 @@
         .etape_entete {
             flex-direction: row-reverse;
             align-self: flex-start;
-        }
-
-        .etape_titre {
-            justify-content: center;
-            margin-left: -43px;
-            padding: 0 40px 0 83px;
-        }
-
-        .etape_numero {
-            margin: 0;
+            padding: 30px 80px 70px 60px;
         }
 
         .etape_media {
             width: 86.8%;
-            margin-top: -61px;
         }
 
         .etape_texte {
@@ -111,22 +91,14 @@
     }
 
     @media screen and (width <= $breakpoint-sm) {
-        &_titre,
-        &_inverse .etape_titre {
-            min-width: 0;
-            min-height: 90px;
-            padding: 0 50px 0 var(--spacing-mmd);
+        &_entete,
+        &_inverse .etape_entete {
+            gap: var(--spacing-mmd);
+            padding: 20px var(--spacing-mmd) 50px;
+        }
+
+        &_titre {
             white-space: normal;
-        }
-
-        &_inverse .etape_titre {
-            padding: 0 var(--spacing-mmd) 0 50px;
-        }
-
-        &_numero {
-            width: 90px;
-            height: 120px;
-            padding-top: 22px;
         }
 
         &_media,

@@ -79,10 +79,19 @@
     background-color: var(--color-text);
     overflow: hidden;
 
-    &:hover {
-        .carte-video_lecture {
-            transform: translate(-50%, -50%) scale(1.08);
+    @include survol {
+        @include bouton-lecture-survol;
+
+        .carte-video_decor {
+            transform: rotate(-8deg) scale(1.08);
         }
+    }
+
+    &_affiche {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        cursor: pointer;
     }
 
     &_decor {
@@ -93,6 +102,7 @@
         opacity: 0.35;
         pointer-events: none;
         transform: rotate(-8deg);
+        transition: transform 0.8s $ease-out-quad;
 
         img {
             display: block;
@@ -117,6 +127,8 @@
         display: block;
         margin: 0;
         @include text-hero;
+        font-size: min(var(--font-size-hero), 9vw);
+        white-space: nowrap;
         color: var(--color-white);
     }
 
@@ -130,15 +142,5 @@
             font-style: normal;
             color: var(--color-primary);
         }
-    }
-
-    &_lecture {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: clamp(70px, 6vw + 40px, 110px);
-        height: auto;
-        transition: transform 0.2s $ease-out-quad;
     }
 }

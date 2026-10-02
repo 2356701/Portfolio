@@ -75,46 +75,68 @@
         <div class="wrapper">
             <h2 class="fiche-resultat_titre">Résultat final</h2>
 
-            {% if projet.resultat.video %}
-            <a href="{{ projet.resultat.video }}" class="fiche-resultat_video" target="_blank" rel="noopener">
-            {% else %}
-            <div class="fiche-resultat_video">
-            {% endif %}
-                <img src="{{ projet.resultat.image }}" alt="" class="fiche-resultat_image" loading="lazy" />
+            <div class="fiche-resultat_video" data-scrolly="fromBottom"{% if projet.resultat.video %} data-component="Youtube" data-video-id="{{ projet.resultat.video }}"{% endif %}>
+                <div class="fiche-resultat_affiche js-poster">
+                    <img src="{{ projet.resultat.image }}" alt="" class="fiche-resultat_image" loading="lazy" />
 
-                <div class="fiche-resultat_video-texte">
-                    <p class="fiche-resultat_video-titre">{{ projet.resultat.titre }}</p>
-                    <p class="fiche-resultat_video-sous-titre">{{ projet.resultat.sousTitre }}</p>
+                    <div class="fiche-resultat_video-texte">
+                        <p class="fiche-resultat_video-titre">{{ projet.resultat.titre }}</p>
+                        <p class="fiche-resultat_video-sous-titre">{{ projet.resultat.sousTitre }}</p>
+                    </div>
+
+                    {% if projet.resultat.video %}
+                    {% include "_bouton-lecture.html" with {label: "Voir la vidéo : " ~ projet.resultat.titre} %}
+                    {% endif %}
+
+                    <ul class="fiche-resultat_equipe">
+                        {% for nom in projet.resultat.equipe %}
+                        <li>{{ nom }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
 
                 {% if projet.resultat.video %}
-                <img src="assets/icons/youtube-play-button.svg" alt="Voir la vidéo" class="fiche-resultat_lecture" />
+                <div class="lecteur-video">
+                    <div class="js-video"></div>
+                </div>
                 {% endif %}
-
-                <ul class="fiche-resultat_equipe">
-                    {% for nom in projet.resultat.equipe %}
-                    <li>{{ nom }}</li>
-                    {% endfor %}
-                </ul>
-            {% if projet.resultat.video %}
-            </a>
-            {% else %}
             </div>
-            {% endif %}
 
             <div class="fiche-resultat_credits">
-                <div>
-                    <h3 class="fiche-resultat_credits-titre">Collaborateurs :</h3>
-                    <p>{{ projet.collaborateurs }}</p>
+                <div class="fiche-resultat_credit" tabindex="0">
+                    <h3 class="fiche-resultat_credit-titre">
+                        <span class="fiche-resultat_credit-icone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </span>
+                        Collaborateurs
+                    </h3>
+                    <div class="fiche-resultat_credit-contenu">
+                        <p>{{ projet.collaborateurs }}</p>
+                    </div>
                 </div>
 
-                <div>
-                    <h3 class="fiche-resultat_credits-titre">Crédits :</h3>
-                    <ul>
-                        {% for credit in projet.credits %}
-                        <li>{{ credit }}</li>
-                        {% endfor %}
-                    </ul>
+                <div class="fiche-resultat_credit" tabindex="0">
+                    <h3 class="fiche-resultat_credit-titre">
+                        <span class="fiche-resultat_credit-icone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M14.83 14.83a4 4 0 1 1 0-5.66" />
+                            </svg>
+                        </span>
+                        Crédits
+                    </h3>
+                    <div class="fiche-resultat_credit-contenu">
+                        <ul>
+                            {% for credit in projet.credits %}
+                            <li>{{ credit }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,6 +166,11 @@
                         <img src="{{ defi.icone }}" alt="" class="carte-defi_icone" />
                         <h3 class="carte-defi_titre">{{ defi.titre }}</h3>
                         <p class="carte-defi_texte">{{ defi.texte }}</p>
+                        <span class="carte-defi_indice" aria-hidden="true">
+                            <span class="carte-defi_indice-voir">Voir la solution</span>
+                            <span class="carte-defi_indice-cacher">Cacher la solution</span>
+                            <span class="carte-defi_indice-fleche"></span>
+                        </span>
                     </li>
                     {% endfor %}
                 </ul>

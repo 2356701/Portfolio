@@ -1,13 +1,16 @@
 .grille-outils {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--spacing-md) 0;
+    justify-content: center;
+    gap: var(--spacing-md);
     width: 100%;
 
+    @media screen and (width >= $breakpoint-lg) {
+        justify-content: space-between;
+        column-gap: 0;
+    }
+
     @media screen and (width <= $breakpoint-sm) {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-sm);
     }
 }
@@ -33,7 +36,8 @@
     }
 
     @media screen and (width <= $breakpoint-sm) {
-        width: auto;
+        width: calc((100% - 2 * var(--spacing-sm)) / 3);
+        max-width: 187px;
         min-height: 0;
         aspect-ratio: 1 / 1;
         gap: var(--spacing-xs);
@@ -46,8 +50,8 @@
         object-fit: contain;
 
         @media screen and (width <= $breakpoint-sm) {
-            width: 32px;
-            height: 32px;
+            width: clamp(40px, 8vw, 56px);
+            height: clamp(40px, 8vw, 56px);
         }
     }
 
@@ -58,7 +62,7 @@
         white-space: nowrap;
 
         @media screen and (width <= $breakpoint-sm) {
-            font-size: 12px;
+            font-size: clamp(15px, 2.8vw, 20px);
             line-height: 1.25;
             white-space: normal;
             text-align: center;

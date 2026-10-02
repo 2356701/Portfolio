@@ -1,7 +1,7 @@
 a {
     text-decoration: none;
 
-    &:hover {
+    @include survol {
         color: var(--color-primary);
         text-decoration: underline;
     }
