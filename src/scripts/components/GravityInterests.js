@@ -1,5 +1,6 @@
 import Matter from 'matter-js';
 
+// ce code provient de https://codepen.io/akm2/pen/afabf
 const LABELS = [
   { text: 'Montage vidéo', px: 84.3, py: 56.0, rot: -35 },
   { text: 'Gestion événementielle', px: 66.2, py: 58.9, rot: 2 },
@@ -77,12 +78,16 @@ export default class GravityInterests {
     ];
 
     const carte = this.card.getBoundingClientRect();
-    this.card.querySelectorAll('.interets_entete, [data-gravity-reset]').forEach((zone) => {
-      const r = zone.getBoundingClientRect();
-      const x = r.left - carte.left + r.width / 2;
-      const y = r.top - carte.top + r.height / 2;
-      this.walls.push(Bodies.rectangle(x, y, r.width, r.height, { isStatic: true }));
-    });
+    this.card
+      .querySelectorAll('.interets_entete, [data-gravity-reset]')
+      .forEach((zone) => {
+        const r = zone.getBoundingClientRect();
+        const x = r.left - carte.left + r.width / 2;
+        const y = r.top - carte.top + r.height / 2;
+        this.walls.push(
+          Bodies.rectangle(x, y, r.width, r.height, { isStatic: true }),
+        );
+      });
     Composite.add(this.engine.world, this.walls);
   }
 
@@ -176,7 +181,10 @@ export default class GravityInterests {
 
     if (this.triggered) {
       const force = this.isMobile() ? 2 : 1;
-      const tilt = Math.max(-0.25 * force, Math.min(0.25 * force, delta * 0.006 * force));
+      const tilt = Math.max(
+        -0.25 * force,
+        Math.min(0.25 * force, delta * 0.006 * force),
+      );
       this.engine.world.gravity.x = Math.max(
         -0.3 * force,
         Math.min(0.3 * force, this.engine.world.gravity.x + tilt),
@@ -187,7 +195,7 @@ export default class GravityInterests {
   }
 
   secouer(delta) {
-    const saut = Math.min(Math.abs(delta) * 0.098, 4.9);
+    const saut = Math.min(Math.abs(delta) * 0.098, 2.9);
     const glisse = Math.max(-3.6, Math.min(3.6, delta * 0.062));
 
     this.pills.forEach((p) => {
