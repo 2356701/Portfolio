@@ -151,5 +151,16 @@
         &.est-active &_solution {
             display: block;
         }
+
+        &_indice-fleche {
+            @include icone-masque('plus.svg', 13px, 13px);
+            transform: none;
+            animation: none;
+            transition: $transition-mouvement;
+        }
+
+        &.est-active &_indice-fleche {
+            transform: rotate(45deg);
+        }
     }
 }

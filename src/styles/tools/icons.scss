@@ -1,15 +1,19 @@
-@mixin icone-fleche($width, $height) {
+@mixin icone-masque($fichier, $width, $height) {
     width: $width;
     height: $height;
     background-color: currentColor;
-    mask-image: url('../assets/icons/fleche.svg');
+    mask-image: url('../assets/icons/#{$fichier}');
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: contain;
-    -webkit-mask-image: url('../assets/icons/fleche.svg');
+    -webkit-mask-image: url('../assets/icons/#{$fichier}');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: contain;
+}
+
+@mixin icone-fleche($width, $height) {
+    @include icone-masque('fleche.svg', $width, $height);
 }
 
 @mixin fleche-rebond {
