@@ -111,6 +111,19 @@
         color: var(--color-text);
     }
 
+    &_solution {
+        display: none;
+        max-width: 330px;
+        font-weight: var(--fw-semibold);
+        line-height: 1.22;
+        color: var(--color-text);
+
+        strong {
+            font-weight: var(--fw-heavy);
+            color: var(--color-primary);
+        }
+    }
+
     @media screen and (width <= $breakpoint-sm) {
         min-height: 0;
         padding: var(--spacing-lg) var(--spacing-mmd);
@@ -128,6 +141,15 @@
         &_icone {
             width: 90px;
             height: 90px;
+        }
+
+        &.est-active &_titre,
+        &.est-active &_texte {
+            display: none;
+        }
+
+        &.est-active &_solution {
+            display: block;
         }
     }
 }

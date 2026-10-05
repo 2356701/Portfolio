@@ -8,6 +8,7 @@ export default class Defis {
     this.solutionEpinglee = null;
     this.solutionAffichee = null;
     this.survolPossible = window.matchMedia('(hover: hover) and (min-width: 1025px)');
+    this.mobile = window.matchMedia('(width <= 715px)');
 
     this.cartes.forEach((carte, index) => {
       const bouton = carte.querySelector('.carte-defi_bouton');
@@ -22,6 +23,8 @@ export default class Defis {
   }
 
   epingler(index) {
+    const ancienne = this.solutionEpinglee;
+
     if (this.solutionEpinglee === index) {
       this.solutionEpinglee = null;
     } else {
@@ -35,6 +38,16 @@ export default class Defis {
     });
 
     this.afficher(this.solutionEpinglee);
+
+    if (this.mobile.matches) {
+      [ancienne, index].forEach((i) => {
+        if (i === null) return;
+        const contenu = this.cartes[i].querySelectorAll(
+          '.carte-defi_titre, .carte-defi_texte, .carte-defi_solution'
+        );
+        gsap.fromTo(contenu, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0 });
+      });
+    }
   }
 
   afficher(index) {

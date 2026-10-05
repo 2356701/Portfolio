@@ -3,7 +3,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     gap: var(--spacing-md);
-    padding-top: var(--spacing-section);
 
     .bouton {
         height: auto;
@@ -11,4 +10,8 @@
         padding-block: 12px;
         text-align: left;
     }
+}
+
+.fond-sombre .fiche-navigation .bouton {
+    color: var(--color-white);
 }

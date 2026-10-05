@@ -1,5 +1,6 @@
 .fiche-defis {
     @extend %section-sombre;
+    padding-bottom: var(--spacing-lg);
 
     &_interieur {
         display: flex;
@@ -28,6 +29,12 @@
         @media screen and (width <= $breakpoint-sm) {
             flex-direction: column;
             align-items: center;
+        }
+    }
+
+    &_reponses {
+        @media screen and (width <= $breakpoint-sm) {
+            display: none;
         }
     }
 

@@ -160,12 +160,13 @@
                             type="button"
                             class="carte-defi_bouton"
                             aria-expanded="false"
-                            aria-controls="solution-{{ loop.index }}"
+                            aria-controls="solution-{{ loop.index }} solution-carte-{{ loop.index }}"
                             aria-label="Voir la solution : {{ defi.titre }}"
                         ></button>
                         <img src="{{ defi.icone }}" alt="" class="carte-defi_icone" />
                         <h3 class="carte-defi_titre">{{ defi.titre }}</h3>
                         <p class="carte-defi_texte">{{ defi.texte }}</p>
+                        <p class="carte-defi_solution" id="solution-carte-{{ loop.index }}"><strong>{{ projet.solutions[loop.index0].fort }}</strong> {{ projet.solutions[loop.index0].texte }}</p>
                         <span class="carte-defi_indice" aria-hidden="true">
                             <span class="carte-defi_indice-voir">Voir la solution</span>
                             <span class="carte-defi_indice-cacher">Cacher la solution</span>
@@ -175,7 +176,7 @@
                     {% endfor %}
                 </ul>
 
-                <div>
+                <div class="fiche-defis_reponses">
                     <h3 class="fiche-defis_solutions-titre">Solutions</h3>
                     <ul class="fiche-defis_solutions">
                         {% for solution in projet.solutions %}
@@ -187,7 +188,7 @@
         </div>
     </section>
 
-    <nav class="wrapper fiche-navigation" data-fond="clair" aria-label="Navigation entre les projets">
+    <nav class="wrapper fiche-navigation" data-fond="sombre" aria-label="Navigation entre les projets">
         <a href="index.html#projets" class="bouton">
             <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
             Tous les projets
