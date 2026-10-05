@@ -175,12 +175,25 @@ export default class GravityInterests {
     this.tryTrigger();
 
     if (this.triggered) {
-      const tilt = Math.max(-0.25, Math.min(0.25, delta * 0.006));
+      const force = this.isMobile() ? 2 : 1;
+      const tilt = Math.max(-0.25 * force, Math.min(0.25 * force, delta * 0.006 * force));
       this.engine.world.gravity.x = Math.max(
-        -0.3,
-        Math.min(0.3, this.engine.world.gravity.x + tilt),
+        -0.3 * force,
+        Math.min(0.3 * force, this.engine.world.gravity.x + tilt),
       );
+
+      if (this.isMobile()) this.secouer(delta);
     }
+  }
+
+  secouer(delta) {
+    const saut = Math.min(Math.abs(delta) * 0.08, 4);
+    const glisse = Math.max(-3, Math.min(3, delta * 0.05));
+
+    this.pills.forEach((p) => {
+      const v = p.body.velocity;
+      Matter.Body.setVelocity(p.body, { x: v.x + glisse, y: v.y - saut });
+    });
   }
 
   onReset() {
