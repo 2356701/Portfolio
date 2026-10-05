@@ -46,10 +46,10 @@ export default class Defis {
         gsap.fromTo(
           solution,
           { autoAlpha: 0, y: 20 },
-          { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(1.7)' }
+          { autoAlpha: 1, y: 0 }
         );
       } else {
-        gsap.to(solution, { autoAlpha: 0, y: 20, duration: 0.25 });
+        gsap.to(solution, { autoAlpha: 0, y: 20, duration: 0.2, ease: 'power1.out' });
       }
     });
   }

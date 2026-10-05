@@ -47,6 +47,7 @@
         gap: var(--spacing-lg);
 
         &-titre {
+            text-wrap: balance;
             max-width: 600px;
 
             p:first-child {
@@ -75,7 +76,7 @@
 .carte-video {
     position: relative;
     aspect-ratio: 1200 / 675;
-    border-radius: 55px;
+    border-radius: var(--radius-lg);
     background-color: var(--color-text);
     overflow: hidden;
 
@@ -83,7 +84,7 @@
         @include bouton-lecture-survol;
 
         .carte-video_decor {
-            transform: rotate(-8deg) scale(1.08);
+            transform: rotate(-8deg) $survol-image;
         }
     }
 
@@ -102,7 +103,7 @@
         opacity: 0.35;
         pointer-events: none;
         transform: rotate(-8deg);
-        transition: transform 0.8s $ease-out-quad;
+        transition: $transition-image;
 
         img {
             display: block;

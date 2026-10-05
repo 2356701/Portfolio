@@ -31,3 +31,10 @@ $ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 $ease-tourisme: cubic-bezier(0.4, 0, 0.2, 1);
+
+$duree-rapide: 0.2s;
+$duree: 0.4s;
+$duree-lente: 0.6s;
+
+$ease-mouvement: $ease-out-back;
+$ease-fondu: $ease-out-quad;

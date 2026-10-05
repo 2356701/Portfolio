@@ -104,7 +104,7 @@
         aspect-ratio: 884 / 615;
 
         span {
-            border-radius: 25px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow-card-lg);
             background-repeat: no-repeat;
         }

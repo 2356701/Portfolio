@@ -5,9 +5,9 @@
     width: 100%;
     max-width: 560px;
     padding: var(--spacing-md);
-    background-color: var(--color-card);
     position: relative;
-    border-radius: 25px;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
     box-shadow: var(--shadow-card);
     transition: $souleve-transition;
     @include souleve(true);
@@ -18,7 +18,7 @@
             position: absolute;
             inset: 0;
             z-index: 1;
-            border-radius: 25px;
+            border-radius: var(--radius);
         }
 
         &:hover,
@@ -30,21 +30,21 @@
 
     @include survol {
         .carte-projet_media img {
-            transform: scale(1.05);
+            transform: $survol-image;
         }
     }
 
     &_media {
         position: relative;
         aspect-ratio: 559 / 400;
-        border-radius: 25px;
+        border-radius: var(--radius);
         overflow: hidden;
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s $ease-out-quad;
+            transition: $transition-image;
         }
 
         &::after {
@@ -68,6 +68,7 @@
     }
 
     &_etiquette {
+        text-wrap: balance;
         margin: 0;
         font-family: var(--font-secondary);
         font-weight: var(--fw-semibold);

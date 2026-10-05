@@ -9,7 +9,7 @@
         var(--color-primary),
         var(--color-primary-deep)
     );
-    border-radius: 55px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     touch-action: pan-y;
 
@@ -60,7 +60,7 @@
         white-space: nowrap;
         padding: 18px 32px;
         background-color: var(--color-white);
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         box-shadow: var(--shadow-pill);
         @include text-p-gros;
         color: var(--color-text);

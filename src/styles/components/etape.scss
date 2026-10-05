@@ -13,7 +13,7 @@
         max-width: 100%;
         padding: 30px 60px 70px 80px;
         background-color: var(--color-primary);
-        border-radius: 25px;
+        border-radius: var(--radius);
         color: var(--color-white);
     }
 
@@ -39,7 +39,7 @@
         width: 87.7%;
         margin-top: -40px;
         aspect-ratio: 844 / 607;
-        border-radius: 55px;
+        border-radius: var(--radius-lg);
         overflow: hidden;
 
         img {
@@ -51,15 +51,16 @@
     }
 
     &_texte {
+        text-wrap: balance;
         position: relative;
         z-index: 2;
         width: 72%;
         margin-top: -74px;
         padding: 45px 86px;
-        background-color: var(--color-card);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 25px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        background-color: var(--color-white);
+        border: 1px solid var(--color-bordure);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-etape);
         font-weight: var(--fw-semibold);
         font-size: var(--font-size-h4);
         line-height: var(--lh-h4);
@@ -105,7 +106,7 @@
         &_inverse .etape_media {
             width: 100%;
             margin-top: -30px;
-            border-radius: 25px;
+            border-radius: var(--radius);
         }
 
         &_texte,

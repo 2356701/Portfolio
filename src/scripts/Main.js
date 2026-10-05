@@ -15,6 +15,7 @@ class Main {
     Icons.load();
 
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.defaults({ duration: 0.4, ease: 'back.out(1.7)', overwrite: 'auto' });
     this.smoother = ScrollSmoother.create({ smooth: 0.8 });
 
     new ComponentFactory();
@@ -34,12 +35,12 @@ class Main {
 
       e.preventDefault();
       this.smoother.scrollTo(cible, true, 'top top');
-      history.replaceState(null, '', url.hash);
     });
 
     if (location.hash) {
       window.addEventListener('load', () => {
         this.smoother.scrollTo(location.hash, false, 'top top');
+        history.replaceState(null, '', location.pathname);
       });
     }
   }

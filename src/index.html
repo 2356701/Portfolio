@@ -2,18 +2,19 @@
 
 <main class="apropos" data-component="FondScroll">
     <section class="heros" id="apropos" data-fond="clair">
-        <div class="heros_decor heros_ecouteurs" aria-hidden="true">
-            <img src="assets/images/Écouteur.png" alt="" />
-        </div>
-        <div class="heros_decor heros_baguettes" aria-hidden="true">
-            <img src="assets/images/Drumsticks.png" alt="" />
-        </div>
-
         <div class="wrapper">
             <div class="heros_contenu" data-scrolly="fromBottom">
-                <div class="heros_photo">
-                    <img src="assets/images/hero-photo.webp" alt="" />
-                </div>
+                <a href="#video-presentation" class="heros_photo" aria-label="Voir ma vidéo de présentation">
+                    <span class="heros_decor heros_ecouteurs" aria-hidden="true">
+                        <img src="assets/images/Écouteur.png" alt="" />
+                    </span>
+                    <span class="heros_decor heros_baguettes" aria-hidden="true">
+                        <img src="assets/images/Drumsticks.png" alt="" />
+                    </span>
+                    <span class="heros_photo-cadre">
+                        <img src="assets/images/hero-nathan.webp" alt="Nathan Fortier, les bras croisés" />
+                    </span>
+                </a>
 
                 <div class="heros_texte">
                     <p class="heros_legende">
@@ -21,12 +22,15 @@
                         <span>– Vidéo, son et motion</span>
                     </p>
                     <h1 class="heros_titre">Nathan Fortier</h1>
+                    <a href="#proposition" class="heros_fleche-lien" aria-label="Défiler vers la section suivante">
+                        <span class="heros_fleche" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="proposition" data-fond="sombre">
+    <section class="proposition" id="proposition" data-fond="sombre">
         <div class="wrapper proposition_intro">
             <h2>Ce que je propose …</h2>
             <div class="proposition_texte">
@@ -44,8 +48,8 @@
 
         <div class="wrapper proposition_video" data-scrolly="fromBottom">
             <div class="proposition_video-titre">
-                <p>Musicien et vidéaste.</p>
-                <p>Un jeune homme pleins d’idées</p>
+                <p>Musicien et&nbsp;vidéaste.</p>
+                <p>Un jeune homme pleins&nbsp;d’idées</p>
             </div>
 
             <!-- TODO : quand la vidéo est sur YouTube, ajouter data-component="Youtube" data-video-id="ID_DE_LA_VIDEO" sur .carte-video -->
@@ -211,7 +215,7 @@
         <div class="wrapper expertise_interets" data-component="GravityInterests">
             <div class="interets" data-gravity-card>
                 <div class="interets_entete">
-                    <p class="interets_titre">Compétences &amp; Loisirs</p>
+                    <p class="interets_titre">Compétences &amp;&nbsp;Loisirs</p>
                     <p class="interets_sous-titre">Une exploration croisée de mes compétences professionnelles et de mes passions personnelles.</p>
                 </div>
 
@@ -236,7 +240,7 @@
                     <p class="carte-force_numero">03</p>
                 </div>
                 <div class="carte-force">
-                    <p class="carte-force_titre">Gestion du temps</p>
+                    <p class="carte-force_titre">Gestion du&nbsp;temps</p>
                     <p class="carte-force_numero">04</p>
                 </div>
             </div>

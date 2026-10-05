@@ -6,13 +6,13 @@
     height: 51px;
     padding: 0 28px;
     border: 2px solid var(--color-primary);
-    border-radius: 25px;
+    border-radius: var(--radius);
     background: transparent;
     color: var(--color-text);
     @include text-nav(var(--font-size-cta));
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color 0.2s $ease-out-quad, color 0.2s $ease-out-quad, $souleve-transition;
+    transition: $transition-couleur, $souleve-transition;
     @include souleve(true);
 
     &:hover {

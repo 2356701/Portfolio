@@ -10,12 +10,12 @@
     max-width: 100%;
     min-height: 615px;
     padding: var(--spacing-lg) var(--spacing-md);
-    background-color: var(--color-card);
-    border-radius: 55px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-defi);
     text-align: center;
     transform: rotate(var(--rotation));
-    transition: transform 0.4s $ease-out-back;
+    transition: $transition-mouvement;
 
     &:nth-child(1) {
         padding-right: calc(var(--spacing-md) + 70px);
@@ -28,12 +28,12 @@
 
     &.est-active {
         z-index: 1;
-        transform: rotate(0deg) translateY(-8px);
+        transform: $survol-souleve;
     }
 
     @include survol {
         z-index: 1;
-        transform: rotate(0deg) translateY(-8px);
+        transform: $survol-souleve;
     }
 
     &_bouton {
@@ -68,11 +68,11 @@
         align-items: center;
         gap: 10px;
         padding: 0.8em 1.4em;
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         background-color: var(--color-primary);
         color: var(--color-white);
         text-transform: uppercase;
-        transition: transform 0.45s $ease-out-back;
+        transition: $transition-mouvement;
     }
 
     &_indice-cacher {
@@ -81,8 +81,7 @@
 
     &_indice-fleche {
         @include icone-fleche(18px, 12px);
-        transform: rotate(90deg);
-        animation: rebond-fleche 1.2s $ease-out-quad infinite;
+        @include fleche-rebond;
     }
 
     &.est-active &_indice-voir {
@@ -100,11 +99,12 @@
 
     @include survol {
         .carte-defi_indice {
-            transform: rotate(-4deg) scale(1.05);
+            transform: $survol-bulle;
         }
     }
 
     &_texte {
+        text-wrap: balance;
         max-width: 330px;
         font-weight: var(--fw-medium);
         line-height: 1.22;
@@ -114,7 +114,7 @@
     @media screen and (width <= $breakpoint-sm) {
         min-height: 0;
         padding: var(--spacing-lg) var(--spacing-mmd);
-        border-radius: 25px;
+        border-radius: var(--radius);
 
         &:nth-child(1) {
             padding-right: var(--spacing-mmd);
@@ -129,16 +129,5 @@
             width: 90px;
             height: 90px;
         }
-    }
-}
-
-@keyframes rebond-fleche {
-    0%,
-    100% {
-        translate: 0 0;
-    }
-
-    50% {
-        translate: 0 5px;
     }
 }

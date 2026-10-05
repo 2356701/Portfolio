@@ -35,10 +35,9 @@ $entete-bp: $breakpoint-tablette;
         height: var(--bulle-h);
         padding-inline: var(--bulle-pad);
         background-color: var(--color-primary);
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         box-shadow: var(--shadow-card-lg);
-        transition: height 0.4s $ease-out-quint, padding 0.4s $ease-out-quint,
-            transform 0.45s $ease-out-back;
+        transition: height $duree $ease-fondu, padding $duree $ease-fondu, $transition-mouvement;
     }
 
     &_logo {
@@ -60,13 +59,10 @@ $entete-bp: $breakpoint-tablette;
         }
 
         @include survol {
-            transform: scale(1.08) rotate(-4deg);
+            transform: $survol-bulle;
         }
 
-        &:active {
-            transform: scale(0.96);
-        }
-
+        @include appui;
     }
 
     &_logo-texte {
@@ -91,7 +87,7 @@ $entete-bp: $breakpoint-tablette;
         height: 55%;
         margin: auto 0;
         background-color: var(--color-white);
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
@@ -121,7 +117,7 @@ $entete-bp: $breakpoint-tablette;
         color: var(--color-white);
         text-transform: uppercase;
         white-space: nowrap;
-        transition: color 0.25s $ease-out-quad;
+        transition: color $duree-rapide $ease-fondu;
 
         &:hover,
         &.actif {
@@ -163,11 +159,13 @@ $entete-bp: $breakpoint-tablette;
         svg {
             width: 30%;
             height: auto;
-            transition: transform 0.45s $ease-out-back;
+            transition: $transition-mouvement;
         }
 
-        &:hover svg {
-            transform: rotate(-15deg) scale(1.1);
+        @include survol {
+            svg {
+                transform: $survol-icone;
+            }
         }
     }
 
@@ -195,13 +193,16 @@ $entete-bp: $breakpoint-tablette;
         color: var(--color-white);
         text-transform: uppercase;
         white-space: nowrap;
-        transition: transform 0.3s $ease-out-back;
+        transition: $transition-mouvement;
 
         &:hover,
         &:focus-visible {
             color: var(--color-white);
             text-decoration: none;
-            transform: scale(1.1);
+        }
+
+        @include survol {
+            transform: $survol-lien;
         }
     }
 
@@ -218,7 +219,12 @@ $entete-bp: $breakpoint-tablette;
         a:focus-visible {
             color: var(--color-white);
             text-decoration: none;
-            transform: scale(1.15);
+        }
+
+        a {
+            @include survol {
+                transform: $survol-lien;
+            }
         }
     }
 
@@ -238,7 +244,7 @@ $entete-bp: $breakpoint-tablette;
             background-color: var(--color-dark);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s $ease-out-quad, visibility 0.3s;
+            transition: opacity $duree $ease-fondu, visibility $duree;
         }
     }
 
@@ -265,7 +271,7 @@ $entete-bp: $breakpoint-tablette;
     &_panneau-reseaux {
         opacity: 0;
         transform: translateY(20px) scale(0.9);
-        transition: opacity 0.3s $ease-out-quad, transform 0.5s $ease-out-back;
+        transition: opacity $duree $ease-fondu, $transition-mouvement;
         transition-delay: calc(var(--i) * 60ms);
     }
 
@@ -273,11 +279,11 @@ $entete-bp: $breakpoint-tablette;
         @include text-nav(var(--font-size-h3));
         display: block;
         padding: 0.4em 1.2em;
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         background-color: var(--color-primary);
         color: var(--color-white);
         text-transform: uppercase;
-        transition: transform 0.45s $ease-out-back;
+        transition: $transition-mouvement;
 
         &:hover,
         &:focus-visible {
@@ -286,12 +292,10 @@ $entete-bp: $breakpoint-tablette;
         }
 
         @include survol {
-            transform: rotate(-4deg) scale(1.05);
+            transform: $survol-bulle;
         }
 
-        &:active {
-            transform: scale(0.95);
-        }
+        @include appui;
 
         &.actif,
         &.actif:hover {
@@ -305,10 +309,10 @@ $entete-bp: $breakpoint-tablette;
         display: block;
         padding: 0.7em 1.5em;
         border: 2px solid var(--color-white);
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         color: var(--color-white);
         text-transform: uppercase;
-        transition: transform 0.45s $ease-out-back;
+        transition: $transition-mouvement;
 
         &:hover,
         &:focus-visible {
@@ -317,18 +321,16 @@ $entete-bp: $breakpoint-tablette;
         }
 
         @include survol {
-            transform: rotate(-4deg) scale(1.05);
+            transform: $survol-bulle;
         }
 
-        &:active {
-            transform: scale(0.95);
-        }
+        @include appui;
     }
 
     &_panneau-reseaux {
         max-width: 100%;
         padding: 22px 32px;
-        border-radius: 999px;
+        border-radius: var(--radius-rond);
         background-color: var(--color-primary);
 
         .entete_reseaux-liste.reseaux {
@@ -376,22 +378,20 @@ html.entete-compact {
     background-color: var(--color-primary);
     box-shadow: var(--shadow-card-lg);
     cursor: pointer;
-    transition: width 0.4s $ease-out-quint, height 0.4s $ease-out-quint, transform 0.45s $ease-out-back;
+    transition: width $duree $ease-fondu, height $duree $ease-fondu, $transition-mouvement;
 
     @include survol {
-        transform: rotate(-8deg) scale(1.05);
+        transform: $survol-bulle;
     }
 
-    &:active {
-        transform: scale(0.92);
-    }
+    @include appui;
 
     span {
         display: block;
         width: 38%;
         height: 2px;
         background-color: var(--color-white);
-        transition: transform 0.2s $ease-out-quad, opacity 0.2s $ease-out-quad;
+        transition: transform $duree-rapide $ease-fondu, opacity $duree-rapide $ease-fondu;
     }
 
     @media screen and (width <= $entete-bp) {
@@ -424,12 +424,5 @@ html.menu-ouvert {
     }
     .entete_bouton-menu span:nth-child(3) {
         transform: translateY(-7px) rotate(-45deg);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .entete,
-    .entete * {
-        transition-duration: 0.01ms !important;
     }
 }

@@ -4,13 +4,14 @@
     justify-content: center;
     min-height: 214px;
     padding: var(--spacing-lg) var(--spacing-xl);
-    background-color: var(--color-card);
-    border-radius: 25px;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
     text-align: center;
     opacity: 0;
     visibility: hidden;
 
     p {
+        text-wrap: balance;
         font-weight: var(--fw-semibold);
         font-size: var(--font-size-h4);
         line-height: var(--lh-h4);

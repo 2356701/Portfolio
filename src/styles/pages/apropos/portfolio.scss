@@ -26,7 +26,7 @@
 
     &_indice-scroll {
         @include icone-fleche(32px, 20px);
-        transform: rotate(90deg);
+        @include fleche-rebond;
     }
 }
 

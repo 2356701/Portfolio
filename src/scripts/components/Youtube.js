@@ -43,7 +43,7 @@ export default class YouTube {
   initPlayer(event) {
     if (event) {
       this.element.removeEventListener('click', this.initPlayer);
-      gsap.to(this.poster, { autoAlpha: 0, scale: 1.15, duration: 0.8, ease: 'power2.inOut' });
+      gsap.to(this.poster, { autoAlpha: 0, scale: 1.15, duration: 0.6, ease: 'power1.out' });
     }
 
     this.player = new YT.Player(this.videoContainer, {

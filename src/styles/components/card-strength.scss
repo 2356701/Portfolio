@@ -15,8 +15,8 @@
     justify-content: space-between;
     gap: var(--spacing-md);
     padding: var(--spacing-lg) clamp(var(--spacing-mmd), 6vw, var(--spacing-xl));
-    background-color: var(--color-card);
-    border-radius: 25px;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
     box-shadow: var(--shadow-card);
 
     &_titre {

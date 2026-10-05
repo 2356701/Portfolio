@@ -1,4 +1,14 @@
-$souleve-transition: transform 0.3s $ease-out-back, box-shadow 0.3s $ease-out-quad;
+$transition-mouvement: transform $duree $ease-mouvement;
+$transition-couleur: color $duree-rapide $ease-fondu, background-color $duree-rapide $ease-fondu;
+$transition-image: transform $duree-lente $ease-fondu;
+$souleve-transition: $transition-mouvement, box-shadow $duree $ease-fondu;
+
+$survol-souleve: translateY(-8px);
+$survol-bulle: rotate(-4deg) scale(1.08);
+$survol-icone: rotate(-15deg) scale(1.1);
+$survol-lien: scale(1.1);
+$survol-image: scale(1.05);
+$appui: scale(0.96);
 
 @mixin survol {
     @media (hover: hover) and (width > $breakpoint-tablette) {
@@ -8,16 +18,20 @@ $souleve-transition: transform 0.3s $ease-out-back, box-shadow 0.3s $ease-out-qu
     }
 }
 
+@mixin appui {
+    &:active {
+        transform: $appui;
+    }
+}
+
 @mixin souleve($ombre: false) {
     @include survol {
-        transform: translateY(-8px);
+        transform: $survol-souleve;
 
         @if $ombre {
-            box-shadow: var(--ombre-souleve, 0 20px 40px rgba(0, 0, 0, 0.25));
+            box-shadow: var(--ombre-souleve, var(--shadow-souleve));
         }
     }
 
-    &:active {
-        transform: scale(0.96);
-    }
+    @include appui;
 }

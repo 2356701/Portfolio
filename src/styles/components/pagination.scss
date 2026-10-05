@@ -14,8 +14,8 @@
         margin: 0;
         background-color: rgba(60, 60, 60, 0.5);
         opacity: 1;
-        border-radius: 999px;
-        transition: width 0.3s $ease-out-quad, background-color 0.3s $ease-out-quad;
+        border-radius: var(--radius-rond);
+        transition: width $duree $ease-fondu, background-color $duree $ease-fondu;
     }
 
     .swiper-pagination-bullet-active {

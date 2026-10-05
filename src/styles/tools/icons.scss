@@ -11,3 +11,19 @@
     -webkit-mask-position: center;
     -webkit-mask-size: contain;
 }
+
+@mixin fleche-rebond {
+    transform: rotate(90deg);
+    animation: rebond-fleche 1.2s $ease-fondu infinite;
+}
+
+@keyframes rebond-fleche {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 5px;
+    }
+}

@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
-gsap.defaults({ overwrite: 'auto' });
 
 export default class Header {
   constructor(element) {
@@ -94,10 +93,10 @@ export default class Header {
     const largeur = lien.offsetWidth + 14;
 
     if (this.indicateurVisible) {
-      gsap.to(this.indicateur, { x: x, width: largeur, duration: 0.45, ease: 'back.out(1.7)' });
+      gsap.to(this.indicateur, { x: x, width: largeur });
     } else {
       gsap.set(this.indicateur, { x: x, width: largeur });
-      gsap.to(this.indicateur, { autoAlpha: 1, duration: 0.2 });
+      gsap.to(this.indicateur, { autoAlpha: 1, duration: 0.2, ease: 'power1.out' });
       this.indicateurVisible = true;
     }
   }
@@ -106,7 +105,7 @@ export default class Header {
     if (this.lienSurvole) this.lienSurvole.classList.remove('survol');
     this.lienSurvole = null;
 
-    gsap.to(this.indicateur, { autoAlpha: 0, duration: 0.2 });
+    gsap.to(this.indicateur, { autoAlpha: 0, duration: 0.2, ease: 'power1.out' });
     this.indicateurVisible = false;
   }
 
@@ -135,12 +134,12 @@ export default class Header {
     const elements = bulle.querySelectorAll('.entete_extensible-liste li');
     bouton.setAttribute('aria-expanded', 'true');
 
-    gsap.to(bouton, { opacity: 0, pointerEvents: 'none', duration: 0.15, overwrite: true });
-    gsap.to(bulle, { width: 'auto', duration: 0.5, ease: 'back.out(1.4)', overwrite: true });
+    gsap.to(bouton, { opacity: 0, pointerEvents: 'none', duration: 0.2, ease: 'power1.out', overwrite: true });
+    gsap.to(bulle, { width: 'auto', overwrite: true });
     gsap.fromTo(
       elements,
       { autoAlpha: 0, scale: 0.5, y: 10 },
-      { autoAlpha: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.07, delay: 0.1, overwrite: true }
+      { autoAlpha: 1, scale: 1, y: 0, stagger: 0.07, delay: 0.1, overwrite: true }
     );
   }
 
@@ -152,12 +151,11 @@ export default class Header {
     const elements = bulle.querySelectorAll('.entete_extensible-liste li');
     bouton.setAttribute('aria-expanded', 'false');
 
-    gsap.to(elements, { autoAlpha: 0, duration: 0.15, overwrite: true });
-    gsap.to(bouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, delay: 0.2, overwrite: true });
+    gsap.to(elements, { autoAlpha: 0, duration: 0.2, ease: 'power1.out', overwrite: true });
+    gsap.to(bouton, { opacity: 1, pointerEvents: 'auto', duration: 0.2, ease: 'power1.out', delay: 0.2, overwrite: true });
     gsap.to(bulle, {
       width: bulle.offsetHeight,
-      duration: 0.4,
-      ease: 'power3.out',
+      ease: 'power1.out',
       overwrite: true,
       onComplete: () => {
         bulle.style.width = '';
@@ -173,11 +171,12 @@ export default class Header {
       if (!surPageAccueil) return;
 
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       if (this.html.classList.contains('menu-ouvert')) {
         this.onToggleNav();
       }
+
+      ScrollSmoother.get().scrollTo(0, true);
     });
   }
 }

@@ -14,7 +14,7 @@
     &_video {
         position: relative;
         aspect-ratio: 16 / 9;
-        border-radius: 55px;
+        border-radius: var(--radius-lg);
         background-color: var(--color-dark);
         box-shadow: var(--shadow-card);
         color: var(--color-bg);
@@ -22,14 +22,14 @@
 
         @include survol {
             .fiche-resultat_image {
-                transform: scale(1.05);
+                transform: $survol-image;
             }
 
             @include bouton-lecture-survol;
         }
 
         @media screen and (width <= $breakpoint-sm) {
-            border-radius: 25px;
+            border-radius: var(--radius);
         }
     }
 
@@ -57,7 +57,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.8s $ease-out-quad;
+        transition: $transition-image;
     }
 
     &_video-texte {
@@ -78,6 +78,7 @@
     }
 
     &_video-titre {
+        text-wrap: balance;
         font-weight: 1000;
         font-size: var(--font-size-h1);
         line-height: var(--lh-h1);
@@ -149,7 +150,7 @@
         box-shadow: var(--shadow-card-lg);
         color: var(--color-white);
         cursor: default;
-        transition: transform 0.45s $ease-out-back;
+        transition: $transition-mouvement;
 
         @media (hover: hover) and (width > $breakpoint-tablette) {
             &:hover,
@@ -162,7 +163,7 @@
                 }
 
                 .fiche-resultat_credit-icone svg {
-                    transform: rotate(-15deg) scale(1.1);
+                    transform: $survol-icone;
                 }
             }
         }
@@ -188,7 +189,7 @@
 
         svg {
             width: 36%;
-            transition: transform 0.45s $ease-out-back;
+            transition: $transition-mouvement;
         }
     }
 
@@ -196,20 +197,20 @@
         max-width: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-width 0.5s $ease-out-quint, max-height 0.5s $ease-out-quint;
+        transition: max-width $duree $ease-mouvement, max-height $duree $ease-mouvement;
 
         p,
         ul {
             width: min(30em, 40vw);
-
-            @media screen and (width <= $breakpoint-sm) {
-                width: auto;
-            }
             margin: 0;
             padding: 0 calc(var(--taille) * 0.45) calc(var(--taille) * 0.4);
             list-style: none;
             font-weight: var(--fw-medium);
             line-height: 1.4;
+
+            @media screen and (width <= $breakpoint-sm) {
+                width: auto;
+            }
         }
 
         li + li {

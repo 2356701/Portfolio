@@ -8,6 +8,7 @@ h4 {
     line-height: 1;
     letter-spacing: 0;
     color: var(--color-text);
+    text-wrap: balance;
 }
 
 h1 {
@@ -30,6 +31,11 @@ h4 {
     font-size: var(--font-size-h4);
     font-weight: var(--fw-semibold);
     line-height: var(--lh-h4);
+}
+
+p,
+li {
+    text-wrap: pretty;
 }
 
 p {
