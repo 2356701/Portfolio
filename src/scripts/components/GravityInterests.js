@@ -226,6 +226,10 @@ export default class GravityInterests {
       mouse.element.removeEventListener(evt, mouse.mousewheel);
     });
 
+    mouse.element.removeEventListener('touchstart', mouse.mousedown);
+    mouse.element.removeEventListener('touchmove', mouse.mousemove);
+    mouse.element.removeEventListener('touchend', mouse.mouseup);
+
     window.addEventListener('scroll', this.onScroll, { passive: true });
 
     if (this.resetBtn) {
