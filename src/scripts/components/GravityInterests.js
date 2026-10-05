@@ -163,7 +163,7 @@ export default class GravityInterests {
     if (!visible) return;
 
     this.triggered = true;
-    this.engine.world.gravity.y = 0.35;
+    this.engine.world.gravity.y = this.isMobile() ? 0.8 : 0.35;
     this.pills.forEach((p) => Matter.Body.setStatic(p.body, false));
 
     if (this.hint) {
@@ -180,7 +180,7 @@ export default class GravityInterests {
     this.tryTrigger();
 
     if (this.triggered) {
-      const force = this.isMobile() ? 2 : 1;
+      const force = this.isMobile() ? 1.3 : 1;
       const tilt = Math.max(
         -0.25 * force,
         Math.min(0.25 * force, delta * 0.006 * force),
@@ -195,8 +195,8 @@ export default class GravityInterests {
   }
 
   secouer(delta) {
-    const saut = Math.min(Math.abs(delta) * 0.098, 2.9);
-    const glisse = Math.max(-3.6, Math.min(1.6, delta * 0.062));
+    const saut = Math.min(Math.abs(delta) * 0.04, 2);
+    const glisse = Math.max(-1.5, Math.min(1.5, delta * 0.03));
 
     this.pills.forEach((p) => {
       const v = p.body.velocity;
