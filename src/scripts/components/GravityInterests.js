@@ -163,7 +163,7 @@ export default class GravityInterests {
     if (!visible) return;
 
     this.triggered = true;
-    this.engine.world.gravity.y = this.isMobile() ? 0.8 : 0.35;
+    this.engine.world.gravity.y = this.isMobile() ? 2 : 0.35;
     this.pills.forEach((p) => Matter.Body.setStatic(p.body, false));
 
     if (this.hint) {
