@@ -187,8 +187,8 @@ export default class GravityInterests {
   }
 
   secouer(delta) {
-    const saut = Math.min(Math.abs(delta) * 0.14, 7);
-    const glisse = Math.max(-5, Math.min(5, delta * 0.09));
+    const saut = Math.min(Math.abs(delta) * 0.11, 5.5);
+    const glisse = Math.max(-4, Math.min(4, delta * 0.07));
 
     this.pills.forEach((p) => {
       const v = p.body.velocity;
