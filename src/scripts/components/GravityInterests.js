@@ -48,12 +48,12 @@ export default class GravityInterests {
     this.walls = [];
     this.triggered = false;
     this.lastScrollY = window.scrollY;
-    this.inclinaison = null;
+    // this.inclinaison = null;
 
     this.onScroll = this.onScroll.bind(this);
     this.onReset = this.onReset.bind(this);
-    this.onInclinaison = this.onInclinaison.bind(this);
-    this.activerGyro = this.activerGyro.bind(this);
+    // this.onInclinaison = this.onInclinaison.bind(this);
+    // this.activerGyro = this.activerGyro.bind(this);
     this.tick = this.tick.bind(this);
 
     this.init();
@@ -229,39 +229,40 @@ export default class GravityInterests {
     });
   }
 
-  activerGyro() {
-    const Mouvement = window.DeviceMotionEvent;
-    if (!Mouvement) return;
+  // TODO gyroscope : décommenter pour faire bouger les bulles en penchant le téléphone
+  // activerGyro() {
+    // const Mouvement = window.DeviceMotionEvent;
+    // if (!Mouvement) return;
 
-    if (typeof Mouvement.requestPermission === 'function') {
-      Mouvement.requestPermission()
-        .then((reponse) => {
-          if (reponse === 'granted') {
-            window.addEventListener('devicemotion', this.onInclinaison);
-          }
-        })
-        .catch(() => {});
-    } else {
-      window.addEventListener('devicemotion', this.onInclinaison);
-    }
-  }
+    // if (typeof Mouvement.requestPermission === 'function') {
+      // Mouvement.requestPermission()
+        // .then((reponse) => {
+          // if (reponse === 'granted') {
+            // window.addEventListener('devicemotion', this.onInclinaison);
+          // }
+        // })
+        // .catch(() => {});
+    // } else {
+      // window.addEventListener('devicemotion', this.onInclinaison);
+    // }
+  // }
 
-  onInclinaison(e) {
-    const a = e.accelerationIncludingGravity;
-    if (!this.isMobile() || !a || a.x === null || a.y === null) {
-      this.inclinaison = null;
-      return;
-    }
+  // onInclinaison(e) {
+    // const a = e.accelerationIncludingGravity;
+    // if (!this.isMobile() || !a || a.x === null || a.y === null) {
+      // this.inclinaison = null;
+      // return;
+    // }
 
-    const signe = this.ios ? -1 : 1;
-    const x = (-signe * a.x) / 9.81;
-    const y = (signe * a.y) / 9.81;
+    // const signe = this.ios ? -1 : 1;
+    // const x = (-signe * a.x) / 9.81;
+    // const y = (signe * a.y) / 9.81;
 
-    this.inclinaison = {
-      x: GRAVITE_MOBILE * Math.max(-1.5, Math.min(1.5, x * 1.5)),
-      y: GRAVITE_MOBILE * Math.max(0.3, y),
-    };
-  }
+    // this.inclinaison = {
+      // x: GRAVITE_MOBILE * Math.max(-1.5, Math.min(1.5, x * 1.5)),
+      // y: GRAVITE_MOBILE * Math.max(0.3, y),
+    // };
+  // }
 
   onReset() {
     this.triggered = false;
@@ -278,12 +279,14 @@ export default class GravityInterests {
 
   tick() {
     try {
-      if (this.triggered && this.inclinaison) {
-        this.engine.world.gravity.x = this.inclinaison.x;
-        this.engine.world.gravity.y = this.inclinaison.y;
-      } else if (this.triggered) {
-        this.engine.world.gravity.x *= 0.85;
-      }
+      if (this.triggered) this.engine.world.gravity.x *= 0.85;
+      // TODO gyroscope : décommenter et retirer la ligne au-dessus
+      // if (this.triggered && this.inclinaison) {
+        // this.engine.world.gravity.x = this.inclinaison.x;
+        // this.engine.world.gravity.y = this.inclinaison.y;
+      // } else if (this.triggered) {
+        // this.engine.world.gravity.x *= 0.85;
+      // }
       Matter.Engine.update(this.engine, 1000 / 60);
       this.clampVelocities();
       this.syncDOM();
@@ -337,19 +340,20 @@ export default class GravityInterests {
       }, 150);
     });
 
-    this.ios = typeof window.DeviceMotionEvent?.requestPermission === 'function';
+    // TODO gyroscope : décommenter pour faire bouger les bulles en penchant le téléphone
+    // this.ios = typeof window.DeviceMotionEvent?.requestPermission === 'function';
 
-    if (this.ios) {
-      const demander = () => {
-        this.card.removeEventListener('touchend', demander);
-        this.card.removeEventListener('click', demander);
-        this.activerGyro();
-      };
-      this.card.addEventListener('touchend', demander);
-      this.card.addEventListener('click', demander);
-    } else {
-      this.activerGyro();
-    }
+    // if (this.ios) {
+      // const demander = () => {
+        // this.card.removeEventListener('touchend', demander);
+        // this.card.removeEventListener('click', demander);
+        // this.activerGyro();
+      // };
+      // this.card.addEventListener('touchend', demander);
+      // this.card.addEventListener('click', demander);
+    // } else {
+      // this.activerGyro();
+    // }
 
     document.fonts.ready.then(() => {
       if (this.triggered) return;
