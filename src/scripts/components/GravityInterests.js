@@ -230,32 +230,36 @@ export default class GravityInterests {
   }
 
   activerGyro() {
-    const Orientation = window.DeviceOrientationEvent;
-    if (!Orientation) return;
+    const Mouvement = window.DeviceMotionEvent;
+    if (!Mouvement) return;
 
-    if (typeof Orientation.requestPermission === 'function') {
-      Orientation.requestPermission()
+    if (typeof Mouvement.requestPermission === 'function') {
+      Mouvement.requestPermission()
         .then((reponse) => {
           if (reponse === 'granted') {
-            window.addEventListener('deviceorientation', this.onInclinaison);
+            window.addEventListener('devicemotion', this.onInclinaison);
           }
         })
         .catch(() => {});
     } else {
-      window.addEventListener('deviceorientation', this.onInclinaison);
+      window.addEventListener('devicemotion', this.onInclinaison);
     }
   }
 
   onInclinaison(e) {
-    if (!this.isMobile() || e.gamma === null || e.beta === null) {
+    const a = e.accelerationIncludingGravity;
+    if (!this.isMobile() || !a || a.x === null || a.y === null) {
       this.inclinaison = null;
       return;
     }
 
-    const rad = Math.PI / 180;
+    const signe = this.ios ? -1 : 1;
+    const x = (-signe * a.x) / 9.81;
+    const y = (signe * a.y) / 9.81;
+
     this.inclinaison = {
-      x: GRAVITE_MOBILE * Math.max(-1.5, Math.min(1.5, Math.sin(e.gamma * rad) * 2.5)),
-      y: GRAVITE_MOBILE * Math.max(0.3, Math.sin(e.beta * rad)),
+      x: GRAVITE_MOBILE * Math.max(-1.5, Math.min(1.5, x * 1.5)),
+      y: GRAVITE_MOBILE * Math.max(0.3, y),
     };
   }
 
@@ -333,7 +337,9 @@ export default class GravityInterests {
       }, 150);
     });
 
-    if (typeof window.DeviceOrientationEvent?.requestPermission === 'function') {
+    this.ios = typeof window.DeviceMotionEvent?.requestPermission === 'function';
+
+    if (this.ios) {
       const demander = () => {
         this.card.removeEventListener('touchend', demander);
         this.card.removeEventListener('click', demander);
