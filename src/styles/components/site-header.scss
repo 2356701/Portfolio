@@ -43,10 +43,13 @@ $entete-bp: $breakpoint-tablette;
     &_logo {
         position: relative;
         z-index: 91;
+        justify-content: center;
+        width: calc(var(--bulle-h) * 1.4);
+        padding-inline: 0;
         margin-right: auto;
         font-family: var(--font-logo);
         font-style: italic;
-        font-size: #{typo(14px, 16px)};
+        font-size: calc(var(--bulle-h) * 0.24);
         line-height: 0.95;
         text-align: center;
         color: var(--color-white);
