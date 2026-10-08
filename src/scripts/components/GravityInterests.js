@@ -24,6 +24,7 @@ const MOBILE_LABELS = [
 ];
 
 const MOBILE_BREAKPOINT = 715;
+const GRAVITE_MOBILE = 3;
 
 export default class GravityInterests {
   constructor(element) {
@@ -47,9 +48,12 @@ export default class GravityInterests {
     this.walls = [];
     this.triggered = false;
     this.lastScrollY = window.scrollY;
+    this.inclinaison = null;
 
     this.onScroll = this.onScroll.bind(this);
     this.onReset = this.onReset.bind(this);
+    this.onInclinaison = this.onInclinaison.bind(this);
+    this.activerGyro = this.activerGyro.bind(this);
     this.tick = this.tick.bind(this);
 
     this.init();
@@ -58,6 +62,17 @@ export default class GravityInterests {
   cardSize() {
     const r = this.card.getBoundingClientRect();
     return { w: r.width, h: r.height };
+  }
+
+  hautZoneLibre() {
+    const carte = this.card.getBoundingClientRect();
+    let bas = 0;
+    this.card
+      .querySelectorAll('.interets_entete, [data-gravity-reset]')
+      .forEach((zone) => {
+        bas = Math.max(bas, zone.getBoundingClientRect().bottom - carte.top);
+      });
+    return bas;
   }
 
   isMobile() {
@@ -112,7 +127,13 @@ export default class GravityInterests {
       const w = el.offsetWidth;
       const h = el.offsetHeight;
       const cx = (s.w * L.px) / 100;
-      const cy = (s.h * L.py) / 100;
+      let cy = (s.h * L.py) / 100;
+
+      if (this.isMobile()) {
+        const haut = this.hautZoneLibre() + 10;
+        cy = haut + ((s.h - haut) * (L.py - 30)) / 70;
+        cy = Math.min(Math.max(cy, haut + h / 2), s.h - h / 2);
+      }
       const angle = (L.rot * Math.PI) / 180;
 
       const body = Bodies.rectangle(cx, cy, w, h, {
@@ -163,7 +184,8 @@ export default class GravityInterests {
     if (!visible) return;
 
     this.triggered = true;
-    this.engine.world.gravity.y = this.isMobile() ? 3 : 0.35;
+    this.buildWalls();
+    this.engine.world.gravity.y = this.isMobile() ? GRAVITE_MOBILE : 0.35;
     this.pills.forEach((p) => Matter.Body.setStatic(p.body, false));
 
     if (this.hint) {
@@ -207,6 +229,36 @@ export default class GravityInterests {
     });
   }
 
+  activerGyro() {
+    const Orientation = window.DeviceOrientationEvent;
+    if (!Orientation) return;
+
+    if (typeof Orientation.requestPermission === 'function') {
+      Orientation.requestPermission()
+        .then((reponse) => {
+          if (reponse === 'granted') {
+            window.addEventListener('deviceorientation', this.onInclinaison);
+          }
+        })
+        .catch(() => {});
+    } else {
+      window.addEventListener('deviceorientation', this.onInclinaison);
+    }
+  }
+
+  onInclinaison(e) {
+    if (!this.isMobile() || e.gamma === null || e.beta === null) {
+      this.inclinaison = null;
+      return;
+    }
+
+    const rad = Math.PI / 180;
+    this.inclinaison = {
+      x: GRAVITE_MOBILE * Math.sin(e.gamma * rad),
+      y: GRAVITE_MOBILE * Math.max(0.3, Math.sin(e.beta * rad)),
+    };
+  }
+
   onReset() {
     this.triggered = false;
     this.engine.world.gravity.x = 0;
@@ -222,7 +274,12 @@ export default class GravityInterests {
 
   tick() {
     try {
-      if (this.triggered) this.engine.world.gravity.x *= 0.85;
+      if (this.triggered && this.inclinaison) {
+        this.engine.world.gravity.x = this.inclinaison.x;
+        this.engine.world.gravity.y = this.inclinaison.y;
+      } else if (this.triggered) {
+        this.engine.world.gravity.x *= 0.85;
+      }
       Matter.Engine.update(this.engine, 1000 / 60);
       this.clampVelocities();
       this.syncDOM();
@@ -274,6 +331,18 @@ export default class GravityInterests {
           this.buildPills();
         }
       }, 150);
+    });
+
+    if (typeof window.DeviceOrientationEvent?.requestPermission === 'function') {
+      this.card.addEventListener('click', this.activerGyro, { once: true });
+    } else {
+      this.activerGyro();
+    }
+
+    document.fonts.ready.then(() => {
+      if (this.triggered) return;
+      this.buildWalls();
+      this.buildPills();
     });
 
     this.tick();
