@@ -254,7 +254,7 @@ export default class GravityInterests {
 
     const rad = Math.PI / 180;
     this.inclinaison = {
-      x: GRAVITE_MOBILE * Math.sin(e.gamma * rad),
+      x: GRAVITE_MOBILE * Math.max(-1.5, Math.min(1.5, Math.sin(e.gamma * rad) * 2.5)),
       y: GRAVITE_MOBILE * Math.max(0.3, Math.sin(e.beta * rad)),
     };
   }
@@ -334,7 +334,13 @@ export default class GravityInterests {
     });
 
     if (typeof window.DeviceOrientationEvent?.requestPermission === 'function') {
-      this.card.addEventListener('click', this.activerGyro, { once: true });
+      const demander = () => {
+        this.card.removeEventListener('touchend', demander);
+        this.card.removeEventListener('click', demander);
+        this.activerGyro();
+      };
+      this.card.addEventListener('touchend', demander);
+      this.card.addEventListener('click', demander);
     } else {
       this.activerGyro();
     }

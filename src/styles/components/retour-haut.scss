@@ -1,0 +1,52 @@
+.retour-haut {
+    position: fixed;
+    right: var(--spacing-md);
+    bottom: var(--spacing-md);
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: var(--shadow-card-lg);
+    color: var(--color-white);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity $duree $ease-fondu, visibility $duree, $transition-mouvement;
+
+    &.est-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    &_icone {
+        @include icone-fleche(22px, 16px);
+        transform: rotate(-90deg);
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--color-white);
+        outline-offset: 3px;
+    }
+
+    @include survol {
+        &.est-visible {
+            transform: $survol-bulle;
+        }
+    }
+
+    @include appui;
+
+    @media screen and (width <= $breakpoint-sm) {
+        right: var(--spacing-mmd);
+        bottom: var(--spacing-mmd);
+        width: 52px;
+        height: 52px;
+    }
+}
