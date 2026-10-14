@@ -1,0 +1,40 @@
+<section class="heros-affiche" data-fond="clair">
+    <div class="wrapper">
+        <a href="index.html#projets" class="bouton heros-affiche_retour">
+            <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
+            Tous les projets
+        </a>
+
+        <div class="heros-affiche_affiche">
+            <img src="{{ projet.image }}" alt="{{ projet.imageAlt }}" class="heros-affiche_image" />
+
+            <div class="heros-affiche_contenu">
+                <p class="heros-affiche_type">{{ projet.type }}</p>
+                <h1 class="heros-affiche_titre">{{ projet.titre }}</h1>
+
+                <div class="heros-affiche_bas">
+                    <ul class="heros-affiche_roles">
+                        {% for role in projet.roles %}
+                        <li>{{ role }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <ul class="heros-affiche_outils">
+                        {% for outil in projet.outils %}
+                        <li>
+                            <a href="{{ outil.lien }}" target="_blank" rel="noopener" aria-label="{{ outil.nom }}">
+                                <img src="{{ outil.logo }}" alt="" />
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="heros-affiche_infos">
+            <p class="heros-affiche_description">{{ projet.description }}</p>
+            <p class="heros-affiche_ia">{{ projet.ia }}</p>
+        </div>
+    </div>
+</section>

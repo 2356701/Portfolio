@@ -1,0 +1,81 @@
+{# TODO Nat : projet fictif pour tester le design — remplacer toutes les infos et les images #}
+{% set projet = {
+    titre: "Captation multicaméra d’un concert",
+    type: "Projet d’équipe",
+    description: "<strong>Captation</strong> d’un concert rock avec trois caméras et un son multipiste, <strong>synchronisés</strong> au montage.",
+    ia: "Aucune utilisation de l’IA",
+    roles: [
+        "Prise de son multipiste",
+        "Caméra principale",
+        "Montage multicaméra"
+    ],
+    image: "assets/images/projets/captation/hero.webp",
+    imageAlt: "Scène de concert éclairée devant la foule",
+    outils: [
+        { nom: "DaVinci Resolve", logo: "assets/icons/outils/davinci-resolve.svg", lien: "https://www.blackmagicdesign.com/products/davinciresolve" },
+        { nom: "Reaper", logo: "assets/icons/outils/reaper.svg", lien: "https://www.reaper.fm/" }
+    ],
+    etapes: [
+        {
+            titre: "Plan de captation",
+            image: "assets/images/projets/captation/etape-01.webp",
+            alt: "Plan de la salle avec la position des trois caméras",
+            fort: "Trois caméras placées",
+            texte: "sur un plan de la salle pour couvrir la scène, le chanteur et la foule sans angle mort."
+        },
+        {
+            titre: "Prise de son",
+            image: "assets/images/projets/captation/etape-02.webp",
+            alt: "Session Reaper avec les pistes de chaque instrument",
+            fort: "16 pistes enregistrées",
+            texte: "dans Reaper depuis la console, pour pouvoir remixer chaque instrument après le spectacle."
+        },
+        {
+            titre: "Tournage",
+            image: "assets/images/projets/captation/etape-03.webp",
+            alt: "Caméraman filmant le chanteur depuis le bord de la scène",
+            fort: "Un clap au départ",
+            texte: "sur les trois caméras pour simplifier la synchronisation au montage."
+        },
+        {
+            titre: "Montage multicaméra",
+            image: "assets/images/projets/captation/etape-04.webp",
+            alt: "Vue multicaméra dans DaVinci Resolve",
+            fort: "Plans synchronisés",
+            texte: "par la forme d’onde dans DaVinci Resolve, puis coupes en direct dans la vue multicaméra."
+        },
+        {
+            titre: "Mixage et étalonnage",
+            image: "assets/images/projets/captation/etape-05.webp",
+            alt: "Panneau d’étalonnage de DaVinci Resolve",
+            fort: "Couleurs harmonisées",
+            texte: "entre les caméras dans Resolve et mixage final dans Reaper pour un rendu fidèle à la salle."
+        }
+    ],
+    resultat: {
+        titre: "Concert en multicaméra",
+        sousTitre: "Projet fictif",
+        image: "assets/images/projets/captation/resultat.webp",
+        equipe: ["Nathan Fortier", "Coéquipier 1", "Coéquipier 2"]
+    },
+    collaborateurs: "Coéquipier 1, caméra 2. Coéquipier 2, caméra 3 et éclairage.",
+    credits: [
+        "Musique : interprétée par le groupe filmé",
+        "Réalisation, son et montage : Nathan Fortier"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/casque.svg", titre: "Son de salle", texte: "Capter un son propre malgré le volume et l’écho de la salle." },
+        { icone: "assets/icons/defis/horloge.svg", titre: "Synchronisation", texte: "Aligner trois caméras et l’audio qui ne démarrent pas en même temps." }
+    ],
+    solutions: [
+        { fort: "Enregistrer", texte: "chaque instrument séparément depuis la console plutôt qu’avec les micros des caméras." },
+        { fort: "Synchroniser", texte: "toutes les sources par la forme d’onde dans DaVinci Resolve, avec le clap comme repère." }
+    ],
+    suivant: { titre: "Bande-annonce sur Reaper", lien: "projet-reaper.html" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.titre, activePage: "projets", retourHaut: true} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

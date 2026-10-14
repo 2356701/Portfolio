@@ -120,31 +120,12 @@
                 <div class="swiper-slide">
                     <article class="carte-projet">
                         <div class="carte-projet_media">
-                            <img src="assets/images/project-3d-bg.webp" alt="Animation d’une scène 3D" />
+                            <img src="assets/images/project-generique-bg.webp" alt="Générique d’ouverture de l’émission Virage Extrême" />
                         </div>
                         <div class="carte-projet_corps">
-                            <p class="carte-projet_etiquette">Design et animation 3D</p>
-                            <h3 class="carte-projet_titre">Animation d’une scène 3D</h3>
-                            <a href="index.html#projets" class="bouton">
-                                Voir ce projet
-                                <span class="bouton_icone" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-
-                <!-- TODO Nat : les 3 cards ci-dessous sont des copies temporaires
-                     (mêmes images/textes que les 2 premières) — à remplacer par
-                     tes 3 prochains projets. -->
-                <div class="swiper-slide">
-                    <article class="carte-projet">
-                        <div class="carte-projet_media">
-                            <img src="assets/images/project-reaper-bg.webp" alt="Bande-annonce montée et sonorisée sur Reaper" />
-                        </div>
-                        <div class="carte-projet_corps">
-                            <p class="carte-projet_etiquette">Conception et montage sonore</p>
-                            <h3 class="carte-projet_titre">Bande-annonce sur Reaper</h3>
-                            <a href="projet-reaper.html" class="bouton">
+                            <p class="carte-projet_etiquette">Réalisation et montage vidéo</p>
+                            <h3 class="carte-projet_titre">Montage vidéo d’un générique</h3>
+                            <a href="projet-generique.html" class="bouton">
                                 Voir ce projet
                                 <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
@@ -160,7 +141,7 @@
                         <div class="carte-projet_corps">
                             <p class="carte-projet_etiquette">Design et animation 3D</p>
                             <h3 class="carte-projet_titre">Animation d’une scène 3D</h3>
-                            <a href="index.html#projets" class="bouton">
+                            <a href="projet-scene-3d.html" class="bouton">
                                 Voir ce projet
                                 <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
@@ -171,12 +152,29 @@
                 <div class="swiper-slide">
                     <article class="carte-projet">
                         <div class="carte-projet_media">
-                            <img src="assets/images/project-reaper-bg.webp" alt="Bande-annonce montée et sonorisée sur Reaper" />
+                            <img src="assets/images/project-video-musicale-bg.webp" alt="Animation 2D d’une vidéo musicale" />
                         </div>
                         <div class="carte-projet_corps">
-                            <p class="carte-projet_etiquette">Conception et montage sonore</p>
-                            <h3 class="carte-projet_titre">Bande-annonce sur Reaper</h3>
-                            <a href="projet-reaper.html" class="bouton">
+                            <p class="carte-projet_etiquette">Animation 2D et motion design</p>
+                            <h3 class="carte-projet_titre">Animation 2D d’une vidéo musicale</h3>
+                            <a href="projet-video-musicale.html" class="bouton">
+                                Voir ce projet
+                                <span class="bouton_icone" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="swiper-slide">
+                    <article class="carte-projet">
+                        {% include "_partials/_tampon-prix.html" with {prix: "Meilleur site web", variante: "carte"} %}
+                        <div class="carte-projet_media">
+                            <img src="assets/images/project-webjam-bg.webp" alt="Site web WordPress du Q-tipousse" />
+                        </div>
+                        <div class="carte-projet_corps">
+                            <p class="carte-projet_etiquette">Design web en équipe</p>
+                            <h3 class="carte-projet_titre">Site web WordPress en équipe</h3>
+                            <a href="projet-webjam.html" class="bouton">
                                 Voir ce projet
                                 <span class="bouton_icone" aria-hidden="true"></span>
                             </a>
@@ -199,27 +197,27 @@
 
             <div class="grille-outils">
                 <a href="https://www.figma.com/" class="carte-outil" target="_blank" rel="noopener">
-                    <img src="assets/icons/Figma.png" alt="" class="carte-outil_icone" />
+                    <img src="assets/icons/outils/figma.svg" alt="" class="carte-outil_icone" />
                     <p class="carte-outil_nom">Figma</p>
                 </a>
 
                 <a href="https://www.blackmagicdesign.com/products/davinciresolve" class="carte-outil" target="_blank" rel="noopener">
-                    <img src="assets/icons/Resolve.png" alt="" class="carte-outil_icone" />
+                    <img src="assets/icons/outils/davinci-resolve.svg" alt="" class="carte-outil_icone" />
                     <p class="carte-outil_nom">Resolve</p>
                 </a>
 
                 <a href="https://www.reaper.fm/" class="carte-outil" target="_blank" rel="noopener">
-                    <img src="assets/icons/Reaper.png" alt="" class="carte-outil_icone" />
+                    <img src="assets/icons/outils/reaper.svg" alt="" class="carte-outil_icone" />
                     <p class="carte-outil_nom">Reaper</p>
                 </a>
 
                 <a href="https://www.adobe.com/products/photoshop.html" class="carte-outil" target="_blank" rel="noopener">
-                    <img src="assets/icons/Photoshop.png" alt="" class="carte-outil_icone" />
+                    <img src="assets/icons/outils/photoshop.svg" alt="" class="carte-outil_icone" />
                     <p class="carte-outil_nom">Photoshop</p>
                 </a>
 
                 <a href="https://www.adobe.com/products/aftereffects.html" class="carte-outil" target="_blank" rel="noopener">
-                    <img src="assets/icons/After effct.png" alt="" class="carte-outil_icone" />
+                    <img src="assets/icons/outils/after-effects.svg" alt="" class="carte-outil_icone" />
                     <p class="carte-outil_nom">After Effects</p>
                 </a>
             </div>

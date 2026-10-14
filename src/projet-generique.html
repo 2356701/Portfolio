@@ -1,0 +1,85 @@
+{# TODO Nat : ajouter Premiere Pro dans « outils » quand le logo sera dans assets/icons/outils #}
+{# TODO Nat : valider ou réécrire les défis et les solutions #}
+{# TODO Nat : remplacer les images temporaires dans assets/images/projets/generique #}
+{% set projet = {
+    titre: "Montage vidéo d’un générique",
+    type: "Projet individuel",
+    description: "<strong>Montage</strong> d’un générique télé : dérushage, musique, transitions et textes, pensé pour <strong>accrocher</strong> les amateurs de sensations fortes.",
+    ia: "Aucune utilisation de l’IA",
+    roles: [
+        "Dérushage de plusieurs heures de vidéos",
+        "Recherche de la musique",
+        "Montage, transitions et mixage"
+    ],
+    image: "assets/images/projets/generique/hero.webp",
+    imageAlt: "Montage du générique Virage Extrême dans le logiciel de montage",
+    outils: [
+        { nom: "DaVinci Resolve", logo: "assets/icons/outils/davinci-resolve.svg", lien: "https://www.blackmagicdesign.com/products/davinciresolve" },
+        { nom: "After Effects", logo: "assets/icons/outils/after-effects.svg", lien: "https://www.adobe.com/products/aftereffects.html" },
+        { nom: "Reaper", logo: "assets/icons/outils/reaper.svg", lien: "https://www.reaper.fm/" }
+    ],
+    etapes: [
+        {
+            titre: "Le dérushage",
+            image: "assets/images/projets/generique/etape-01.webp",
+            alt: "Chutier rempli des rushs fournis en classe",
+            fort: "Une trentaine de plans",
+            texte: "gardés dans Premiere Pro en triant les rushs par chutiers, pour ne montrer que les plus dynamiques."
+        },
+        {
+            titre: "Choix de la musique",
+            image: "assets/images/projets/generique/etape-02.webp",
+            alt: "Forme d’onde de la musique Adrenaline",
+            fort: "Une musique énergique",
+            texte: "et libre de droits trouvée sur Pixabay, qui sert de repère au rythme des coupes."
+        },
+        {
+            titre: "Premier montage",
+            image: "assets/images/projets/generique/etape-03.webp",
+            alt: "Ligne de temps du premier montage avec les rushs choisis",
+            fort: "Coupes calées",
+            texte: "sur les temps forts de la musique dans Premiere Pro, pour que l’action suive le rythme."
+        },
+        {
+            titre: "Transitions et textes",
+            image: "assets/images/projets/generique/etape-04.webp",
+            alt: "Composition After Effects d’une transition avec masques",
+            fort: "Transitions animées",
+            texte: "dans After Effects avec des masques et des images clés, pour révéler les plans et les titres."
+        },
+        {
+            titre: "Son et exportation",
+            image: "assets/images/projets/generique/etape-05.webp",
+            alt: "Réglages d’exportation de la vidéo finale",
+            fort: "Son normalisé",
+            texte: "dans Reaper pour un volume constant, puis réintégré au montage pour l’exportation finale."
+        }
+    ],
+    resultat: {
+        titre: "Générique Virage Extrême",
+        sousTitre: "Cours de réalisation vidéo",
+        image: "assets/images/projets/generique/resultat.webp",
+        video: "I-aaj9LX9pA",
+        equipe: ["Nathan Fortier"]
+    },
+    collaborateurs: "Travail individuel. Mandat et vidéos fournis par le professeur du cours de réalisation vidéo.",
+    credits: [
+        "Musique : « Adrenaline », Alex-Productions (Pixabay)",
+        "Réalisation vidéo et animation 2D : Nathan Fortier"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/casque.svg", titre: "Montage captivant", texte: "Garder le spectateur accroché en restant sur le rythme rapide de la musique." },
+        { icone: "assets/icons/defis/horloge.svg", titre: "Masques", texte: "Utiliser les masques dans After Effects, une technique pas encore vue en classe." }
+    ],
+    solutions: [
+        { fort: "Caler", texte: "les coupes et les transitions sur les temps forts de la musique pour que chaque changement de plan tombe juste." },
+        { fort: "Apprendre", texte: "les masques à l’aide de tutoriels YouTube et les pratiquer directement sur les plans du générique." }
+    ],
+    suivant: { titre: "Animation d’une scène 3D", lien: "projet-scene-3d.html" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.titre, activePage: "projets", retourHaut: true} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

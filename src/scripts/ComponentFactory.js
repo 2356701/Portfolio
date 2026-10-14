@@ -8,6 +8,8 @@ import GravityInterests from './components/GravityInterests';
 import FondScroll from './components/FondScroll';
 import Defis from './components/Defis';
 import RetourHaut from './components/RetourHaut';
+import ModaleImage from './components/ModaleImage';
+import CollageVideo from './components/CollageVideo';
 
 export default class ComponentFactory {
   constructor() {
@@ -23,6 +25,8 @@ export default class ComponentFactory {
       FondScroll,
       Defis,
       RetourHaut,
+      ModaleImage,
+      CollageVideo,
     };
     this.init();
   }

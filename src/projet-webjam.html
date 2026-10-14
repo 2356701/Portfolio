@@ -1,0 +1,88 @@
+{# TODO Nat : remplacer les images temporaires dans assets/images/projets/webjam #}
+{% set projet = {
+    titre: "Création d’un site web complet en équipe",
+    type: "Projet d’équipe",
+    description: "<strong>Design</strong> du site WordPress de PhytoTech, qui présente le Q-tipousse, une invention fictive créée pour le <strong>Webjam 2026</strong>.",
+    ia: "Images et application d’animations GSAP (Claude, Gemini)",
+    roles: [
+        "Maquettes des pages",
+        "Création du design system",
+        "Animations de survol des cartes et boutons"
+    ],
+    prix: "Meilleur site web",
+    image: "assets/images/projets/webjam/hero.webp",
+    video: "assets/videos/hero-webjam",
+    imageAlt: "Pages du site web du Q-tipousse",
+    outils: [
+        { nom: "Figma", logo: "assets/icons/outils/figma.svg", lien: "https://www.figma.com/" },
+        { nom: "WordPress", logo: "assets/icons/outils/wordpress.svg", lien: "https://wordpress.org/" },
+        { nom: "VS Code", logo: "assets/icons/outils/vs-code.svg", lien: "https://code.visualstudio.com/" },
+        { nom: "GitHub", logo: "assets/icons/outils/github.svg", lien: "https://github.com/" }
+    ],
+    etapes: [
+        {
+            titre: "Idée et plan du site",
+            image: "assets/images/projets/webjam/etape-01.webp",
+            alt: "Idées du remue-méninges et plan des pages du site",
+            fort: "Un remue-méninges en équipe",
+            texte: "dès le début du défi pour choisir le Q-tipousse et PhytoTech, puis le contenu de chaque page et la navigation, pour que tout le monde parte du même plan."
+        },
+        {
+            titre: "Wireframes et design system",
+            image: "assets/images/projets/webjam/etape-02.webp",
+            alt: "Couleurs, typographies et composants du design system dans Figma",
+            fort: "En parallèle :",
+            texte: "Éli fait des wireframes simples pendant que je bâtis un design system complet dans Figma, pour gagner du temps."
+        },
+        {
+            titre: "Maquettes finales",
+            image: "assets/images/projets/webjam/etape-03.webp",
+            alt: "Maquettes finales des pages du site dans Figma",
+            fort: "16 heures de design",
+            texte: "dans Figma avec les vrais textes et images, en faisant le point avec l’équipe toutes les 30 minutes."
+        },
+        {
+            titre: "De HTML/CSS à WordPress",
+            image: "assets/images/projets/webjam/etape-04.webp",
+            alt: "Thème WordPress du site ouvert dans VS Code",
+            fort: "Le HTML/CSS d’abord,",
+            texte: "codé à plusieurs sur la même branche GitHub (une page par personne, chaque commit annoncé à voix haute), puis converti en PHP pour un thème WordPress avec CPT, ACF et formulaire."
+        },
+        {
+            titre: "Animations",
+            image: "assets/images/projets/webjam/etape-05.webp",
+            alt: "Animation de survol d’une carte du site",
+            fort: "Animations codées à la main :",
+            texte: "je fais les survols des cartes et des boutons, Éli fait les tiroirs. Pour les animations GSAP, on adapte des exemples du site de GSAP avec Claude et Gemini."
+        }
+    ],
+    resultat: {
+        titre: "Q-tipousse",
+        sousTitre: "Webjam 2026 — PhytoTech",
+        image: "assets/images/projets/webjam/resultat.webp",
+        lien: "https://ebousquet.dectim.ca/webjam/",
+        equipe: ["Nathan Fortier", "Miro Leblanc", "Yoan Robitaille", "Éli Bousquet"]
+    },
+    collaborateurs: "Miro Leblanc (intégration et back-end WordPress), Yoan Robitaille (intégration HTML/CSS) et Éli Bousquet (intégration et animations GSAP).",
+    credits: [
+        "Design et maquettes : Nathan Fortier",
+        "Back-end WordPress : Miro Leblanc",
+        "Intégration : Yoan Robitaille et Éli Bousquet",
+        "Animations : Nathan Fortier (survol des cartes et boutons) et Éli Bousquet (tiroirs)"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/casque.svg", titre: "Design cohérent", texte: "Garder le même style alors que trois personnes intègrent le site en même temps." },
+        { icone: "assets/icons/defis/horloge.svg", titre: "Animations GSAP", texte: "Adapter des animations trouvées sur le site de GSAP au design du Q-tipousse." }
+    ],
+    solutions: [
+        { fort: "Créer", texte: "un design system dans Figma que toute l’équipe suit, avec les couleurs, les typographies et les composants." },
+        { fort: "Adapter", texte: "les exemples de GSAP au site avec l’aide de Claude et Gemini, puis les ajuster à la main." }
+    ],
+    suivant: { titre: "Bande-annonce sur Reaper", lien: "projet-reaper.html" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.titre, activePage: "projets", retourHaut: true} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

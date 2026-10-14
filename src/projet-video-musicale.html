@@ -1,0 +1,83 @@
+{# TODO Nat : remplacer les images temporaires dans assets/images/projets/video-musicale #}
+{# TODO Nat : ajouter l’identifiant YouTube dans resultat.video quand la vidéo sera en ligne #}
+{# TODO Nat : ajouter le nom de l’artiste dans le crédit de la musique #}
+{% set projet = {
+    titre: "Animation 2D d’une vidéo musicale",
+    type: "Projet individuel",
+    description: "<strong>Animation</strong> 2D des paroles d’un rap jeunesse sur les 66 livres de la Bible, avec un effet <strong>karaoké</strong> calé sur la voix.",
+    ia: "Expressions After Effects (Claude, Gemini)",
+    roles: [
+        "Direction visuelle et palette",
+        "Animation des paroles mot par mot",
+        "Synchronisation à la voix"
+    ],
+    image: "assets/images/projets/video-musicale/hero.webp",
+    imageAlt: "Paroles animées de la vidéo musicale dans After Effects",
+    outils: [
+        { nom: "After Effects", logo: "assets/icons/outils/after-effects.svg", lien: "https://www.adobe.com/products/aftereffects.html" }
+    ],
+    etapes: [
+        {
+            titre: "Direction visuelle",
+            image: "assets/images/projets/video-musicale/etape-01.webp",
+            alt: "Palette de couleurs rouge, jaune et bleu sur fond sombre",
+            fort: "Palette « Punch primaire »",
+            texte: "rouge, jaune et bleu sur fond sombre, choisie pour capter l’attention des 6 à 12 ans."
+        },
+        {
+            titre: "Découpage des paroles",
+            image: "assets/images/projets/video-musicale/etape-02.webp",
+            alt: "Calques de texte séparés par mot dans After Effects",
+            fort: "Un calque par mot",
+            texte: "dans After Effects, pour pouvoir animer chaque mot séparément."
+        },
+        {
+            titre: "Repérage du rythme",
+            image: "assets/images/projets/video-musicale/etape-03.webp",
+            alt: "Marqueurs posés sur la piste audio dans After Effects",
+            fort: "Des marqueurs",
+            texte: "posés sur l’audio à chaque mot chanté, pour savoir exactement où placer les animations."
+        },
+        {
+            titre: "Effet karaoké",
+            image: "assets/images/projets/video-musicale/etape-04.webp",
+            alt: "Mot qui tombe et change de couleur au moment où il est chanté",
+            fort: "Un preset d’animation",
+            texte: "(chute et passage au rouge) créé dans After Effects et appliqué à chaque mot sur son marqueur."
+        },
+        {
+            titre: "Rebonds et finition",
+            image: "assets/images/projets/video-musicale/etape-05.webp",
+            alt: "Courbe de rebond appliquée à la position d’un mot",
+            fort: "Des expressions de rebond",
+            texte: "sur la position Y, trouvées avec Claude et Gemini, pour un mouvement vivant et naturel."
+        }
+    ],
+    resultat: {
+        titre: "Le rap des héros",
+        sousTitre: "Vidéo de paroles animée",
+        image: "assets/images/projets/video-musicale/resultat.webp",
+        video: "",
+        equipe: ["Nathan Fortier"]
+    },
+    collaborateurs: "Travail individuel.",
+    credits: [
+        "Musique : « Le rap des héros »",
+        "Animation 2D : Nathan Fortier"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/horloge.svg", titre: "Synchronisation", texte: "Faire réagir chaque mot exactement au moment où il est chanté." },
+        { icone: "assets/icons/defis/casque.svg", titre: "Public jeune", texte: "Garder l’attention d’enfants de 6 à 12 ans pendant toute la chanson." }
+    ],
+    solutions: [
+        { fort: "Placer", texte: "un marqueur sur l’audio pour chaque mot et y appliquer le même preset, pour un résultat constant." },
+        { fort: "Animer", texte: "avec des couleurs vives et des rebonds calculés par des expressions After Effects." }
+    ],
+    suivant: { titre: "Site web WordPress en équipe", lien: "projet-webjam.html" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.titre, activePage: "projets", retourHaut: true} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

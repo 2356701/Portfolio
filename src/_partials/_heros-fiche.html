@@ -1,0 +1,51 @@
+<section class="heros-fiche" data-fond="clair">
+    <div class="wrapper">
+        <a href="index.html#projets" class="bouton heros-fiche_retour">
+            <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
+            Tous les projets
+        </a>
+
+        <div class="heros-fiche_grille">
+            <div class="heros-fiche_texte">
+                <p class="heros-fiche_type">{{ projet.type }}</p>
+                <h1 class="heros-fiche_titre">{{ projet.titre }}</h1>
+                <p class="heros-fiche_description">{{ projet.description }}</p>
+            </div>
+
+            <div class="heros-fiche_media">
+                <img src="{{ projet.image }}" alt="{{ projet.imageAlt }}" />
+            </div>
+        </div>
+
+        <dl class="heros-fiche_bande">
+            <div>
+                <dt>Rôle</dt>
+                <dd>
+                    <ul>
+                        {% for role in projet.roles %}
+                        <li>{{ role }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </div>
+            <div>
+                <dt>Outils</dt>
+                <dd>
+                    <ul class="heros-fiche_outils">
+                        {% for outil in projet.outils %}
+                        <li>
+                            <a href="{{ outil.lien }}" target="_blank" rel="noopener" aria-label="{{ outil.nom }}">
+                                <img src="{{ outil.logo }}" alt="" />
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </div>
+            <div>
+                <dt>IA</dt>
+                <dd>{{ projet.ia }}</dd>
+            </div>
+        </dl>
+    </div>
+</section>

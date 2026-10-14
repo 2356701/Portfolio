@@ -97,6 +97,23 @@
         }
     }
 
+    &_lien {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        margin: auto;
+        width: fit-content;
+        border-color: var(--color-primary);
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        box-shadow: var(--shadow-card-lg);
+
+        @include survol {
+            background-color: var(--color-primary-deep);
+            border-color: var(--color-primary-deep);
+        }
+    }
+
     &_equipe {
         position: absolute;
         right: 0;

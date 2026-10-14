@@ -1,0 +1,84 @@
+{# TODO Nat : valider ou réécrire les défis et les solutions #}
+{# TODO Nat : remplacer les images temporaires dans assets/images/projets/scene-3d #}
+{% set projet = {
+    titre: "Animation d’une scène 3D complexe",
+    type: "Projet individuel",
+    description: "<strong>Construction</strong> et animation d’une scène 3D au choix, avec une <strong>transition</strong> pour l’intégrer à une boucle vidéo du cours.",
+    ia: "Idée et scénarimage (Claude, Gemini)",
+    roles: [
+        "Concept et scénarimage",
+        "Terrain, assets et éclairage",
+        "Animation et rendu"
+    ],
+    image: "assets/images/projets/scene-3d/hero.webp",
+    imageAlt: "Scène 3D de l’oasis égyptienne dans Blender",
+    outils: [
+        { nom: "Blender", logo: "assets/icons/outils/blender.svg", lien: "https://www.blender.org/" },
+        { nom: "DaVinci Resolve", logo: "assets/icons/outils/davinci-resolve.svg", lien: "https://www.blackmagicdesign.com/products/davinciresolve" }
+    ],
+    etapes: [
+        {
+            titre: "Recherche d’idées",
+            image: "assets/images/projets/scene-3d/etape-01.webp",
+            alt: "Planche des quatre idées de départ : espace, forêt, désert et Égypte",
+            fort: "4 univers comparés",
+            texte: "avec Claude et Gemini pour trouver l’idée la plus riche et monter un scénarimage."
+        },
+        {
+            titre: "Évolution du concept",
+            image: "assets/images/projets/scene-3d/etape-02.webp",
+            alt: "Images de référence du désert américain et de l’oasis égyptienne",
+            fort: "Des références visuelles",
+            texte: "pour passer du désert américain à l’oasis égyptienne et fixer l’ambiance avant de modéliser."
+        },
+        {
+            titre: "Terrain et assets",
+            image: "assets/images/projets/scene-3d/etape-03.webp",
+            alt: "Terrain de l’oasis modélisé dans Blender avec les assets importés",
+            fort: "Terrain modélisé",
+            texte: "dans Blender et assets importés de Sketchfab ou Fab, pour me concentrer sur l’animation."
+        },
+        {
+            titre: "Animation",
+            image: "assets/images/projets/scene-3d/etape-04.webp",
+            alt: "Hippopotame, oiseaux et porte animés dans la scène",
+            fort: "Images clés",
+            texte: "dans Blender pour l’hippopotame, les oiseaux et la porte, avec vent et particules pour animer le décor."
+        },
+        {
+            titre: "Optimisation et rendu",
+            image: "assets/images/projets/scene-3d/etape-05.webp",
+            alt: "Réglages de rendu de la scène dans Blender",
+            fort: "Rendu allégé",
+            texte: "dans Blender : moins d’échantillons, modèles allégés, résolution et particules réduites pour accélérer le calcul."
+        }
+    ],
+    resultat: {
+        titre: "Route vers l’infini",
+        sousTitre: "Cours d’animation 3D",
+        image: "assets/images/projets/scene-3d/resultat.webp",
+        video: "p63bjjIv2lQ",
+        equipe: ["Nathan Fortier"]
+    },
+    collaborateurs: "Travail individuel, intégré à la route en boucle infinie à laquelle chaque étudiant du cours ajoute sa scène.",
+    credits: [
+        "Modèles 3D : Sketchfab, Fab, TurboSquid et Free3D",
+        "Sons : Freesound",
+        "Réalisation et création 3D : Nathan Fortier"
+    ],
+    defis: [
+        { icone: "assets/icons/defis/casque.svg", titre: "Trouver l’idée", texte: "Choisir un concept original parmi plusieurs univers possibles." },
+        { icone: "assets/icons/defis/horloge.svg", titre: "Temps de rendu", texte: "Rendre une scène chargée d’assets et d’animations dans les délais." }
+    ],
+    solutions: [
+        { fort: "Explorer", texte: "quatre univers avec l’aide de Claude et Gemini, puis faire évoluer l’idée jusqu’à l’oasis égyptienne." },
+        { fort: "Optimiser", texte: "la scène grâce à la documentation de Blender et à des tutoriels YouTube : assets allégés et réglages de rendu ajustés pour réduire le temps de calcul." }
+    ],
+    suivant: { titre: "Animation 2D d’une vidéo musicale", lien: "projet-video-musicale.html" }
+} %}
+
+{% include "_partials/_header.html" with {title: projet.titre, activePage: "projets", retourHaut: true} %}
+
+{% include "_partials/_fiche-projet.html" %}
+
+{% include "_partials/_footer.html" %}

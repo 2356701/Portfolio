@@ -1,0 +1,64 @@
+.modale-image {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: var(--spacing-xl) var(--spacing-md);
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+
+    &[open] {
+        display: grid;
+        place-items: center;
+    }
+
+    &::backdrop {
+        background-color: rgb(38 38 38 / 0.9);
+    }
+
+    &_image {
+        display: block;
+        max-width: min(100%, 1400px);
+        max-height: 100%;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-card-lg);
+        object-fit: contain;
+    }
+
+    &_fermer {
+        position: fixed;
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+        display: grid;
+        place-items: center;
+        width: 60px;
+        height: 60px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        cursor: pointer;
+        transition: $transition-mouvement;
+        @include souleve;
+        @include appui;
+    }
+
+    &_icone {
+        @include icone-masque('plus.svg', 20px, 20px);
+        transform: rotate(45deg);
+    }
+
+    @media screen and (width <= $breakpoint-sm) {
+        padding: var(--spacing-lg) var(--spacing-sm);
+
+        &_fermer {
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            width: 48px;
+            height: 48px;
+        }
+    }
+}

@@ -1,47 +1,65 @@
 <main class="fiche" data-component="FondScroll">
-    <section class="fiche-heros" data-fond="clair">
-        <div class="wrapper fiche-heros_grille">
-            <a href="index.html#projets" class="bouton fiche-heros_retour">
+    <section class="fiche-heros" data-fond="sombre">
+        <div class="wrapper">
+            <a href="index.html#projets" class="bouton bouton_inverse fiche-heros_retour">
                 <span class="bouton_icone bouton_icone-retour" aria-hidden="true"></span>
                 Tous les projets
             </a>
 
-            <h1 class="fiche-heros_titre">{{ projet.titre }}</h1>
+            <div class="fiche-heros_grille">
+                <div class="fiche-heros_texte">
+                    <p class="fiche-heros_type">{{ projet.type }}</p>
+                    <h1 class="fiche-heros_titre">{{ projet.titre }}</h1>
+                    <p class="fiche-heros_description">{{ projet.description }}</p>
+                </div>
 
-            <div class="fiche-heros_infos">
-                <p class="fiche-heros_description">
-                    <span class="fiche-heros_type">{{ projet.type }}</span> : {{ projet.description }}
-                </p>
+                <div class="fiche-heros_media">
+                    {% if projet.prix %}
+                    {% include "_tampon-prix.html" with {prix: projet.prix} %}
+                    {% endif %}
+                    <div class="fiche-heros_collage" role="img" aria-label="{{ projet.imageAlt }}"{% if projet.video %} data-component="CollageVideo"{% endif %}>
+                        {% for i in 1..3 %}
+                        <span style="background-image: url('{{ projet.image }}')">
+                            {% if projet.video %}
+                            <video poster="{{ projet.image }}" muted loop playsinline autoplay preload="auto" aria-hidden="true">
+                                <source src="{{ projet.video }}.webm" type="video/webm" />
+                                <source src="{{ projet.video }}.mp4" type="video/mp4" />
+                            </video>
+                            {% endif %}
+                        </span>
+                        {% endfor %}
+                    </div>
 
-                <div class="fiche-heros_meta">
-                    <p class="fiche-heros_meta-titre">{{ projet.ia }}</p>
+                    <div class="fiche-heros_details">
+                        <div class="fiche-heros_groupe">
+                            <p class="fiche-heros_etiquette">Rôles</p>
+                            <ul class="fiche-heros_roles">
+                                {% for role in projet.roles %}
+                                <li>{{ role }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-                    <div>
-                        <p class="fiche-heros_meta-titre">Rôle</p>
-                        <ul class="fiche-heros_roles">
-                            {% for role in projet.roles %}
-                            <li>{{ role }}</li>
-                            {% endfor %}
-                        </ul>
+                        <div class="fiche-heros_groupe fiche-heros_groupe-outils">
+                            <p class="fiche-heros_etiquette">Outils</p>
+                            <ul class="fiche-heros_outils">
+                                {% for outil in projet.outils %}
+                                <li>
+                                    <a href="{{ outil.lien }}" target="_blank" rel="noopener" aria-label="{{ outil.nom }}">
+                                        <img src="{{ outil.logo }}" alt="" />
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fiche-heros_groupe fiche-heros_groupe-ia">
+                        <p class="fiche-heros_etiquette">Utilisation de l’IA</p>
+                        <p class="fiche-heros_ia">{{ projet.ia }}</p>
                     </div>
                 </div>
             </div>
-
-            <div class="fiche-heros_collage" role="img" aria-label="{{ projet.imageAlt }}">
-                <span style="background-image: url('{{ projet.image }}')"></span>
-                <span style="background-image: url('{{ projet.image }}')"></span>
-                <span style="background-image: url('{{ projet.image }}')"></span>
-            </div>
-
-            <ul class="fiche-heros_outils">
-                {% for outil in projet.outils %}
-                <li>
-                    <a href="{{ outil.lien }}" target="_blank" rel="noopener" aria-label="{{ outil.nom }}">
-                        <img src="{{ outil.logo }}" alt="" />
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
         </div>
     </section>
 
@@ -61,7 +79,9 @@
                     </div>
 
                     <div class="etape_media">
-                        <img src="{{ etape.image }}" alt="{{ etape.alt }}" loading="lazy" />
+                        <button type="button" class="etape_agrandir" data-modale-image aria-label="Agrandir l’image : {{ etape.alt }}">
+                            <img src="{{ etape.image }}" alt="{{ etape.alt }}" loading="lazy" />
+                        </button>
                     </div>
 
                     <p class="etape_texte"><strong>{{ etape.fort }}</strong> {{ etape.texte }}</p>
@@ -69,6 +89,13 @@
                 {% endfor %}
             </ol>
         </div>
+
+        <dialog class="modale-image" data-component="ModaleImage" aria-label="Image agrandie">
+            <button type="button" class="modale-image_fermer" aria-label="Fermer l’image">
+                <span class="modale-image_icone" aria-hidden="true"></span>
+            </button>
+            <img class="modale-image_image" src="" alt="" />
+        </dialog>
     </section>
 
     <section class="fiche-resultat" data-fond="clair">
@@ -86,6 +113,13 @@
 
                     {% if projet.resultat.video %}
                     {% include "_bouton-lecture.html" with {label: "Voir la vidéo : " ~ projet.resultat.titre} %}
+                    {% endif %}
+
+                    {% if projet.resultat.lien %}
+                    <a href="{{ projet.resultat.lien }}" class="bouton fiche-resultat_lien" target="_blank" rel="noopener">
+                        Visiter le site
+                        <span class="bouton_icone" aria-hidden="true"></span>
+                    </a>
                     {% endif %}
 
                     <ul class="fiche-resultat_equipe">

@@ -1,7 +1,7 @@
 {% set projet = {
     titre: "Montage et création sonore de bande-annonce sur Reaper",
     type: "Projet d’équipe",
-    description: "<strong>Création</strong> de la bande son d’une bande-annonce de jeu vidéo. L’objectif était de <strong>synchroniser</strong> parfaitement le son à l’image pour <strong>reproduire</strong> un rendu professionnel et réaliste.",
+    description: "<strong>Création</strong> de la bande son d’une bande-annonce de jeu vidéo, <strong>synchronisée</strong> à l’image pour un rendu professionnel.",
     ia: "Aucune utilisation de l’IA",
     roles: [
         "Mixage des effets sonores",
@@ -12,7 +12,7 @@
     imageAlt: "Projet Reaper ouvert sur un ordinateur portable",
     outils: [
         { nom: "Reaper", logo: "assets/icons/outils/reaper.svg", lien: "https://www.reaper.fm/" },
-        { nom: "DaVinci Resolve", logo: "assets/icons/outils/resolve.webp", lien: "https://www.blackmagicdesign.com/products/davinciresolve" }
+        { nom: "DaVinci Resolve", logo: "assets/icons/outils/davinci-resolve.svg", lien: "https://www.blackmagicdesign.com/products/davinciresolve" }
     ],
     etapes: [
         {
@@ -71,7 +71,7 @@
         { fort: "Créer", texte: "sa propre musique à l’aide d’instruments MIDI et de ma connaissance musicale qui se lie bien avec le projet." },
         { fort: "Bloquer", texte: "une heure par semaine de travail d’équipe et utiliser Discord et Teams (pour le transfert de fichier)." }
     ],
-    suivant: { titre: "Animation d’une scène 3D", lien: "index.html#projets" }
+    suivant: { titre: "Montage vidéo d’un générique", lien: "projet-generique.html" }
 } %}
 
 {% include "_partials/_header.html" with {title: projet.resultat.titre, activePage: "projets", retourHaut: true} %}
