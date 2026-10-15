@@ -17,10 +17,6 @@
     transform: rotate(var(--rotation));
     transition: $transition-mouvement;
 
-    &:nth-child(1) {
-        padding-right: calc(var(--spacing-md) + 70px);
-    }
-
     &:nth-child(2) {
         --rotation: 4deg;
         margin-left: -70px;
@@ -128,10 +124,6 @@
         min-height: 0;
         padding: var(--spacing-lg) var(--spacing-mmd);
         border-radius: var(--radius);
-
-        &:nth-child(1) {
-            padding-right: var(--spacing-mmd);
-        }
 
         &:nth-child(2) {
             --rotation: 2deg;

@@ -11,6 +11,9 @@
                     <p class="fiche-heros_type">{{ projet.type }}</p>
                     <h1 class="fiche-heros_titre">{{ projet.titre }}</h1>
                     <p class="fiche-heros_description">{{ projet.description }}</p>
+                    {% if projet.contexte %}
+                    <p class="fiche-heros_contexte">{{ projet.contexte }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="fiche-heros_media">
@@ -78,10 +81,19 @@
                         <p class="etape_numero" aria-hidden="true">{{ "%02d"|format(loop.index) }}</p>
                     </div>
 
-                    <div class="etape_media">
-                        <button type="button" class="etape_agrandir" data-modale-image aria-label="Agrandir l’image : {{ etape.alt }}">
+                    <div class="etape_media"{% if etape.imageApres %} data-component="AvantApres"{% endif %}>
+                        <button type="button" class="etape_agrandir" data-modale-image data-vue="avant" aria-label="Agrandir l’image : {{ etape.alt }}">
                             <img src="{{ etape.image }}" alt="{{ etape.alt }}" loading="lazy" />
                         </button>
+                        {% if etape.imageApres %}
+                        <button type="button" class="etape_agrandir" data-modale-image data-vue="apres" aria-label="Agrandir l’image : {{ etape.altApres }}" inert>
+                            <img src="{{ etape.imageApres }}" alt="{{ etape.altApres }}" loading="lazy" />
+                        </button>
+                        <div class="etape_bascule" role="group" aria-label="Comparer avant et après">
+                            <button type="button" class="etape_bascule-bouton is-active" data-bascule="avant" aria-pressed="true">Avant</button>
+                            <button type="button" class="etape_bascule-bouton" data-bascule="apres" aria-pressed="false">Après</button>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <p class="etape_texte"><strong>{{ etape.fort }}</strong> {{ etape.texte }}</p>

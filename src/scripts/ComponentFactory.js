@@ -10,6 +10,7 @@ import Defis from './components/Defis';
 import RetourHaut from './components/RetourHaut';
 import ModaleImage from './components/ModaleImage';
 import CollageVideo from './components/CollageVideo';
+import AvantApres from './components/AvantApres';
 
 export default class ComponentFactory {
   constructor() {
@@ -27,6 +28,7 @@ export default class ComponentFactory {
       RetourHaut,
       ModaleImage,
       CollageVideo,
+      AvantApres,
     };
     this.init();
   }

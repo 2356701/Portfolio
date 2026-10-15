@@ -61,6 +61,19 @@
         }
     }
 
+    &_contexte {
+        margin: var(--spacing-mmd) 0 0;
+        max-width: 460px;
+        font-size: var(--font-size-body);
+        line-height: 1.6;
+        color: var(--color-white);
+        opacity: 0.8;
+
+        strong {
+            font-weight: var(--fw-bold);
+        }
+    }
+
     &_groupe {
         display: flex;
         flex: 0 1 auto;

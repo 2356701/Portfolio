@@ -65,6 +65,56 @@
                 transform: scale(1.03);
             }
         }
+
+        [data-component='AvantApres'] & {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            transition: opacity $duree $ease-fondu;
+
+            &[inert] {
+                z-index: 0;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+    }
+
+    &_bascule {
+        position: absolute;
+        z-index: 2;
+        top: var(--spacing-mmd);
+        left: 50%;
+        display: flex;
+        gap: 4px;
+        padding: 4px;
+        background-color: var(--color-white);
+        border-radius: var(--radius-rond);
+        box-shadow: var(--shadow-pill);
+        transform: translateX(-50%);
+    }
+
+    &_bascule-bouton {
+        padding: 10px 24px;
+        background: none;
+        border: 0;
+        border-radius: var(--radius-rond);
+        font-family: var(--font-secondary);
+        font-weight: var(--fw-heavy);
+        font-size: 16px;
+        color: var(--color-text);
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color $duree-rapide $ease-fondu, color $duree-rapide $ease-fondu;
+
+        @include survol {
+            color: var(--color-primary);
+        }
+
+        &.is-active {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
     }
 
     &_texte {

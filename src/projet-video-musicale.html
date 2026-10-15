@@ -1,15 +1,15 @@
-{# TODO Nat : remplacer les images temporaires dans assets/images/projets/video-musicale #}
-{# TODO Nat : ajouter l’identifiant YouTube dans resultat.video quand la vidéo sera en ligne #}
-{# TODO Nat : ajouter le nom de l’artiste dans le crédit de la musique #}
 {% set projet = {
     titre: "Animation 2D d’une vidéo musicale",
     type: "Projet individuel",
     description: "<strong>Animation</strong> 2D des paroles d’un rap jeunesse sur les 66 livres de la Bible, avec un effet <strong>karaoké</strong> calé sur la voix.",
+    contexte: "<strong>Premier contrat payé</strong> en dehors de l’école. Seules la musique et les paroles ont été fournies : le public cible, des enfants du primaire, était connu, mais aucune autre consigne n’a été donnée, ce qui a laissé carte blanche pour toute la direction visuelle.",
     ia: "Expressions After Effects (Claude, Gemini)",
     roles: [
-        "Direction visuelle et palette",
-        "Animation des paroles mot par mot",
-        "Synchronisation à la voix"
+        "Direction artistique comic book et palette",
+        "Animation karaoké des paroles mot par mot",
+        "Création des arrière-plans",
+        "Animation des entrées et sorties",
+        "Unification de la vidéo complète"
     ],
     image: "assets/images/projets/video-musicale/hero.webp",
     imageAlt: "Paroles animées de la vidéo musicale dans After Effects",
@@ -19,51 +19,51 @@
     ],
     etapes: [
         {
-            titre: "Direction visuelle",
+            titre: "Direction comic book",
             image: "assets/images/projets/video-musicale/etape-01.webp",
             alt: "Palette de couleurs rouge, jaune et bleu sur fond sombre",
-            fort: "Palette « Punch primaire »",
-            texte: "rouge, jaune et bleu sur fond sombre, choisie pour capter l’attention des 6 à 12 ans."
+            fort: "Un style bande dessinée",
+            texte: "avec la palette « Punch primaire » et un thème comic book repris dans les arrière-plans et les animations, pour capter l’attention des 6 à 12 ans."
         },
         {
-            titre: "Découpage des paroles",
+            titre: "Paroles en karaoké",
             image: "assets/images/projets/video-musicale/etape-02.webp",
-            alt: "Calques de texte séparés par mot dans After Effects",
+            alt: "Couleur de fond animée mot par mot pour l’effet karaoké dans After Effects",
             fort: "Un calque par mot",
-            texte: "dans After Effects, pour pouvoir animer chaque mot séparément."
+            texte: "dans After Effects, animé sur un marqueur audio pour s’allumer au moment exact où il est chanté."
         },
         {
-            titre: "Repérage du rythme",
+            titre: "Arrière-plans",
             image: "assets/images/projets/video-musicale/etape-03.webp",
-            alt: "Marqueurs posés sur la piste audio dans After Effects",
-            fort: "Des marqueurs",
-            texte: "posés sur l’audio à chaque mot chanté, pour savoir exactement où placer les animations."
+            alt: "Arrière-plan comic book avec nuages et éclairs derrière les paroles dans After Effects",
+            fort: "Des calques d’effets",
+            texte: "dans After Effects pour créer les arrière-plans de chaque section derrière les paroles."
         },
         {
-            titre: "Effet karaoké",
+            titre: "Entrées et sorties",
             image: "assets/images/projets/video-musicale/etape-04.webp",
-            alt: "Mot qui tombe et change de couleur au moment où il est chanté",
-            fort: "Un preset d’animation",
-            texte: "(chute et passage au rouge) créé dans After Effects et appliqué à chaque mot sur son marqueur."
+            alt: "Effet Griffonnage animé sur une étoile dans After Effects",
+            fort: "Images et effets animés",
+            texte: "à leur entrée et à leur sortie dans toute la vidéo, avec des rebonds par expressions."
         },
         {
-            titre: "Rebonds et finition",
+            titre: "Unification",
             image: "assets/images/projets/video-musicale/etape-05.webp",
-            alt: "Courbe de rebond appliquée à la position d’un mot",
-            fort: "Des expressions de rebond",
-            texte: "sur la position Y, trouvées avec Claude et Gemini, pour un mouvement vivant et naturel."
+            alt: "Composition principale réunissant toutes les sections de la vidéo dans After Effects",
+            fort: "Une vidéo cohérente",
+            texte: "en harmonisant couleurs, polices et animations de toutes les sections dans After Effects, pour un tout fluide."
         }
     ],
     resultat: {
         titre: "Le rap des héros",
         sousTitre: "Vidéo de paroles animée",
         image: "assets/images/projets/video-musicale/resultat.webp",
-        video: "",
+        video: "FisgSUF6pG4",
         equipe: ["Nathan Fortier"]
     },
-    collaborateurs: "Travail individuel.",
+    collaborateurs: "Mandat de NV Junior, animation réalisée seul par Nathan.",
     credits: [
-        "Musique : « Le rap des héros »",
+        "Musique et paroles : « Le rap des héros », NV Junior",
         "Animation 2D : Nathan Fortier"
     ],
     defis: [
