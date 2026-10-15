@@ -5,22 +5,24 @@ const LABELS = [
   { text: 'Montage vidéo', px: 84.3, py: 56.0, rot: -35 },
   { text: 'Gestion événementielle', px: 66.2, py: 58.9, rot: 2 },
   { text: 'Modélisation 3D', px: 79.4, py: 74.1, rot: 3 },
-  { text: 'Batterie', px: 48.0, py: 74.1, rot: -3 },
-  { text: 'Motion Graphic', px: 29.9, py: 78.4, rot: -35 },
-  { text: 'Effets Visuels', px: 43.9, py: 91.4, rot: 2 },
-  { text: 'Design Graphique', px: 63.5, py: 90.1, rot: -2 },
-  { text: 'Sonorisation de scene', px: 86.4, py: 85.8, rot: -3 },
+  { text: 'Batterie', px: 48.0, py: 74.1, rot: -3, loisir: true },
+  { text: 'Motion graphic', px: 29.9, py: 78.4, rot: -35 },
+  { text: 'Effets visuels', px: 43.9, py: 91.4, rot: 2 },
+  { text: 'Design graphique', px: 63.5, py: 90.1, rot: -2 },
+  { text: 'Sonorisation de scène', px: 86.4, py: 85.8, rot: -3, loisir: true },
+  { text: 'Cinéma', px: 40.0, py: 60.0, rot: 4, loisir: true },
 ];
 
 const MOBILE_LABELS = [
   { text: 'Montage vidéo', px: 30, py: 40, rot: -6 },
-  { text: 'Gestion Événementielle', px: 70, py: 38, rot: 4 },
+  { text: 'Gestion événementielle', px: 70, py: 38, rot: 4 },
   { text: 'Modélisation 3D', px: 28, py: 64, rot: 5 },
-  { text: 'Batterie', px: 70, py: 64, rot: -4 },
-  { text: 'Motion Graphic', px: 50, py: 76, rot: 3 },
-  { text: 'Effets Visuels', px: 29, py: 87, rot: -5 },
-  { text: 'Design Graphique', px: 70, py: 87, rot: 4 },
-  { text: 'Sonorisation de scene', px: 50, py: 96, rot: -2 },
+  { text: 'Batterie', px: 70, py: 64, rot: -4, loisir: true },
+  { text: 'Motion graphic', px: 50, py: 76, rot: 3 },
+  { text: 'Effets visuels', px: 29, py: 87, rot: -5 },
+  { text: 'Design graphique', px: 70, py: 87, rot: 4 },
+  { text: 'Sonorisation de scène', px: 50, py: 96, rot: -2, loisir: true },
+  { text: 'Cinéma', px: 50, py: 52, rot: 3, loisir: true },
 ];
 
 const MOBILE_BREAKPOINT = 715;
@@ -120,7 +122,9 @@ export default class GravityInterests {
 
     labels.forEach((L) => {
       const el = document.createElement('span');
-      el.className = 'interets_pastille';
+      el.className = L.loisir
+        ? 'interets_pastille interets_pastille-loisir'
+        : 'interets_pastille';
       el.textContent = L.text;
       this.card.appendChild(el);
 

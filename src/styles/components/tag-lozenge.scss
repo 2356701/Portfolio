@@ -50,6 +50,37 @@
         color: var(--color-white);
     }
 
+    &_legende {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-mmd);
+        margin: var(--spacing-ssm) 0 0;
+        padding: 0;
+        list-style: none;
+        font-weight: var(--fw-semibold);
+        font-size: var(--font-size-body);
+        color: var(--color-white);
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+
+            &::before {
+                content: '';
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background-color: var(--color-white);
+            }
+
+            &.interets_legende-loisir::before {
+                background-color: var(--color-dark);
+                box-shadow: 0 0 0 1px rgb(255 255 255 / 0.5);
+            }
+        }
+    }
+
     &_pastille {
         position: absolute;
         top: 0;
@@ -69,6 +100,11 @@
 
         &:active {
             cursor: grabbing;
+        }
+
+        &-loisir {
+            background-color: var(--color-dark);
+            color: var(--color-white);
         }
 
         @media screen and (width <= $breakpoint-lg) {

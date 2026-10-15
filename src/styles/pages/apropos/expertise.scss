@@ -12,6 +12,16 @@
     }
 
     &_outils h2 {
+        margin-bottom: 40px;
         text-align: left;
+    }
+
+    &_outils .surtitre {
+        gap: 16px;
+        margin-bottom: 12px;
+
+        span {
+            @include icone-fleche(34px, 19px);
+        }
     }
 }

@@ -20,23 +20,29 @@
 
                     {% include "_reseaux.html" with {classe: "pied-page_reseaux"} %}
 
-                    <div class="pied-page_mention">
-                        <p>
-                            J’ai utilisé Claude AI pour structurer, raccourcir, corriger ou
-                            reformuler mes textes. Les expériences et les idées sont les miennes;
-                            j’ai réécrit et vérifié le résultat.
-                        </p>
+                    <div class="pied-page_mention" data-component="Accordion">
+                        <button type="button" class="pied-page_ia-bouton js-header" aria-expanded="false" aria-controls="declaration-ia">
+                            Utilisation de l’IA
+                            <span class="pied-page_ia-icone" aria-hidden="true"></span>
+                        </button>
+                        <div class="pied-page_ia-texte" id="declaration-ia">
+                            <div>
+                                <p>
+                                    J’ai utilisé Claude (Anthropic) pour corriger, structurer et
+                                    reformuler mes textes. Les expériences et les idées sont les miennes;
+                                    j’ai réécrit et vérifié le résultat.
+                                </p>
+                                <p>
+                                    Claude m’a aussi aidé à déboguer certaines fonctionnalités du site que
+                                    je maîtrise moins et que j’ai apprises en réalisant ce projet.
+                                </p>
+                            </div>
+                        </div>
                         <img
                             src="assets/icons/footer-divider.svg"
                             alt=""
                             class="pied-page_separateur"
                         />
-                    </div>
-
-                    <div class="pied-page_liens">
-                        <a href="#video-presentation">Vidéo de présentation</a>
-                        <!-- TODO Nat : remplacer par le vrai fichier CV une fois ajouté dans src/assets -->
-                        <a href="#cv">Lien vers le CV</a>
                     </div>
                 </div>
             </div>

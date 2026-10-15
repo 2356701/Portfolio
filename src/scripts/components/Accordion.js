@@ -59,6 +59,16 @@ export default class Accordion {
     }
 
     click.classList.toggle('is-active');
+
+    for (let i = 0; i < this.containers.length; i++) {
+      const container = this.containers[i];
+      if (container.hasAttribute('aria-expanded')) {
+        container.setAttribute(
+          'aria-expanded',
+          container.classList.contains('is-active'),
+        );
+      }
+    }
   }
 
   autoOpen() {
