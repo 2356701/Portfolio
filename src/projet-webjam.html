@@ -1,4 +1,3 @@
-{# TODO Nat : remplacer les images temporaires dans assets/images/projets/webjam #}
 {% set projet = {
     titre: "Création d’un site web complet en équipe",
     type: "Projet d’équipe",
@@ -23,14 +22,18 @@
         {
             titre: "Idée et plan du site",
             image: "assets/images/projets/webjam/etape-01.webp",
-            alt: "Idées du remue-méninges et plan des pages du site",
+            alt: "Document de contenu du site : identitÉ du Q-tipousse, modèles et accessoires",
             fort: "Un remue-méninges en équipe",
             texte: "dès le début du défi pour choisir le Q-tipousse et PhytoTech, puis le contenu de chaque page et la navigation, pour que tout le monde parte du même plan."
         },
         {
             titre: "Wireframes et design system",
             image: "assets/images/projets/webjam/etape-02.webp",
-            alt: "Couleurs, typographies et composants du design system dans Figma",
+            imageApres: "assets/images/projets/webjam/etape-02-sombre.webp",
+            altApres: "Thème sombre du design system dans Figma : couleurs et typographies",
+            libelleAvant: "Clair",
+            libelleApres: "Sombre",
+            alt: "Thème clair du design system dans Figma : couleurs et typographies",
             fort: "En parallèle :",
             texte: "wireframes simples par Éli et design system complet dans Figma par Nathan, menés en même temps pour gagner du temps."
         },
@@ -44,14 +47,14 @@
         {
             titre: "De HTML/CSS à WordPress",
             image: "assets/images/projets/webjam/etape-04.webp",
-            alt: "Thème WordPress du site ouvert dans VS Code",
+            alt: "L'Équipe en train de coder le site pendant le Webjam",
             fort: "Le HTML/CSS d’abord,",
             texte: "codé à plusieurs sur la même branche GitHub (une page par personne, chaque commit annoncé à voix haute), puis converti en PHP pour un thème WordPress avec CPT, ACF et formulaire."
         },
         {
             titre: "Animations",
             image: "assets/images/projets/webjam/etape-05.webp",
-            alt: "Animation de survol d’une carte du site",
+            alt: "Code des animations GSAP du site dans VS Code",
             fort: "Animations codées à la main :",
             texte: "survols des cartes et des boutons par Nathan, tiroirs par Éli. Pour GSAP, des exemples du site officiel adaptés avec Claude et Gemini."
         }
@@ -71,8 +74,8 @@
         "Animations : Nathan Fortier (survol des cartes et boutons) et Éli Bousquet (tiroirs)"
     ],
     defis: [
-        { icone: "assets/icons/defis/casque.svg", titre: "Conflits de merge", texte: "Coder à quatre sur la même branche GitHub sans écraser le travail des autres." },
-        { icone: "assets/icons/defis/horloge.svg", titre: "Répartir les tâches", texte: "Diviser le travail à quatre sans que personne ne bloque ou ne reste sans rien à faire." }
+        { icone: "assets/icons/defis/branche.svg", titre: "Conflits de merge", texte: "Coder à quatre sur la même branche GitHub sans écraser le travail des autres." },
+        { icone: "assets/icons/defis/liste.svg", titre: "Répartir les tâches", texte: "Diviser le travail à quatre sans que personne ne bloque ou ne reste sans rien à faire." }
     ],
     solutions: [
         { fort: "Vérifier", texte: "avant chaque tâche que personne ne touchait à la même page, et annoncer chaque commit à voix haute pour que tout le monde récupère le code à jour." },

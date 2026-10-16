@@ -138,6 +138,10 @@
                 top: -40px;
                 right: -10px;
             }
+
+            @media screen and (width <= $breakpoint-sm) {
+                right: -4px;
+            }
         }
     }
 

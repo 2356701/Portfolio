@@ -159,6 +159,13 @@
     }
 
     @media screen and (width <= $breakpoint-sm) {
+        padding-inline: var(--spacing-mmd);
+
+        &_bascule-bouton {
+            padding: 6px 14px;
+            font-size: 13px;
+        }
+
         &_entete,
         &_inverse .etape_entete {
             gap: var(--spacing-mmd);

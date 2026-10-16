@@ -108,6 +108,11 @@
         color: var(--color-white);
         box-shadow: var(--shadow-card-lg);
 
+        @media screen and (width <= $breakpoint-sm) {
+            inset: auto auto var(--spacing-mmd) var(--spacing-mmd);
+            margin: 0;
+        }
+
         @include survol {
             background-color: var(--color-primary-deep);
             border-color: var(--color-primary-deep);

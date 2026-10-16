@@ -11,6 +11,7 @@ import RetourHaut from './components/RetourHaut';
 import ModaleImage from './components/ModaleImage';
 import CollageVideo from './components/CollageVideo';
 import AvantApres from './components/AvantApres';
+import AnimationsScroll from './components/AnimationsScroll';
 
 export default class ComponentFactory {
   constructor() {
@@ -29,6 +30,7 @@ export default class ComponentFactory {
       ModaleImage,
       CollageVideo,
       AvantApres,
+      AnimationsScroll,
     };
     this.init();
   }

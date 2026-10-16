@@ -81,6 +81,11 @@
     background: radial-gradient(circle at 75% 60%, #3a3a3a 0%, var(--color-dark) 65%);
     overflow: hidden;
 
+    @media screen and (width <= $breakpoint-sm) {
+        border: 1px solid rgb(255 255 255 / 0.25);
+        border-radius: var(--radius);
+    }
+
     @include survol {
         @include bouton-lecture-survol;
 
@@ -165,6 +170,10 @@
         height: 4cqw;
         border: 0 solid rgb(255 255 255 / 0.7);
 
+        @media screen and (width <= $breakpoint-sm) {
+            display: none;
+        }
+
         &:nth-child(1) {
             top: 3cqw;
             left: 3cqw;
@@ -237,10 +246,6 @@
         left: 7cqw;
         z-index: 3;
         text-transform: uppercase;
-
-        @media screen and (width <= $breakpoint-sm) {
-            display: none;
-        }
     }
 
     &_nom {
@@ -256,7 +261,7 @@
     &_etiquette {
         margin: 1.5cqw 0 0;
         @include text-h3;
-        font-size: 2.6cqw;
+        font-size: max(11px, 2.6cqw);
         color: var(--color-white);
 
         em {
@@ -269,16 +274,13 @@
     .bouton-lecture {
         z-index: 4;
         top: auto;
+        right: auto;
         bottom: 13cqw;
         left: 7cqw;
         transform: none;
 
         @media screen and (width <= $breakpoint-sm) {
-            top: 50%;
-            right: auto;
-            bottom: auto;
-            left: 24cqw;
-            transform: translate(-50%, -50%);
+            --taille: 44px;
         }
     }
 }

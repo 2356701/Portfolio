@@ -89,9 +89,9 @@
                         <button type="button" class="etape_agrandir" data-modale-image data-vue="apres" aria-label="Agrandir l’image : {{ etape.altApres }}" inert>
                             <img src="{{ etape.imageApres }}" alt="{{ etape.altApres }}" loading="lazy" />
                         </button>
-                        <div class="etape_bascule" role="group" aria-label="Comparer avant et après">
-                            <button type="button" class="etape_bascule-bouton is-active" data-bascule="avant" aria-pressed="true">Avant</button>
-                            <button type="button" class="etape_bascule-bouton" data-bascule="apres" aria-pressed="false">Après</button>
+                        <div class="etape_bascule" role="group" aria-label="Comparer les deux images">
+                            <button type="button" class="etape_bascule-bouton is-active" data-bascule="avant" aria-pressed="true">{{ etape.libelleAvant|default("Avant") }}</button>
+                            <button type="button" class="etape_bascule-bouton" data-bascule="apres" aria-pressed="false">{{ etape.libelleApres|default("Après") }}</button>
                         </div>
                         {% endif %}
                     </div>

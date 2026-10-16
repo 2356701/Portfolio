@@ -120,6 +120,15 @@
         }
     }
 
+    @media screen and ($breakpoint-sm < width <= $breakpoint-md) {
+        width: calc(50% + 10px);
+        min-height: 520px;
+
+        &:nth-child(2) {
+            margin-left: -20px;
+        }
+    }
+
     @media screen and (width <= $breakpoint-sm) {
         min-height: 0;
         padding: var(--spacing-lg) var(--spacing-mmd);
